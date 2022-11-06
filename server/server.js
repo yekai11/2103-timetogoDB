@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const pool = require('./database'); // pool.query();
 const app = express();
 
 // Parse incoming cookies and request bodies
