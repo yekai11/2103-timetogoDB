@@ -1,11 +1,13 @@
 import React from "react";
-import Header from "../Header";
+import SearchComponent from "./SearchSection";
+import ListingComponent from "./Listing/ListingSection";
+
 
 export default function Homepage() {
   return (
     <div>
-      <Header />
-      
+      <SearchComponent/>
+      <ListingComponent/>
     </div>
   );
 }
