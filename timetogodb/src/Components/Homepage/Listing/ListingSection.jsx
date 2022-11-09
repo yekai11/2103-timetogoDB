@@ -1,4 +1,4 @@
-import { Typography, Box, Link } from "@mui/material";
+import { Typography, Box, Link, Grid } from "@mui/material";
 import React from "react";
 import ListingComponent from "./ListingComponent";
 import a_hdb from "../../../assets/aesthetic_hdb.jpg";
@@ -20,7 +20,7 @@ export default function ListingSection() {
       >
         <Box
           sx={{
-            width: "90vw",
+            width: "90%",
             height: "100%",
           }}
         >
@@ -31,13 +31,17 @@ export default function ListingSection() {
               justifyContent: "space-between",
               height: "10%",
               alignItems: "center",
-              mt:2
+              mt: 2,
             }}
           >
             <Typography variant="h4" sx={{ fontWeight: "bold" }}>
               Popular Residences
             </Typography>
-            <Link href="/"variant="body1" sx={{ fontWeight: "bold", color: "black" }}>
+            <Link
+              href="/"
+              variant="body1"
+              sx={{ fontWeight: "bold", color: "black" }}
+            >
               See All
             </Link>
           </Box>
@@ -52,10 +56,6 @@ export default function ListingSection() {
               width: "100%",
             }}
           >
-            {/* <Box sx={{border:2, backgroundColor:'red', width:'30%'}}></Box>
-            <Box sx={{border:2, backgroundColor:'blue', width:'30%'}}></Box>
-            <Box sx={{border:2, backgroundColor:'green', width:'30%'}}></Box> */}
-
             <ListingComponent
               img={a_hdb}
               location={"Yio Chu Kang"}
@@ -85,12 +85,12 @@ export default function ListingSection() {
         <Box
           sx={{
             backgroundColor: "#666ad1",
-            display:'flex',            
+            display: "flex",
             height: "40vh",
             width: "100%",
             zIndex: 10,
             position: "absolute",
-            translate:'0 250%',
+            translate: "0 250%",
             // border:2,
             // borderColor:'red'
           }}
