@@ -1,8 +1,9 @@
-import { Typography, Box, Link, Grid } from "@mui/material";
+import { Typography, Box, Link } from "@mui/material";
 import React from "react";
 import ListingComponent from "./ListingComponent";
 import a_hdb from "../../../assets/aesthetic_hdb.jpg";
 import hdb_homepage from "../../../assets/hdb_homepage.jpg";
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 
 export default function ListingSection() {
   return (
@@ -35,7 +36,7 @@ export default function ListingSection() {
             }}
           >
             <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-              Popular Residences
+              Popular Homes
             </Typography>
             <Link
               href="/"
@@ -86,16 +87,56 @@ export default function ListingSection() {
           sx={{
             backgroundColor: "#666ad1",
             display: "flex",
+            flexDirection: "row",
             height: "40vh",
             width: "100%",
             zIndex: 10,
             position: "absolute",
-            translate: "0 250%",
-            // border:2,
-            // borderColor:'red'
+            translate: "0 270%",
           }}
         >
-          {/* <Typography>asdasd</Typography> */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-around",
+              mb: 10,
+            }}
+          >
+            <Box sx={{ textAlign: "left" }}>
+              <Typography
+                color="#f0f0f0"
+                variant="h4"
+                sx={{ fontWeight: "bold" }}
+              >
+                Daniel Wang
+              </Typography>
+              <Typography
+                color="#363434"
+                variant="subtitle1"
+                sx={{ fontWeight: "bold" }}
+              >
+                CEO Find-A-Home
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                width: "50%",
+              }}
+            >
+              <FormatQuoteIcon color="primary" fontSize="large" />
+              <Typography
+                color="#f0f0f0"
+                variant="h4"
+                sx={{ mt: 2, ml: 1, textAlign: "left", fontWeight: "bold" }}
+              >
+                Here you can find your dream house easily and efficiently, with a wide range of choices that will meet your needs.
+              </Typography>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </div>

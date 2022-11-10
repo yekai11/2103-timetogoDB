@@ -1,13 +1,16 @@
 import React from "react";
 import SearchComponent from "./SearchSection";
-import ListingComponent from "./Listing/ListingSection";
-
+import ListingSection from "./Listing/ListingSection";
+import FeatureSection from "./FeatureSection";
+import FooterSection from "./FooterSection";
 
 export default function Homepage() {
   return (
     <div>
-      <SearchComponent/>
-      <ListingComponent/>
+      <SearchComponent />
+      <ListingSection />
+      <FeatureSection />
+      <FooterSection />
     </div>
   );
 }

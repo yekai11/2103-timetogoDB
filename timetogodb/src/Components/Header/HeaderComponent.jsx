@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -62,7 +61,7 @@ export default function Header() {
                 href="/"
                 sx={{
                   my: 3,
-                  mx: 4,
+                  mx: 3,
                   color: "white",
                   display: "inline-block",
                   fontWeight: "bold",
@@ -76,9 +75,6 @@ export default function Header() {
                 {page}
               </Button>
             ))}
-            <Link>Rental</Link>
-            <Link>Resale</Link>
-
           </Box>
           <Button size="large" variant="contained" color="secondary">
             Login

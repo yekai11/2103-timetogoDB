@@ -38,8 +38,8 @@ export default function ListingComponent(props) {
               alignItems: "center",
             }}
           >
-            <LocationOnIcon fontSize="large" sx={{ paddingTop: 3 }} />
-            <Typography variant="h4" align="left " sx={{ mt: 3 }}>
+            <LocationOnIcon color="primary" fontSize="large" sx={{ paddingTop: 3 }} />
+            <Typography variant="h4" align="left " sx={{ mt: 3, fontWeight:'bold' }}>
               {props.location}
             </Typography>
           </Box>
