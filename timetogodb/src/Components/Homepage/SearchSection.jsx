@@ -103,8 +103,8 @@ export default function SearchSection() {
           src={building}
         ></img>
         <Typography
-          sx={{ mb: 2, zIndex: 0, fontWeight: "bold", color: "#2f302f" }}
-          variant="h2"
+          sx={{ mb: 2, zIndex: 0, fontWeight: 500, color: "#2f302f" }}
+          variant="h3"
         >
           Find your dream home today
         </Typography>

@@ -18,11 +18,11 @@ export default function FeatureSection() {
         <Typography
           color="#b5b5b5"
           variant="subtitle1"
-          sx={{ fontWeight: "bold",mb:1 }}
+          sx={{ fontWeight: 600,mb:1 }}
         >
           Features
         </Typography>
-        <Typography variant="h3" sx={{ fontWeight: "bold" }}>
+        <Typography variant="h3" sx={{ fontWeight: 700 }}>
           How Can We Help?
         </Typography>
       </Box>
@@ -34,7 +34,7 @@ export default function FeatureSection() {
           alignItems: "center",
         }}
       >
-        <Grid container spacing={8} sx={{ paddingX: 10 }}>
+        <Grid container spacing={6} sx={{ paddingX: 10 }}>
           <Grid item lg={4}>
             <Box
               sx={{
@@ -51,10 +51,10 @@ export default function FeatureSection() {
               }}
             >
               <SearchRoundedIcon color="secondary" sx={{ fontSize: 100,mt:5, mb:2}} />
-              <Typography variant="h4" gutterBottom="true" sx={{ fontWeight: "bold" }}>
+              <Typography variant="h4" gutterBottom="true" sx={{ fontWeight: 600 }}>
                 Easy To Find
               </Typography>
-              <Typography align="justify" variant="body1" color="#545454" sx={{fontWeight:'bold'}}>
+              <Typography align="justify" variant="body1" color="#545454" sx={{fontWeight:400}}>
                 Here you can find your residences easily because we have worked with hundreds of homeowners with quality and affordable prices.
               </Typography>
             </Box>
@@ -75,10 +75,10 @@ export default function FeatureSection() {
               }}
             >
               <PaidRoundedIcon color="secondary" sx={{ fontSize: 100, mt:5, mb:2 }} />
-              <Typography variant="h4" gutterBottom="true" sx={{ fontWeight: "bold" }}>
+              <Typography variant="h4" gutterBottom="true" sx={{ fontWeight: 600 }}>
                 Affordable Prices
               </Typography>
-              <Typography  align="justify" variant="body1" color="#545454" sx={{fontWeight:'bold'}}>
+              <Typography  align="justify" variant="body1" color="#545454" sx={{fontWeight:400}}>
                 Home prices that we work with are more affordable than other places, with great location and better quality than others.
               </Typography>
             </Box>
@@ -99,10 +99,10 @@ export default function FeatureSection() {
               }}
             >
               <AccessTimeFilledRoundedIcon color="secondary" sx={{ fontSize: 100, mt:5, mb:2 }} />
-              <Typography variant="h4" gutterBottom="true" sx={{ fontWeight: "bold" }}>
+              <Typography variant="h4" gutterBottom="true" sx={{ fontWeight: 600 }}>
                 Quickly Process
               </Typography>
-              <Typography  align="justify" variant="body1" color="#545454" sx={{fontWeight:'bold'}}>
+              <Typography  align="justify" variant="body1" color="#545454" sx={{fontWeight:400}}>
                 With a quick and easy process, you don't have to wait a long time to inhabit your dream home immediatey with your loved ones.
               </Typography>
             </Box>

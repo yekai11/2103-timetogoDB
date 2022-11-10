@@ -35,13 +35,13 @@ export default function ListingSection() {
               mt: 2,
             }}
           >
-            <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+            <Typography variant="h3" sx={{ fontWeight: 400 }}>
               Popular Homes
             </Typography>
             <Link
               href="/"
               variant="body1"
-              sx={{ fontWeight: "bold", color: "black" }}
+              sx={{ fontWeight: 500, color: "black" }}
             >
               See All
             </Link>
@@ -105,7 +105,7 @@ export default function ListingSection() {
           >
             <Box sx={{ textAlign: "left" }}>
               <Typography
-                color="#f0f0f0"
+                color="white"
                 variant="h4"
                 sx={{ fontWeight: "bold" }}
               >
@@ -114,7 +114,7 @@ export default function ListingSection() {
               <Typography
                 color="#363434"
                 variant="subtitle1"
-                sx={{ fontWeight: "bold" }}
+                sx={{ fontWeight: 600 }}
               >
                 CEO Find-A-Home
               </Typography>
@@ -131,7 +131,7 @@ export default function ListingSection() {
               <Typography
                 color="#f0f0f0"
                 variant="h4"
-                sx={{ mt: 2, ml: 1, textAlign: "left", fontWeight: "bold" }}
+                sx={{ mt: 2, ml: 1, textAlign: "left", fontWeight: 700 }}
               >
                 Here you can find your dream house easily and efficiently, with a wide range of choices that will meet your needs.
               </Typography>

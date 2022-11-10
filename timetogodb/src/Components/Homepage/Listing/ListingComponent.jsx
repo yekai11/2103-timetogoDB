@@ -14,6 +14,9 @@ export default function ListingComponent(props) {
           width: "70%",
           height: "100%",
           backgroundColor: "white",
+          // "&:hover": {
+          //   backgroundColor: "#d32f2f",
+          // },
         }}
       >
         <img
@@ -39,7 +42,7 @@ export default function ListingComponent(props) {
             }}
           >
             <LocationOnIcon color="primary" fontSize="large" sx={{ paddingTop: 3 }} />
-            <Typography variant="h4" align="left " sx={{ mt: 3, fontWeight:'bold' }}>
+            <Typography variant="h4" align="left " sx={{ mt: 3, fontWeight:500, color:'#242424' }}>
               {props.location}
             </Typography>
           </Box>
@@ -47,6 +50,7 @@ export default function ListingComponent(props) {
             <Typography
               variant="body1"
               align="justify"
+              sx={{fontWeight:400}}
             >
               {props.desc}
             </Typography>
@@ -61,7 +65,7 @@ export default function ListingComponent(props) {
               color="primary"
               variant="h6"
               align="left"
-              sx={{ fontWeight: "bold" }}
+              sx={{ fontWeight: 500 }}
             >
               ${props.price}
             </Typography>
@@ -70,7 +74,7 @@ export default function ListingComponent(props) {
               align="left"
               sx={{
                 ml: 1,
-                fontWeight: "bold",
+                fontWeight: 500,
                 color: "#878787",
               }}
             >

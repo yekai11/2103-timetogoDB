@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Link } from "@mui/material";
+import { Typography, Box, Link, Button } from "@mui/material";
 import WeekendIcon from "@mui/icons-material/Weekend";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -40,7 +40,7 @@ export default function FooterSection() {
             <Typography
               color="white "
               variant="h4"
-              sx={{ fontWeight: "bold", textDecoration: "none", mt: 1.5 }}
+              sx={{ fontWeight: 600, textDecoration: "none", mt: 1.5 }}
             >
               Find-A-Home
             </Typography>
@@ -48,7 +48,7 @@ export default function FooterSection() {
           <Box sx={{ width: "50%" }}>
             <Typography
               variant="body1"
-              sx={{ fontWeight: "bold", color: "#c2c2c2" }}
+              sx={{ fontWeight: 400, color: "#c2c2c2" }}
             >
               ICT2103 is the best mod ever yay. Time for an A+
             </Typography>
@@ -66,18 +66,18 @@ export default function FooterSection() {
         >
           <Typography
             variant="h5"
-            sx={{ fontWeight: "bold", mt: 2, color: "white" }}
+            sx={{ fontWeight: 600, mt: 2, color: "white" }}
           >
             Menu
           </Typography>
           <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
-            <Link href="/" sx={{ color: "#c2c2c2", fontSize: 17 }}>
+            <Link href="/" sx={{ color: "#c2c2c2", fontSize: 17, fontWeight:400 }}>
               Home
             </Link>
-            <Link href="/resale" sx={{ color: "#c2c2c2", fontSize: 17, mt: 3 }}>
+            <Link href="/resale" sx={{ color: "#c2c2c2", fontSize: 17, mt: 3, fontWeight:400 }}>
               Resale
             </Link>
-            <Link href="/rental" sx={{ color: "#c2c2c2", fontSize: 17, mt: 3 }}>
+            <Link href="/rental" sx={{ color: "#c2c2c2", fontSize: 17, mt: 3, fontWeight:400 }}>
               Rental
             </Link>
           </Box>
@@ -92,27 +92,27 @@ export default function FooterSection() {
         >
           <Typography
             variant="h5"
-            sx={{ fontWeight: "bold", mt: 2, color: "white" }}
+            sx={{ fontWeight: 600, mt: 2, color: "white" }}
           >
             Stay Connected With Us
           </Typography>
           <Box sx={{ mt: 2 }}>
-            <Link href="">
+            <Button href="/">
               <FacebookIcon sx={{ color: "#c2c2c2", fontSize: 50, mr: 2 }} />
-            </Link>
-            <Link href="">
+            </Button>
+            <Button href="/">
               <InstagramIcon sx={{ color: "#c2c2c2", fontSize: 50, mr: 2 }} />
-            </Link>
-            <Link href="">
+            </Button>
+            <Button href="/">
               <TwitterIcon sx={{ color: "#c2c2c2", fontSize: 50 }} />
-            </Link>
+            </Button>
           </Box>
         </Box>
       </Box>
       <Box sx={{ pt: 3, backgroundColor: "#303f9f", pb:2 }}>
         <Typography
           variant="caption1"
-          sx={{ color: "#c2c2c2", fontWeight: "bold" }}
+          sx={{ color: "#c2c2c2", fontWeight: 500 }}
         >
           2022 © Find-A-Home
         </Typography>
