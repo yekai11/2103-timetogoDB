@@ -109,7 +109,7 @@ export default function FooterSection() {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ pt: 3, backgroundColor: "#303f9f" }}>
+      <Box sx={{ pt: 3, backgroundColor: "#303f9f", pb:2 }}>
         <Typography
           variant="caption1"
           sx={{ color: "#c2c2c2", fontWeight: "bold" }}
