@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import WeekendIcon from "@mui/icons-material/Weekend";
-import "./Header.css";
 
 const pages = ["RESALE", "RENTAL"];
 
@@ -67,8 +66,7 @@ export default function Header() {
                   fontWeight: "bold",
                   fontSize:15,
                   "&:hover": {
-                    backgroundColor: "#001970",
-
+                    backgroundColor: "#d32f2f",
                   },
                 }}
               >
