@@ -97,13 +97,13 @@ export default function FooterSection() {
             Stay Connected With Us
           </Typography>
           <Box sx={{ mt: 2 }}>
-            <Button href="/">
+            <Button>
               <FacebookIcon sx={{ color: "#c2c2c2", fontSize: 50, mr: 2 }} />
             </Button>
-            <Button href="/">
+            <Button>
               <InstagramIcon sx={{ color: "#c2c2c2", fontSize: 50, mr: 2 }} />
             </Button>
-            <Button href="/">
+            <Button>
               <TwitterIcon sx={{ color: "#c2c2c2", fontSize: 50 }} />
             </Button>
           </Box>
