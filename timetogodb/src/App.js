@@ -5,6 +5,7 @@ import Homepage from "./Components/Homepage/Homepage";
 import RentalPage from "./Components/RentalPage";
 import ResalePage from "./Components/ResalePage";
 import LoginPage from "./Components/LoginPage";
+import RegisterPage from "./Components/RegisterPage";
 import { indigo, red } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -26,17 +27,19 @@ const theme = createTheme({
     }
 });
 
+let isLoggedIn = true;
+
 function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
-          <Header />
           <Routes>
-            <Route path="/" element={<Homepage />}></Route>
+            <Route path="/" element={<Homepage isLoggedIn={isLoggedIn} />}></Route>
             <Route path="rental" element={<RentalPage />}></Route>
             <Route path="resale" element={<ResalePage />}></Route>
             <Route path="login" element={<LoginPage />}></Route>
+            <Route path="register" element={<RegisterPage />}></Route> 
           </Routes>
         </Router>
       </ThemeProvider>

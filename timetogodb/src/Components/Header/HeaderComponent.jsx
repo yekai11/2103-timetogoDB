@@ -74,7 +74,7 @@ export default function Header() {
               </Button>
             ))}
           </Box>
-          <Button size="large" variant="contained" color="secondary">
+          <Button href='/login' size="large" variant="contained" color="secondary">
             Login
           </Button>
         </Toolbar>
