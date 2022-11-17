@@ -14,7 +14,7 @@ export default function Header() {
     <AppBar color="primary" position="static">
       <Container maxWidth="auto">
         <Toolbar disableGutters>
-          <WeekendIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <WeekendIcon sx={{ fontSize:30, display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -23,8 +23,7 @@ export default function Header() {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
+              fontWeight: 600,
               color: "inherit",
               textDecoration: "none",
             }}
