@@ -36,21 +36,21 @@ export default function FooterSection() {
               width: "50%",
             }}
           >
-            <WeekendIcon sx={{ fontSize: 50, color: "white", mr: 1, mt: 1 }} />
+            <WeekendIcon sx={{ fontSize: {sm: 20, md:30, lg:40}, color: "white", mr: 1, mt: 1 }} />
             <Typography
               color="white "
-              variant="h4"
+              variant="h5"
               sx={{ fontWeight: 600, textDecoration: "none", mt: 1.5 }}
             >
               Find-A-Home
             </Typography>
           </Box>
-          <Box sx={{ width: "50%" }}>
+          <Box sx={{ width: "50%", }}>
             <Typography
               variant="body1"
               sx={{ fontWeight: 400, color: "#c2c2c2" }}
             >
-              ICT2103 is the best mod ever yay. Time for an A+
+              ICT2103 is the best mod ever. Thanks for the A+ prof
             </Typography>
           </Box>
         </Box>

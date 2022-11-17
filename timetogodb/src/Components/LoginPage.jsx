@@ -46,11 +46,13 @@ export default function LoginPage() {
                 mr: 1,
               }}
             />
-            <Typography
+            <Link
+              href="/"
+              underline="none"
               sx={{ color: "#303f9f", fontSize: 30, fontWeight: 600 }}
             >
               Find-A-Home
-            </Typography>
+            </Link>
           </Box>
           <Box
             sx={{
@@ -63,13 +65,17 @@ export default function LoginPage() {
               pr: 20,
             }}
           >
-            <Box sx={{width:'80%', wordBreak:'break-word'}}> 
-              <Typography variant="h3" sx={{ fontWeight: 300, mt: 20 }}>
-                Welcome Back!
-              </Typography>
+            <Typography variant="h3" sx={{ fontWeight: 300, pt: 15 }}>
+              Welcome Back!
+            </Typography>
+            <Box sx={{ width: "90%", wordBreak: "break-word" }}>
               <Typography
-                variant="subtitle1"
-                sx={{ fontWeight: 300, mt: 2, mb: 8 }}
+                sx={{
+                  fontWeight: 300,
+                  mt: 2,
+                  pb: 5,
+                  fontSize: { sm: 10, md: 15, lg: 20 },
+                }}
               >
                 Quickly login to find a house and spend more money.
               </Typography>
@@ -101,10 +107,18 @@ export default function LoginPage() {
                 Forget Password
               </Link>
             </Box>
-            <Button variant="contained" sx={{ width: "80%", mt: 5 }}>
+            <Button
+              variant="contained"
+              sx={{ width: "80%", mt: 3, height: "5vh" }}
+            >
               Login
             </Button>
-            <Typography sx={{mt:5}}>Don't have an account? <Link href=''>Sign up for free</Link></Typography>
+            <Typography sx={{ mt: 5 }}>
+              Don't have an account?
+              <Link href="/register" sx={{ ml: 1 }}>
+                Sign up for free
+              </Link>
+            </Typography>
           </Box>
         </Box>
 

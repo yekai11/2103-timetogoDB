@@ -138,7 +138,7 @@ export default function SearchSection() {
               )}
               groupBy={(option) => option.firstLetter}
               getOptionLabel={(option) => option.title}
-              sx={{ width: "29vw", ml: 1 }}
+              sx={{ width: "30vw", ml: 1 }}
               renderInput={(params) => (
                 <TextField variant="filled" {...params} label="Location" />
               )}
