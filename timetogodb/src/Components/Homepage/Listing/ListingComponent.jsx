@@ -5,6 +5,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export default function ListingComponent(props) {
   return (
@@ -81,7 +82,7 @@ export default function ListingComponent(props) {
               /month
             </Typography>
           </Box>
-          <Button variant="contained">Buy Now</Button>
+          <Button startIcon={<FavoriteIcon sx={{color:'#d32f2f'}}/>} variant="contained">Indicate Interest</Button>
         </Box>
       </Box>
     </div>
