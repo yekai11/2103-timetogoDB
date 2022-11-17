@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useState} from "react";
 import {
   Typography,
   Box,
@@ -23,6 +23,23 @@ const roles = [
 ];
 
 export default function RegisterPage() {
+
+  /*State for Name field */
+  const [name, setName] = useState('');
+
+  const handleNameChange = (event) =>{
+    setName(event.target.value);
+  }
+
+  /*State for Email field */
+  const [email, setEmail] = useState("");
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+
+  /*State for password field */
   const [values, setValues] = React.useState({
     password: "",
     showPassword: false,
@@ -43,8 +60,16 @@ export default function RegisterPage() {
     event.preventDefault();
   };
 
-  const [role, setRole] = React.useState("");
+  /*State for Phone Number field */
+  const [phoneNumber, setPhoneNumber] = useState('');
 
+  const handlePhoneNumberChange = (event) =>{
+    setPhoneNumber(event.target.value);
+  }
+  
+
+  /*State for role field */
+  const [role, setRole] = React.useState("");
   const handleRoleChange = (event) => {
     setRole(event.target.value);
   };
@@ -172,7 +197,10 @@ export default function RegisterPage() {
               >
                 <Box>
                   <TextField
+                    id="Name"
                     name="Name"
+                    value={name}
+                    onChange={handleNameChange}
                     color="primary"
                     label="Name"
                     variant="filled"
@@ -182,6 +210,9 @@ export default function RegisterPage() {
                 <Box>
                   <TextField
                     id="Email"
+                    name="Email"
+                    value={email}
+                    onChange={handleEmailChange}
                     color="primary"
                     label="Email"
                     variant="filled"
@@ -218,6 +249,8 @@ export default function RegisterPage() {
                   <TextField
                     label="Phone Number"
                     id="phone_number"
+                    value={phoneNumber}
+                    onChange={handlePhoneNumberChange}
                     sx={{ m: 1, width: "25vw" }}
                     InputProps={{
                       startAdornment: (
@@ -229,7 +262,6 @@ export default function RegisterPage() {
                 </Box>
                 <Box>
                   <TextField
-                    id="outlined-select-currency"
                     select
                     label="Role"
                     variant="filled"
