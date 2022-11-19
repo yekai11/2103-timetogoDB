@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   Typography,
   Box,
@@ -17,19 +17,27 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import register_hdb from "../assets/register_hdb.png";
 import WeekendIcon from "@mui/icons-material/Weekend";
 
+const registerAPI = "http://localhost:5000/register"; //const url for easy changing of api links
+
 const roles = [
   { value: "Buyer", label: "Buyer" },
   { value: "Seller", label: "Seller" },
 ];
 
 export default function RegisterPage() {
-
   /*State for Name field */
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
-  const handleNameChange = (event) =>{
+  const handleNameChange = (event) => {
     setName(event.target.value);
-  }
+  };
+
+  /*State for Username field */
+  const [username, setUsername] = useState("");
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
 
   /*State for Email field */
   const [email, setEmail] = useState("");
@@ -37,7 +45,6 @@ export default function RegisterPage() {
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
-
 
   /*State for password field */
   const [values, setValues] = React.useState({
@@ -61,17 +68,37 @@ export default function RegisterPage() {
   };
 
   /*State for Phone Number field */
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState("");
 
-  const handlePhoneNumberChange = (event) =>{
+  const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
-  }
-  
+  };
 
   /*State for role field */
   const [role, setRole] = React.useState("");
   const handleRoleChange = (event) => {
     setRole(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    fetch(registerAPI, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        //insert fields here
+        name: name,
+        username: username,
+        email: email,
+        password: values.password,
+        phoneNumber: phoneNumber,
+        role: role,
+      }),
+    }).then((result) => {
+      console.log("In result");
+      console.log(result);
+    });
   };
 
   return (
@@ -209,6 +236,18 @@ export default function RegisterPage() {
                 </Box>
                 <Box>
                   <TextField
+                    id="Username"
+                    name="Username"
+                    value={username}
+                    onChange={handleUsernameChange}
+                    color="primary"
+                    label="Username"
+                    variant="filled"
+                    sx={{ width: "25vw" }}
+                  />
+                </Box>
+                <Box>
+                  <TextField
                     id="Email"
                     name="Email"
                     value={email}
@@ -294,7 +333,6 @@ export default function RegisterPage() {
                 </Box>
                 <Button
                   variant="contained"
-                  href="/"
                   sx={{
                     width: "25vw",
                     height: "8vh",
@@ -302,6 +340,7 @@ export default function RegisterPage() {
                     fontWeight: 500,
                     pt: 2,
                   }}
+                  onClick={handleSubmit}
                 >
                   Get Started
                 </Button>

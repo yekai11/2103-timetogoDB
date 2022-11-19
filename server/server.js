@@ -16,6 +16,12 @@ app.use(cors());
 const townRouter = require('./routes/town');
 app.use('/town', townRouter);
 
+const registerRouter = require('./routes/register')
+app.use('/register', registerRouter);
+
+const loginRouter = require('./routes/login')
+app.use('/login', loginRouter);
+
 // Start server
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
