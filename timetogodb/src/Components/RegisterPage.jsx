@@ -95,7 +95,7 @@ export default function RegisterPage() {
         phoneNumber: phoneNumber,
         role: role,
       }),
-    }).then((result) => {
+    }).then((result) => { // this is what comes back, it will return a https 200 if successfully created
       console.log("In result");
       console.log(result);
     });
