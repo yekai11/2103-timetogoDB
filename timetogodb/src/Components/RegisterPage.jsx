@@ -95,9 +95,14 @@ export default function RegisterPage() {
         phoneNumber: phoneNumber,
         role: role,
       }),
-    }).then((result) => { // this is what comes back, it will return a https 200 if successfully created
+    }).then((result) => {
+      /*
+      This is what comes back, it will return a status code 201 if account successfully created
+      If validation error, status code 400 will be returned
+      If email already registered, status code 409 will be returned 
+      */
       console.log("In result");
-      console.log(result);
+      console.log(result.status); // this is how u access the status code
     });
   };
 

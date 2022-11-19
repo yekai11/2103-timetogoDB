@@ -42,7 +42,7 @@ function convertRoleToInt(role) {
 router.post("/", async (req, res) => {
   try {
     const { name, username, email, password, phoneNumber, role } = req.body; // setting objects for easy reference
-    console.log(name, username, email, password, phoneNumber, role); // for debugging
+    // console.log(name, username, email, password, phoneNumber, role); // for debugging
 
     const validation = validateFields({
       name: name,
@@ -51,41 +51,45 @@ router.post("/", async (req, res) => {
       role: role,
     });
 
-    console.log("after validation function");
+    // console.log("after validation function");
 
     if (!validation) {
-      res.send("Validation failed"); // send error to frontend
-    } else {
-      const hashedPassword = await bcrypt.hash(password, saltRounds); // hash and salting password using bcrypt
-      const roleToInteger = convertRoleToInt(role); // converting role string to integer
+      res.sendStatus(400); // send error code 400 to frontend
+      return;
+    }
 
-      console.log(
-        name,
-        username,
-        email,
-        hashedPassword,
-        phoneNumber,
-        roleToInteger
-      ); // for debugging
+    const emailQuery = await pool.query(`SELECT email FROM public.account WHERE
+    email = '${email}' `);
 
-      const registerQuery = await pool.query(`INSERT INTO Account
+    if (emailQuery.rowCount != 0) {
+      // email already registered in database
+      res.sendStatus(409); // send error cod 409 to frontend
+      return;
+    }
+
+    const hashedPassword = await bcrypt.hash(password, saltRounds); // hash and salting password using bcrypt
+    const roleToInteger = convertRoleToInt(role); // converting role string to integer
+
+    // console.log(
+    //   name,
+    //   username,
+    //   email,
+    //   hashedPassword,
+    //   phoneNumber,
+    //   roleToInteger
+    // ); // for debugging
+
+    const registerQuery = await pool.query(`INSERT INTO Account
         VALUES ((SELECT MAX(account_id)+1 FROM Account), ${roleToInteger}, '${name}', '${username}', '${hashedPassword}', '${email}', '${phoneNumber}');
         `);
 
-      console.log("submittedSQL");
+    //   console.log("submittedSQL");
 
-      res.sendStatus(200);
-    }
+    res.sendStatus(201);
+    return;
   } catch (err) {
     console.log(err);
   }
-
-  //   try {
-  //     const registerQuery = await pool.query(`SELECT * FROM Account`);
-  //     // res.json(rows);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
 });
 
 module.exports = router;
