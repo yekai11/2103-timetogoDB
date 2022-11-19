@@ -16,9 +16,11 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import hdb_login from "../assets/hdb_login.jpg";
 import WeekendIcon from "@mui/icons-material/Weekend";
 
+const loginAPI = "http://localhost:5000/login"; //const url for easy changing of api links
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     password: "",
     showPassword: false,
   });
@@ -40,6 +42,29 @@ export default function LoginPage() {
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
+  };
+
+  const handleSubmit = () => {
+    // console.log(JSON.stringify({ email: email, password: values.password }));
+    fetch(loginAPI, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        //insert fields here
+        email: email,
+        password: values.password,
+      }),
+    }).then((result) => {
+      /*
+      This is what comes back, it will return a status code 200 if successfully logged in
+      If login error, status code 401 will be returned (dont tell them if its email or password error for security reasons)
+      */
+      console.log("In result");
+      console.log(result.status);// this is how u access the status code
+    });
   };
 
   return (
@@ -125,7 +150,7 @@ export default function LoginPage() {
               type={values.showPassword ? "text" : "password"}
               value={values.password}
               onChange={handlePasswordChange("password")}
-              sx={{ width: "80%"}}
+              sx={{ width: "80%" }}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -155,6 +180,7 @@ export default function LoginPage() {
             <Button
               variant="contained"
               sx={{ width: "80%", mt: 3, height: "5vh" }}
+              onClick={handleSubmit}
             >
               Login
             </Button>
