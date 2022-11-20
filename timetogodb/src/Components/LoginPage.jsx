@@ -10,10 +10,11 @@ import {
   Input,
   InputAdornment,
   IconButton,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinnerComponent";
 import hdb_login from "../assets/hdb_login.jpg";
 import WeekendIcon from "@mui/icons-material/Weekend";
 
@@ -86,7 +87,15 @@ export default function LoginPage() {
 
   return (
     <div>
-      {/* {isLoading ? <LoadingSpinner /> : null} */}
+      {isLoading ? (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={isLoading}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      ) : null}
+
       <Box
         sx={{
           width: "auto",
@@ -120,7 +129,6 @@ export default function LoginPage() {
               }}
             />
             <Link
-              href="/"
               underline="none"
               sx={{ color: "#303f9f", fontSize: 30, fontWeight: 600 }}
             >

@@ -1,11 +1,36 @@
-import { Typography, Box, Link } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Link,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Slide,
+} from "@mui/material";
 import React from "react";
 import ListingComponent from "./ListingComponent";
 import a_hdb from "../../../assets/aesthetic_hdb.jpg";
 import hdb_homepage from "../../../assets/hdb_homepage.jpg";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 export default function ListingSection() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
       <Box
@@ -59,6 +84,7 @@ export default function ListingSection() {
           >
             <ListingComponent
               img={a_hdb}
+              indiateInterest={handleClickOpen}
               location={"Yio Chu Kang"}
               desc={
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
@@ -133,9 +159,31 @@ export default function ListingSection() {
                 variant="h4"
                 sx={{ mt: 2, ml: 1, textAlign: "left", fontWeight: 700 }}
               >
-                Here you can find your dream house easily and efficiently, with a wide range of choices that will meet your needs.
+                Here you can find your dream house easily and efficiently, with
+                a wide range of choices that will meet your needs.
               </Typography>
             </Box>
+
+            <Dialog
+              open={open}
+              TransitionComponent={Transition}
+              keepMounted
+              onClose={handleClose}
+              aria-describedby="alert-dialog-slide-description"
+            >
+              <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                  Let Google help apps determine location. This means sending
+                  anonymous location data to Google, even when no apps are
+                  running.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Disagree</Button>
+                <Button onClick={handleClose}>Agree</Button>
+              </DialogActions>
+            </Dialog>
           </Box>
         </Box>
       </Box>

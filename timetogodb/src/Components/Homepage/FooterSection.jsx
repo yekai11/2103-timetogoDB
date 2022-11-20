@@ -71,7 +71,7 @@ export default function FooterSection() {
             Menu
           </Typography>
           <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
-            <Link href="/" sx={{ color: "#c2c2c2", fontSize: 17, fontWeight:400 }}>
+            <Link href="/home" sx={{ color: "#c2c2c2", fontSize: 17, fontWeight:400 }}>
               Home
             </Link>
             <Link href="/resale" sx={{ color: "#c2c2c2", fontSize: 17, mt: 3, fontWeight:400 }}>

@@ -146,7 +146,7 @@ export default function FeatureSection() {
                 gutterBottom="true"
                 sx={{ fontWeight: 600, fontSize: { sm: 25, md: 30, lg: 35 } }}
               >
-                Quickly Process
+                Quick Processing
               </Typography>
               <Typography
                 align="justify"
@@ -155,7 +155,7 @@ export default function FeatureSection() {
                 sx={{ fontWeight: 400, overflow: "hidden" }}
               >
                 With a quick and easy process, you don't have to wait a long
-                time to inhabit your dream home immediatey with your loved ones.
+                time to inhabit your dream home immediately with your loved ones.
               </Typography>
             </Box>
           </Grid>

@@ -27,16 +27,13 @@ const theme = createTheme({
 });
 
 
-const loggedIn = window.localStorage.getItem("isLoggedIn");
-console.log(loggedIn, "login");
-
 function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
           <Routes>
-            <Route path="/" element={loggedIn ? <Homepage /> : <LoginPage/> }></Route>
+            <Route path="/" element={<LoginPage/> }></Route>
             <Route path="home" element={<Homepage />}></Route>
             <Route path="rental" element={<RentalPage />}></Route>
             <Route path="resale" element={<ResalePage />}></Route>

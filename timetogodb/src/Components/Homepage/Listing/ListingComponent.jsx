@@ -1,11 +1,7 @@
-import {
-  Typography,
-  Box,
-  Button,
-} from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import React from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function ListingComponent(props) {
   return (
@@ -15,9 +11,6 @@ export default function ListingComponent(props) {
           width: "70%",
           height: "100%",
           backgroundColor: "white",
-          // "&:hover": {
-          //   backgroundColor: "#d32f2f",
-          // },
         }}
       >
         <img
@@ -25,7 +18,7 @@ export default function ListingComponent(props) {
           alt="popular residences"
           style={{ width: "100%", height: "55%", objectFit: "cover" }}
         ></img>
-        <Box    
+        <Box
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -42,8 +35,16 @@ export default function ListingComponent(props) {
               alignItems: "center",
             }}
           >
-            <LocationOnIcon color="primary" fontSize="large" sx={{ paddingTop: 3 }} />
-            <Typography variant="h4" align="left " sx={{ mt: 3, fontWeight:500, color:'#242424' }}>
+            <LocationOnIcon
+              color="primary"
+              fontSize="large"
+              sx={{ paddingTop: 3 }}
+            />
+            <Typography
+              variant="h4"
+              align="left "
+              sx={{ mt: 3, fontWeight: 500, color: "#242424" }}
+            >
               {props.location}
             </Typography>
           </Box>
@@ -51,7 +52,7 @@ export default function ListingComponent(props) {
             <Typography
               variant="body1"
               align="justify"
-              sx={{fontWeight:400}}
+              sx={{ fontWeight: 400 }}
             >
               {props.desc}
             </Typography>
@@ -82,7 +83,13 @@ export default function ListingComponent(props) {
               /month
             </Typography>
           </Box>
-          <Button startIcon={<FavoriteIcon sx={{color:'#d32f2f'}}/>} variant="contained">Indicate Interest</Button>
+          <Button
+            onclick={props.indicateInterest}
+            startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
+            variant="contained"
+          >
+            Indicate Interest
+          </Button>
         </Box>
       </Box>
     </div>

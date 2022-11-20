@@ -15,9 +15,6 @@ import {
 import WeekendIcon from "@mui/icons-material/Weekend";
 import avatar from "../../assets/avatar.jpg";
 
-const pages = ["RESALE", "RENTAL"];
-const settings = ["My Account", "Logout"];
-
 // const isRoleSeller = window.localStorage.getItem("isRoleSeller");
 
 export default function Header() {
@@ -47,7 +44,7 @@ export default function Header() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -80,11 +77,9 @@ export default function Header() {
             className="headerItem"
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
           >
-            {pages.map((page) => (
               <Button
-                key={page}
                 size="large"
-                href="/"
+                href="/rental"
                 sx={{
                   my: 3,
                   mx: 3,
@@ -97,13 +92,28 @@ export default function Header() {
                   },
                 }}
               >
-                {page}
+                RENTAL
               </Button>
-            ))}
+            <Button
+                size="large"
+                href="/resale"
+                sx={{
+                  my: 3,
+                  mx: 3,
+                  color: "white",
+                  display: "inline-block",
+                  fontWeight: "bold",
+                  fontSize: 15,
+                  "&:hover": {
+                    backgroundColor: "#d32f2f",
+                  },
+                }}
+              >
+                RESALE
+              </Button>
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Account">
               <IconButton onClick={handleOpenUserMenu}>
                 <Avatar sx={{width:50, height:50}}src={avatar}/>
               </IconButton>
