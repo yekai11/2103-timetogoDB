@@ -1,20 +1,48 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
+import {
+  AppBar,
+  IconButton,
+  Box,
+  Toolbar,
+  Typography,
+  Container,
+  Button,
+  MenuItem,
+  Menu,
+  Tooltip,
+  Avatar,
+} from "@mui/material";
 import WeekendIcon from "@mui/icons-material/Weekend";
+import avatar from "../../assets/avatar.jpg";
 
 const pages = ["RESALE", "RENTAL"];
+const settings = ["My Account", "Logout"];
+
+// const isRoleSeller = window.localStorage.getItem("isRoleSeller");
 
 export default function Header() {
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleLogout = () =>{
+    window.localStorage.removeItem("isLoggedIn");
+    window.location.href = '/';
+  }
+
   return (
     <AppBar color="primary" position="static">
       <Container maxWidth="auto">
         <Toolbar disableGutters>
-          <WeekendIcon sx={{ fontSize:30, display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <WeekendIcon
+            sx={{ fontSize: 30, display: { xs: "none", md: "flex" }, mr: 1 }}
+          />
           <Typography
             variant="h5"
             noWrap
@@ -63,7 +91,7 @@ export default function Header() {
                   color: "white",
                   display: "inline-block",
                   fontWeight: "bold",
-                  fontSize:15,
+                  fontSize: 15,
                   "&:hover": {
                     backgroundColor: "#d32f2f",
                   },
@@ -73,9 +101,38 @@ export default function Header() {
               </Button>
             ))}
           </Box>
-          <Button href='/login' size="large" variant="contained" color="secondary">
-            Login
-          </Button>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu}>
+                <Avatar sx={{width:50, height:50}}src={avatar}/>
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: 7 }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              <MenuItem href='/userprofile'>
+                <Typography textAlign="center">My Account</Typography>
+              </MenuItem>
+
+              <MenuItem onClick={handleLogout}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
+            </Menu>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

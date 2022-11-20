@@ -13,12 +13,16 @@ import {
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import LoadingSpinner from '../Components/LoadingSpinner/LoadingSpinnerComponent';
 import hdb_login from "../assets/hdb_login.jpg";
 import WeekendIcon from "@mui/icons-material/Weekend";
 
 const loginAPI = "http://localhost:5000/login"; //const url for easy changing of api links
 
+
 export default function LoginPage() {
+
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [values, setValues] = useState({
     password: "",
@@ -62,13 +66,24 @@ export default function LoginPage() {
       This is what comes back, it will return a status code 200 if successfully logged in
       If login error, status code 401 will be returned (dont tell them if its email or password error for security reasons)
       */
-      console.log("In result");
-      console.log(result.status);// this is how u access the status code
+      if (result.status == "200"){
+        console.log(result.status);
+        setIsLoading(true);
+        window.localStorage.setItem("isLoggedIn", true);
+        setTimeout(() => {
+            setIsLoading(false);
+            window.location.href = "/home";
+          }, 3000);        
+      }
+      if (result.status == "401"){
+        window.localStorage.setItem("isLoggedIn", false);
+      }
     });
   };
 
   return (
     <div>
+      {/* {isLoading ? <LoadingSpinner /> : null} */}
       <Box
         sx={{
           width: "auto",
@@ -181,6 +196,7 @@ export default function LoginPage() {
               variant="contained"
               sx={{ width: "80%", mt: 3, height: "5vh" }}
               onClick={handleSubmit}
+              disabled={isLoading}
             >
               Login
             </Button>
