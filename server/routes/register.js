@@ -31,6 +31,7 @@ function validateFields({ name, email, phoneNumber, role }) {
   return true;
 }
 
+/* Converting role string to int helper function */
 function convertRoleToInt(role) {
   if (role === "Buyer") {
     return 1;

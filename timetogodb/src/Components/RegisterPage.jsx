@@ -353,7 +353,7 @@ export default function RegisterPage() {
               <Box>
                 <Typography sx={{ mt: 1 }}>
                   Already have an account?
-                  <Link href="/login" sx={{ ml: 1 }}>
+                  <Link href="/" sx={{ ml: 1 }}>
                     Sign in
                   </Link>
                 </Typography>
