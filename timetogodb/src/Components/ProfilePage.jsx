@@ -13,19 +13,33 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import Header from "../Components/Header/HeaderComponent";
 import avatar from "../assets/avatar.jpg";
 import ErrorIcon from "@mui/icons-material/Error";
 
+//const url for easy changing of api links
+const profileDeleteAPI = "http://localhost:5000/profile/delete";
+const profileUpdateAPI = "http://localhost:5000/profile/update";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function ProfilePage() {
+  const [isLoading, setIsLoading] = useState(false); // for loading screen
+
+  /* account id */
+  const [accountID, setAccountID] = useState(
+    window.localStorage.getItem("accountID")
+  );
+
   /* username field */
-  const [username, setUsername] = useState(window.localStorage.getItem("username"));
+  const [username, setUsername] = useState(
+    window.localStorage.getItem("username")
+  );
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -46,7 +60,9 @@ export default function ProfilePage() {
   };
 
   /* phone number field */
-  const [phonenumber, setPhonenumber] = useState(window.localStorage.getItem("phonenumber"));
+  const [phonenumber, setPhonenumber] = useState(
+    window.localStorage.getItem("phonenumber")
+  );
 
   const handlePhoneNumberChange = (event) => {
     setPhonenumber(event.target.value);
@@ -65,11 +81,81 @@ export default function ProfilePage() {
 
   const handleDeleteAccount = () => {
     setOpenDialog(false);
-    /* insert delete account function here */
+
+    // console.log(window.localStorage.getItem("accountID")); // for debugging
+
+    fetch(profileDeleteAPI, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        //insert fields here
+        accountID: accountID, // this accountID is taken from login session stored state
+      }),
+    }).then((result) => {
+      /*
+      This is what comes back, it will return a status code 200 if account successfully deleted
+      If delete error, status code 404 will be returned
+      */
+      console.log("In result");
+      console.log(result.status); // this is how u access the status code
+    });
+  };
+
+  const handleUpdateAccount = () => {
+    setIsLoading(true); // add loading screen
+    fetch(profileUpdateAPI, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        //insert fields here
+        accountID: accountID,
+        name: name,
+        username: username,
+        email: email,
+        phoneNumber: phonenumber,
+      }),
+    }).then((result) => {
+      /*
+      This is what comes back, it will return a status code 200 if account successfully updated
+      If update error, status code 400 will be returned
+      */
+      if (result.status === 200) {
+        console.log(result);
+        result.json().then((response) => {
+          // when calling json from result needs to handle another promise response
+
+          /* Update local storage after account details updated */
+          window.localStorage.setItem("accountID", response.accountID);
+          window.localStorage.setItem("name", response.name);
+          window.localStorage.setItem("username", response.username);
+          window.localStorage.setItem("email", response.email);
+          window.localStorage.setItem("phonenumber", response.phoneNumber);
+          setTimeout(() => {
+            setIsLoading(true); // remove loading screen
+          }, 5000);
+          window.location.reload(); // force refresh
+        });
+      }
+      if (result.status === 400) {
+        //idk do something
+      }
+    });
   };
 
   return (
     <div>
+      {isLoading ? (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={isLoading}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      ) : null}
       <Header />
       <Box
         sx={{
@@ -284,7 +370,11 @@ export default function ProfilePage() {
                   <Button href="/home" variant="outlined">
                     Cancel
                   </Button>
-                  <Button variant="contained" sx={{ ml: 2 }}>
+                  <Button
+                    variant="contained"
+                    sx={{ ml: 2 }}
+                    onClick={handleUpdateAccount}
+                  >
                     Save Changes
                   </Button>
                 </Box>

@@ -13,14 +13,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 // Routes
-const townRouter = require('./routes/town');
-app.use('/town', townRouter);
 
+// Register
 const registerRouter = require('./routes/register')
 app.use('/register', registerRouter);
 
+// Login
 const loginRouter = require('./routes/login')
 app.use('/login', loginRouter);
+
+// Profile
+const profileRouter = require('./routes/profile')
+app.use('/profile', profileRouter);
 
 // Start server
 const port = process.env.PORT || 5000;
