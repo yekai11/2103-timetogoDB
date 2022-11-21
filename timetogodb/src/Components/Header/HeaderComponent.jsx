@@ -11,6 +11,7 @@ import {
   Menu,
   Tooltip,
   Avatar,
+  Link
 } from "@mui/material";
 import WeekendIcon from "@mui/icons-material/Weekend";
 import avatar from "../../assets/avatar.jpg";
@@ -28,14 +29,14 @@ export default function Header() {
     setAnchorElUser(null);
   };
 
-  const handleLogout = () =>{
-    window.localStorage.removeItem("isLoggedIn");
-    window.location.href = '/';
-  }
+  const handleLogout = () => {
+    window.localStorage.clear();
+    window.location.href = "/";
+  };
 
   return (
     <AppBar color="primary" position="static">
-      <Container maxWidth="auto">
+      <Container maxWidth="100vw">
         <Toolbar disableGutters>
           <WeekendIcon
             sx={{ fontSize: 30, display: { xs: "none", md: "flex" }, mr: 1 }}
@@ -77,45 +78,45 @@ export default function Header() {
             className="headerItem"
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
           >
-              <Button
-                size="large"
-                href="/rental"
-                sx={{
-                  my: 3,
-                  mx: 3,
-                  color: "white",
-                  display: "inline-block",
-                  fontWeight: "bold",
-                  fontSize: 15,
-                  "&:hover": {
-                    backgroundColor: "#d32f2f",
-                  },
-                }}
-              >
-                RENTAL
-              </Button>
             <Button
-                size="large"
-                href="/resale"
-                sx={{
-                  my: 3,
-                  mx: 3,
-                  color: "white",
-                  display: "inline-block",
-                  fontWeight: "bold",
-                  fontSize: 15,
-                  "&:hover": {
-                    backgroundColor: "#d32f2f",
-                  },
-                }}
-              >
-                RESALE
-              </Button>
+              size="large"
+              href="/rental"
+              sx={{
+                my: 3,
+                mx: 3,
+                color: "white",
+                display: "inline-block",
+                fontWeight: "bold",
+                fontSize: 15,
+                "&:hover": {
+                  backgroundColor: "#d32f2f",
+                },
+              }}
+            >
+              RENTAL
+            </Button>
+            <Button
+              size="large"
+              href="/resale"
+              sx={{
+                my: 3,
+                mx: 3,
+                color: "white",
+                display: "inline-block",
+                fontWeight: "bold",
+                fontSize: 15,
+                "&:hover": {
+                  backgroundColor: "#d32f2f",
+                },
+              }}
+            >
+              RESALE
+            </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Account">
               <IconButton onClick={handleOpenUserMenu}>
-                <Avatar sx={{width:50, height:50}}src={avatar}/>
+                <Avatar sx={{ width: 50, height: 50 }} src={avatar} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -134,8 +135,10 @@ export default function Header() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem href='/userprofile'>
-                <Typography textAlign="center">My Account</Typography>
+              <MenuItem>
+                <Link color='black' underline='none' href="/profile">
+                  <Typography textAlign="center">My Account</Typography>
+                </Link>
               </MenuItem>
 
               <MenuItem onClick={handleLogout}>

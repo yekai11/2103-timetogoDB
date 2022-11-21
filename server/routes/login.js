@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
       name: loginQuery.rows[0].name,
       username: loginQuery.rows[0].username,
       email: loginQuery.rows[0].email,
-      phoneNumber: loginQuery.rows[0].phoneNumber,
+      phoneNumber: loginQuery.rows[0].phone_number,
     };
 
     // console.log(JSON.stringify(accountDetails));

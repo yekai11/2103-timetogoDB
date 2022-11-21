@@ -69,8 +69,13 @@ export default function LoginPage() {
         console.log(result);
         result.json().then((response) => {
           // when calling json from result needs to handle another promise response
-          console.log(response); // logs the json file in console
-          console.log(response.accountID); // example accessing the accountID
+          window.localStorage.setItem("accountID", response.accountID);
+          window.localStorage.setItem("role", response.role);
+          window.localStorage.setItem("name", response.name);
+          window.localStorage.setItem("username", response.username);
+          window.localStorage.setItem("email", response.email);
+          window.localStorage.setItem("phonenumber", response.phoneNumber);
+
           setIsLoading(true);
           window.localStorage.setItem("isLoggedIn", true);
           setTimeout(() => {
