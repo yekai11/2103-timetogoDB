@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Typography,
   Box,
@@ -25,6 +26,9 @@ const roles = [
 ];
 
 export default function RegisterPage() {
+  /* useHistory for redirect */
+  let navigate = useNavigate();
+
   /*State for Name field */
   const [name, setName] = useState("");
 
@@ -103,6 +107,10 @@ export default function RegisterPage() {
       */
       console.log("In result");
       console.log(result.status); // this is how u access the status code
+
+      if (result.status === 201) {
+        navigate("/");
+      }
     });
   };
 
