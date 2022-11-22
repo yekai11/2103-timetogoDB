@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import WeekendIcon from "@mui/icons-material/Weekend";
 import avatar from "../../assets/avatar.jpg";
+import avatar2 from "../../assets/avatar2.jpg";
 
 // const isRoleSeller = window.localStorage.getItem("isRoleSeller");
 
@@ -116,7 +117,7 @@ export default function Header() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Account">
               <IconButton onClick={handleOpenUserMenu}>
-                <Avatar sx={{ width: 50, height: 50 }} src={avatar} />
+                <Avatar sx={{ width: 50, height: 50 }} src={avatar2} />
               </IconButton>
             </Tooltip>
             <Menu

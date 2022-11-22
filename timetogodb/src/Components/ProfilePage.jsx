@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import Header from "../Components/Header/HeaderComponent";
 import avatar from "../assets/avatar.jpg";
+import avatar2 from "../assets/avatar2.jpg";
 import ErrorIcon from "@mui/icons-material/Error";
 
 //const url for easy changing of api links
@@ -216,7 +217,7 @@ export default function ProfilePage() {
                   width: 150,
                   height: 150,
                 }}
-                src={avatar}
+                src={avatar2}
               />
             </Box>
             <Typography sx={{ fontSize: 25, fontWeight: 300 }}>
