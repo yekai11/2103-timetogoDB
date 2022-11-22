@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
       res.sendStatus(401); // return error code 1, email not found
       return;
     }
-    console.log(JSON.stringify({ loginQuery }));
+    // console.log(JSON.stringify({ loginQuery }));
     //   console.log(loginQuery.rows[0].password);
 
     const retrievedPassword = loginQuery.rows[0].password; // store retrieved password in constant
