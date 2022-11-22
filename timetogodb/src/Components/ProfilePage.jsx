@@ -136,9 +136,9 @@ export default function ProfilePage() {
           window.localStorage.setItem("email", response.email);
           window.localStorage.setItem("phonenumber", response.phoneNumber);
           setTimeout(() => {
-            setIsLoading(true); // remove loading screen
-          }, 5000);
-          window.location.reload(); // force refresh
+            setIsLoading(false); // remove loading screen
+            window.location.reload(); // force refresh
+          }, 1500);
         });
       }
       if (result.status === 400) {
