@@ -1,0 +1,27 @@
+{
+  "name": "nosql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongodb-legacy": "^4.0.0",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
