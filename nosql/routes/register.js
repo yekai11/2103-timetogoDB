@@ -42,7 +42,6 @@ router.post("/", async (req, res) => {
         const { name, username, email, password, phoneNumber, role } = req.body; // setting objects for easy reference
         // console.log(name, username, email, password, phoneNumber, role); // for debugging
 
-        const collection = role.toLowerCase();
         const validation = validateFields({
             name: name,
             email: email,
@@ -57,7 +56,7 @@ router.post("/", async (req, res) => {
             return;
         }
 
-        const emailExists = await db.collection(collection).findOne({ email: email });
+        const emailExists = await db.collection("account").findOne({ email: email });
         if (emailExists !== null) { // email already registered in database
             res.sendStatus(409); // send error code 409 to frontend
             return;
@@ -75,12 +74,12 @@ router.post("/", async (req, res) => {
             interested: []
         };
 
-        const accounts = db.collection(collection).find().sort({ account_id: -1 }).limit(1); // Get highest account_id
+        const accounts = db.collection("account").find().sort({ account_id: -1 }).limit(1); // Get highest account_id
         accounts.forEach(account => {
             myObj.account_id = account.account_id + 1 // Simulate auto increment
         });
 
-        db.collections(collection).insertOne(myObj, (err, result) => {
+        db.collection("account").insertOne(myObj, (err, result) => {
             assert.equal(null, err);
             // console.log("Account created");
             database.close();
