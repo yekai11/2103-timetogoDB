@@ -7,6 +7,7 @@ import ScrollComponent from "./ScrollComponent";
 import Header from "../Header/HeaderComponent";
 
 export default function Homepage() {
+
   return (
     <div>
       <Header />

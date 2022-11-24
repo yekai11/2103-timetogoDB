@@ -11,16 +11,18 @@ import {
   Slide,
 } from "@mui/material";
 import React from "react";
-import ListingComponent from "./ListingComponent";
 import a_hdb from "../../../assets/aesthetic_hdb.jpg";
 import hdb_homepage from "../../../assets/hdb_homepage.jpg";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function ListingSection() {
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -64,14 +66,13 @@ export default function ListingSection() {
               Popular Homes
             </Typography>
             <Link
-              href="/"
+              // href=""
               variant="body1"
               sx={{ fontWeight: 500, color: "black" }}
             >
               See All
             </Link>
           </Box>
-
           <Box
             sx={{
               display: "flex",
@@ -82,31 +83,272 @@ export default function ListingSection() {
               width: "100%",
             }}
           >
-            <ListingComponent
-              img={a_hdb}
-              indiateInterest={handleClickOpen}
-              location={"Yio Chu Kang"}
-              desc={
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-              }
-              price={"3,000"}
-            />
-            <ListingComponent
-              img={hdb_homepage}
-              location={"Tampines"}
-              desc={
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-              }
-              price={"4,000"}
-            />
-            <ListingComponent
-              img={a_hdb}
-              location={"My House"}
-              desc={
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-              }
-              price={"5,000"}
-            />
+            {/*First card */}
+            <Box
+              sx={{
+                width: "30%",
+                height: "100%",
+                backgroundColor: "white",
+              }}
+            >
+              <img
+                src={a_hdb}
+                alt="popular residences"
+                style={{ width: "100%", height: "55%", objectFit: "cover" }}
+              ></img>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                  height: "40%",
+                  paddingLeft: 3,
+                  paddingRight: 3,
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <LocationOnIcon
+                    color="primary"
+                    fontSize="large"
+                    sx={{ paddingTop: 3 }}
+                  />
+                  <Typography
+                    variant="h4"
+                    align="left "
+                    sx={{ mt: 3, fontWeight: 500, color: "#242424" }}
+                  >
+                    Yio Chu Kang
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    variant="body1"
+                    align="justify"
+                    sx={{ fontWeight: 400 }}
+                  >
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Typography
+                    color="primary"
+                    variant="h6"
+                    align="left"
+                    sx={{ fontWeight: 500 }}
+                  >
+                    $3,000
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    align="left"
+                    sx={{
+                      ml: 1,
+                      fontWeight: 500,
+                      color: "#878787",
+                    }}
+                  >
+                    /month
+                  </Typography>
+                </Box>
+                <Button
+                  onclick={handleClickOpen}
+                  startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
+                  variant="contained"
+                >
+                  Indicate Interest
+                </Button>
+              </Box>
+            </Box>
+
+            {/*Second card */}
+            <Box
+              sx={{
+                width: "30%",
+                height: "100%",
+                backgroundColor: "white",
+              }}
+            >
+              <img
+                src={hdb_homepage}
+                alt="popular residences"
+                style={{ width: "100%", height: "55%", objectFit: "cover" }}
+              ></img>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                  height: "40%",
+                  paddingLeft: 3,
+                  paddingRight: 3,
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <LocationOnIcon
+                    color="primary"
+                    fontSize="large"
+                    sx={{ paddingTop: 3 }}
+                  />
+                  <Typography
+                    variant="h4"
+                    align="left "
+                    sx={{ mt: 3, fontWeight: 500, color: "#242424" }}
+                  >
+                    Tampines
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    variant="body1"
+                    align="justify"
+                    sx={{ fontWeight: 400 }}
+                  >
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Typography
+                    color="primary"
+                    variant="h6"
+                    align="left"
+                    sx={{ fontWeight: 500 }}
+                  >
+                    $4,000
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    align="left"
+                    sx={{
+                      ml: 1,
+                      fontWeight: 500,
+                      color: "#878787",
+                    }}
+                  >
+                    /month
+                  </Typography>
+                </Box>
+                <Button
+                  onclick={handleClickOpen}
+                  startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
+                  variant="contained"
+                >
+                  Indicate Interest
+                </Button>
+              </Box>
+            </Box>
+
+            {/*Third card */}
+            <Box
+              sx={{
+                width: "30%",
+                height: "100%",
+                backgroundColor: "white",
+              }}
+            >
+              <img
+                src={a_hdb}
+                alt="popular residences"
+                style={{ width: "100%", height: "55%", objectFit: "cover" }}
+              ></img>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                  height: "40%",
+                  paddingLeft: 3,
+                  paddingRight: 3,
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <LocationOnIcon
+                    color="primary"
+                    fontSize="large"
+                    sx={{ paddingTop: 3 }}
+                  />
+                  <Typography
+                    variant="h4"
+                    align="left "
+                    sx={{ mt: 3, fontWeight: 500, color: "#242424" }}
+                  >
+                    My House
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    variant="body1"
+                    align="justify"
+                    sx={{ fontWeight: 400 }}
+                  >
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Typography
+                    color="primary"
+                    variant="h6"
+                    align="left"
+                    sx={{ fontWeight: 500 }}
+                  >
+                    $5,000
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    align="left"
+                    sx={{
+                      ml: 1,
+                      fontWeight: 500,
+                      color: "#878787",
+                    }}
+                  >
+                    /month
+                  </Typography>
+                </Box>
+                <Button
+                  onclick={handleClickOpen}
+                  startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
+                  variant="contained"
+                >
+                  Indicate Interest
+                </Button>
+              </Box>
+            </Box>
           </Box>
         </Box>
         <Box
@@ -163,29 +405,28 @@ export default function ListingSection() {
                 a wide range of choices that will meet your needs.
               </Typography>
             </Box>
-
-            <Dialog
-              open={open}
-              TransitionComponent={Transition}
-              keepMounted
-              onClose={handleClose}
-              aria-describedby="alert-dialog-slide-description"
-            >
-              <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-slide-description">
-                  Let Google help apps determine location. This means sending
-                  anonymous location data to Google, even when no apps are
-                  running.
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose}>Disagree</Button>
-                <Button onClick={handleClose}>Agree</Button>
-              </DialogActions>
-            </Dialog>
           </Box>
         </Box>
+        <Dialog
+          open={open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={handleClose}
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              Let Google help apps determine location. This means sending
+              anonymous location data to Google, even when no apps are running.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Disagree</Button>
+            <Button onClick={handleClose}>Agree</Button>
+          </DialogActions>
+        </Dialog>
+
       </Box>
     </div>
   );

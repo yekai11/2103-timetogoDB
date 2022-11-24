@@ -15,6 +15,8 @@ import {
   DialogActions,
   Backdrop,
   CircularProgress,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import Header from "../Components/Header/HeaderComponent";
 import avatar from "../assets/avatar.jpg";
@@ -31,6 +33,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(false); // for loading screen
+
+  const account_name = window.localStorage.getItem("name");
 
   /* account id */
   const [accountID, setAccountID] = useState(
@@ -105,7 +109,6 @@ export default function ProfilePage() {
   };
 
   const handleUpdateAccount = () => {
-    setIsLoading(true); // add loading screen
     fetch(profileUpdateAPI, {
       method: "POST",
       headers: {
@@ -129,22 +132,41 @@ export default function ProfilePage() {
         result.json().then((response) => {
           // when calling json from result needs to handle another promise response
 
-          /* Update local storage after account details updated */
-          window.localStorage.setItem("accountID", response.accountID);
-          window.localStorage.setItem("name", response.name);
-          window.localStorage.setItem("username", response.username);
-          window.localStorage.setItem("email", response.email);
-          window.localStorage.setItem("phonenumber", response.phoneNumber);
+          setIsLoading(true); // add loading screen
+          setOpenSnackbar(true);
+
           setTimeout(() => {
-            setIsLoading(false); // remove loading screen
+            setIsLoading(false); // add loading screen
+            setOpenSnackbar(false);
+            window.localStorage.setItem("accountID", response.accountID);
+            window.localStorage.setItem("name", response.name);
+            window.localStorage.setItem("username", response.username);
+            window.localStorage.setItem("email", response.email);
+            window.localStorage.setItem("phonenumber", response.phoneNumber);
             window.location.reload(); // force refresh
-          }, 1500);
+          }, 2000);
+
+          /* Update local storage after account details updated */
         });
       }
       if (result.status === 400) {
         //idk do something
       }
     });
+  };
+
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+
+  const handleOpenSnackbar = () => {
+    setOpenSnackbar(true);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackbar(false);
   };
 
   return (
@@ -221,7 +243,7 @@ export default function ProfilePage() {
               />
             </Box>
             <Typography sx={{ fontSize: 25, fontWeight: 300 }}>
-              {name}
+              {account_name}
             </Typography>
           </Box>
           <Box
@@ -383,6 +405,23 @@ export default function ProfilePage() {
             </Box>
           </Box>
         </Box>
+
+        {/* Sucessfully updated snackbar */}
+        <Snackbar
+          open={openSnackbar}
+          autoHideDuration={6000}
+          onClose={handleCloseSnackbar}
+        >
+          <Alert
+            onClose={handleCloseSnackbar}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Successfully updated account!
+          </Alert>
+        </Snackbar>
+
+        {/*Delete account dialog */}
         <Dialog
           open={openDialog}
           TransitionComponent={Transition}

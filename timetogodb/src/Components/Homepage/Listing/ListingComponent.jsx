@@ -1,9 +1,34 @@
-import { Typography, Box, Button } from "@mui/material";
+import { Typography, Box, Button, Snackbar, IconButton } from "@mui/material";
 import React from "react";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function ListingComponent(props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
   return (
     <div>
       <Box
@@ -84,7 +109,7 @@ export default function ListingComponent(props) {
             </Typography>
           </Box>
           <Button
-            onclick={props.indicateInterest}
+            onclick={handleClick}
             startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
             variant="contained"
           >
