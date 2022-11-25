@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* to separate the filter and listing on rental/resale */
+.row {
+  display: flex;
+  height: 100%;
+}
+.left-panel {
+  flex: 8
+}
+
+.right-panel {
+  flex: 2;
+}
