@@ -5,7 +5,7 @@ import {
   Button,
   Slide,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 // pictures
 import a_hdb from "../../assets/aesthetic_hdb.jpg";
 //import hdb_homepage from "../../assets/hdb_homepage.jpg";
@@ -20,6 +20,9 @@ import {Card} from "react-bootstrap";
 import {ListGroup} from "react-bootstrap";
 import {Grid} from '@mui/material';
 
+
+const allResaleAPI = "http://localhost:5000/resale/allResale"; //const url for easy changing of api links
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -31,6 +34,25 @@ export default function ListingSection() {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
+  /* useEffect to get all listings and display */
+  useEffect(() => {
+    fetch(allResaleAPI).then((result) => {
+      /*
+      This is what comes back, it will return a status code 200 if successfully get resale data
+      If get resale data error, status code 400 will be returned
+      */
+      if (result.status === 200) {
+        console.log(result);
+        result.json().then((response) => {
+          console.log(response);
+        });
+      }
+      if (result.status === 400) {
+        // error here
+      }
+    });
+  });
 
   const cardInfo = [
     {
@@ -123,7 +145,7 @@ export default function ListingSection() {
             paddingLeft={1}
             sx={{ fontWeight: 500 }}
           >
-            ${card.price}/month
+            ${card.price}
           </Typography>
         </Card.Text>
 
