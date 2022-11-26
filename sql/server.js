@@ -12,8 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Enable all CORS requests
 app.use(cors());
 
-// Routes
-
+/* Routes */ 
 // Register
 const registerRouter = require('./routes/register')
 app.use('/register', registerRouter);
@@ -25,6 +24,14 @@ app.use('/login', loginRouter);
 // Profile
 const profileRouter = require('./routes/profile')
 app.use('/profile', profileRouter);
+
+// Resale
+const resaleRouter = require('./routes/resale')
+app.use('/resale', resaleRouter);
+
+// Rental
+const rentalRouter = require('./routes/rental')
+app.use('/rental', rentalRouter);
 
 // Start server
 const port = process.env.PORT || 5000;

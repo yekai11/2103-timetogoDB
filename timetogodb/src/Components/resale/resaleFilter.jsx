@@ -10,81 +10,114 @@ import React from "react";
 /* icons for the filter options */
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ApartmentIcon from "@mui/icons-material/Apartment";
-import HeightIcon from '@mui/icons-material/Height';
-import PriceChangeIcon from '@mui/icons-material/PriceChange';
-import LayersIcon from '@mui/icons-material/Layers';
+import HeightIcon from "@mui/icons-material/Height";
+import PriceChangeIcon from "@mui/icons-material/PriceChange";
+import LayersIcon from "@mui/icons-material/Layers";
 import { styled, lighten, darken } from "@mui/system";
 
-/* values here should be taken from DB */
-const testLocationData = [
-  { title: "Ang Mo Kio" },
-  { title: "Bedok" },
-  { title: "Bishan" },
-  { title: "Bukit Batok" },
-  { title: "Bukit Merah" },
-  { title: "Bukit Panjang" },
-  { title: "Bukit Timah" },
-  { title: "Central Area" },
-  { title: "Choa Chu Kang" },
-  { title: "Clementi" },
-  { title: "Geylang" },
-  { title: "Hougang" },
-  { title: "Jurong East" },
-  { title: "Jurong West" },
-  { title: "Kallang/ Whampoa" },
-  { title: "Marine Parade" },
-  { title: "Pasir Ris" },
-  { title: "Punggol" },
-  { title: "Queenstown" },
-  { title: "Sembawang" },
-  { title: "Sengkang" },
-  { title: "Serangoon" },
-  { title: "Tampines" },
-  { title: "Tengah" },
-  { title: "Toa Payoh " },
-  { title: "Woodlands" },
-  { title: "Yishun " },
-];
+const filterResaleAPI = "http://localhost:5000/resale/filterResale"; //const url for easy changing of api links 
 
-/* values here should be taken from DB */
-const testFlatTypeData = [
-  { label: "2-Room" },
-  { label: "3-Room" },
-  { label: "4-Room" },
-  { label: "5-Room" },
-  { label: "Homeless" },
-];
+/* values here should be taken from DB */ const testLocationData = [ // no need to convert
+  { title: "ANG MO KIO" },
+  { title: "BEDOK" },
+  { title: "BISHAN" },
+  { title: "BUKIT BATOK" },
+  { title: "BUKIT MERAH" },
+  { title: "BUKIT PANJANG" },
+  { title: "BUKIT TIMAH" },
+  { title: "CENTRAL AREA" },
+  { title: "CHOA CHU KANG" },
+  { title: "CLEMENTI" },
+  { title: "GEYLANG" },
+  { title: "HOUGANG" },
+  { title: "JURONG EAST" },
+  { title: "JURONG WEST" },
+  { title: "KALLANG" },
+  { title: "MARINE PARADE" },
+  { title: "PASIR RIS" },
+  { title: "PUNGGOL" },
+  { title: "QUEENSTOWN" },
+  { title: "SEMBAWANG" },
+  { title: "SENGKANG" },
+  { title: "SERANGOON" },
+  { title: "TAMPINES" },
+  { title: "TOA PAYOH" },
+  { title: "WOODLANDS " },
+  { title: "YISHUN" },
+]; 
 
-/* values here should be taken from DB */
-const testPriceData = [
+/* values here should be taken from DB */ const testFlatTypeData = [ // no need to convert
+  { label: "1 ROOM" },
+  { label: "2 ROOM" },
+  { label: "3 ROOM" },
+  { label: "4 ROOM" },
+  { label: "5 ROOM" },
+  { label: "EXECUTIVE" },
+  { label: "MULTI-GENERATION" },
+]; 
+
+/* values here should be taken from DB */ const testPriceData = [// Conversion to range needed
   { label: "$200k & below" },
   { label: "$201k - $300k" },
   { label: "$301k - $400k" },
   { label: "$401k - $500k" },
-  { label: "donovan" },
   { label: "$501k - $600k" },
   { label: "$601k & Above" },
+]; 
+
+/* values here should be taken from DB */ const testStoreyData = [ // conversion to range needed
+  { label: "1st Floor - 3rd Floor" },
+  { label: "4th Floor - 6th Floor" },
+  { label: "7th Floor - 9th Floor" },
+  { label: "10th Floor - 12th Floor" },
+  { label: "13th Floor - 15th Floor" },
+  { label: "16th Floor - 18th Floor" },
+  { label: "19th Floor - 21st Floor" },
+  { label: "22nd Floor - 24th Floor" },
+  { label: "25th Floor - 27th Floor" },
+  { label: "28th Floor - 30th Floor" },
+  { label: "31st Floor - 33rd Floor" },
+  { label: "34th Floor - 36th Floor" },
+  { label: "37th Floor - 39th Floor" },
+  { label: "40th Floor - 42nd Floor" },
+  { label: "43rd Floor - 45th Floor" },
+  { label: "46th Floor - 48th Floor" },
+  { label: "49th Floor - 51st Floor" },
+]; 
+
+/* values here should be taken from DB */ const testAreaData = [ // conversion to range needed
+  { label: "30 to 50 sq m" },
+  { label: "60 to 80 sq m" },
+  { label: "90 to 110 sq m" },
+  { label: "110 to 130 sq m" },
+  { label: "140 sq m & Above" },
 ];
 
-/* values here should be taken from DB */
-const testStoreyData = [
-  { label: "1st Floor - 4th Floor" },
-  { label: "5th Floor - 9th Floor" },
-  { label: "10th Floor - 14th Floor" },
-  { label: "15th Floor - 19th Floor" },
-  { label: "donovan" },
-  { label: "20th Floor & Above" },
-];
-
-/* values here should be taken from DB */
-const testAreaData = [
-  { label: "300 to 400 sq ft" },
-  { label: "400 to 500 sq ft" },
-  { label: "600 to 700 sq ft" },
-  { label: "400 to 500 sq ft" },
-  { label: "donovan" },
-  { label: "900 sq ft & Above" },
-];
+/* Filter submit handler */
+const handleResaleFilter = () => {
+  fetch(filterResaleAPI, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({
+      // //insert fields here
+      // area: ,
+      // num_of_rooms: ,
+      // price: ,
+      // storey_range: ,
+      // floor_area_sqm: ,
+    }),
+  }).then((result) => {
+    /*
+    This is what comes back, it will return a status code 200 if account successfully created
+    If validation error, status code 400 will be returned
+    If email already registered, status code 409 will be returned 
+    */
+    console.log("In result");
+    console.log(result.status); // this is how u access the status code
+  });
+};
 
 const options = testLocationData.map((option) => {
   const firstLetter = option.title[0].toUpperCase();
@@ -98,8 +131,8 @@ const GroupHeader = styled("div")(({ theme }) => ({
   position: "sticky",
   top: "-8px",
   padding: "4px 10px",
-  textAlign:"left",
-  fontWeight:'bold',
+  textAlign: "left",
+  fontWeight: "bold",
   color: theme.palette.primary.main,
   backgroundColor:
     theme.palette.mode === "light"
@@ -124,12 +157,11 @@ export default function SearchSection() {
           color: "primary",
         }}
       >
-
-
-
-
-        <br></br><br></br>
-        <Box boxShadow={2} borderRadius={4}
+        <br></br>
+        <br></br>
+        <Box
+          boxShadow={2}
+          borderRadius={4}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -142,29 +174,31 @@ export default function SearchSection() {
             borderRadius: 5,
           }}
         >
-        <Typography
-          variant="h4"
-          align="left "
-          sx={{ mt: 3, fontWeight: 500, color: "#242424" }}
-        >  Filter & Sort
-        </Typography>
-        <hr  style={{
-          color: '#000000',
-          backgroundColor: '#000000',
-          width: 100,
-          borderColor : '#000000'
-        }}/>
+          <Typography
+            variant="h4"
+            align="left "
+            sx={{ mt: 3, fontWeight: 500, color: "#242424" }}
+          >
+            {" "}
+            Filter & Sort
+          </Typography>
+          <hr
+            style={{
+              color: "#000000",
+              backgroundColor: "#000000",
+              width: 100,
+              borderColor: "#000000",
+            }}
+          />
 
-
-
-
-
-
-            {/* 1st filter option */}
+          {/* 1st filter option */}
           <Box
             sx={{
-              display: "flex", flexDirection: "row", alignItems: "center",
-              paddingTop: 2, m: 2,
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              paddingTop: 2,
+              m: 2,
             }}
           >
             <LocationOnIcon color="primary" fontSize="large" />
@@ -189,22 +223,22 @@ export default function SearchSection() {
             />
           </Box>
 
-
-
-
-
-
-            {/* 2nd filter option */}
+          {/* 2nd filter option */}
           <Box
             sx={{
-              display: "flex", flexDirection: "row",
-              alignItems: "center", m: 2, paddingLeft: 2
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              m: 2,
+              paddingLeft: 2,
             }}
-          > 
+          >
             <Box
               sx={{
-                display: "flex", flexDirection: "row",
-                alignItems: "center", mr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                mr: 2,
               }}
             >
               <ApartmentIcon color="primary" fontSize="large" />
@@ -220,22 +254,22 @@ export default function SearchSection() {
             </Box>
           </Box>
 
-
-
-
-
-
-            {/* 3rd filter option */}
-            <Box
+          {/* 3rd filter option */}
+          <Box
             sx={{
-              display: "flex", flexDirection: "row",
-              alignItems: "center", m: 2, paddingLeft: 2
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              m: 2,
+              paddingLeft: 2,
             }}
-          > 
+          >
             <Box
               sx={{
-                display: "flex", flexDirection: "row",
-                alignItems: "center", mr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                mr: 2,
               }}
             >
               <PriceChangeIcon color="primary" fontSize="large" />
@@ -251,22 +285,22 @@ export default function SearchSection() {
             </Box>
           </Box>
 
-
-
-
-
-
-            {/* 4th filter option */}
-            <Box
+          {/* 4th filter option */}
+          <Box
             sx={{
-              display: "flex", flexDirection: "row",
-              alignItems: "center", m: 2, paddingLeft: 2
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              m: 2,
+              paddingLeft: 2,
             }}
-          > 
+          >
             <Box
               sx={{
-                display: "flex", flexDirection: "row",
-                alignItems: "center", mr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                mr: 2,
               }}
             >
               <HeightIcon color="primary" fontSize="large" />
@@ -276,28 +310,32 @@ export default function SearchSection() {
                 defaultValue={testStoreyData[4]}
                 sx={{ width: "16vw", ml: 1 }}
                 renderInput={(params) => (
-                  <TextField variant="filled" {...params} label="Storey Range" />
+                  <TextField
+                    variant="filled"
+                    {...params}
+                    label="Storey Range"
+                  />
                 )}
               />
             </Box>
           </Box>
 
-
-
-
-
-
-            {/* 5th filter option */}
+          {/* 5th filter option */}
           <Box
             sx={{
-              display: "flex", flexDirection: "row",
-              alignItems: "center", m: 2, paddingLeft: 2
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              m: 2,
+              paddingLeft: 2,
             }}
-          > 
+          >
             <Box
               sx={{
-                display: "flex", flexDirection: "row",
-                alignItems: "center", mr: 2,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                mr: 2,
               }}
             >
               <LayersIcon color="primary" fontSize="large" />
@@ -313,13 +351,12 @@ export default function SearchSection() {
             </Box>
           </Box>
 
-
-
-
-
-
-          <Button variant="contained" sx={{ width: "50%", mt: 1, mb: 1 }}>
-            Apply  
+          <Button
+            variant="contained"
+            sx={{ width: "50%", mt: 1, mb: 1 }}
+            onClick={handleResaleFilter}
+          >
+            Apply
           </Button>
         </Box>
       </Box>
