@@ -36,27 +36,27 @@ export default function ListingSection() {
   };
 
   /* useEffect to get all listings and display */
- // useEffect(() => {
- //   fetch(allResaleAPI).then((result) => {
- //     /*
- //     This is what comes back, it will return a status code 200 if successfully get resale data
- //     If get resale data error, status code 400 will be returned
- //      */
- //      if (result.status === 200) {
- //        console.log(result);
- //        result.json().then((response) => {
+  useEffect(() => {
+    fetch(allResaleAPI).then((result) => {
+      /*
+      This is what comes back, it will return a status code 200 if successfully get resale data
+      If get resale data error, status code 400 will be returned
+      */
+      if (result.status === 200) {
+        console.log(result);
+        result.json().then((response) => {
           /*this response is where the json is stored at.
           its a huge array of objects like CardInfo example below
           Need to setup DB to know what is sent back
           */
- //          console.log(response); 
-//         });
- //      }
-//       if (result.status === 400) {
-//         // error here
-//       }
-//     });
-//   });
+          console.log(response); 
+        });
+      }
+      if (result.status === 400) {
+        // error here
+      }
+    });
+  });
 
   const cardInfo = [
     {
