@@ -5,7 +5,7 @@ import FooterSection from "./Homepage/FooterSection";
 import ScrollComponent from "./Homepage/ScrollComponent";
 import Header from "./Header/HeaderComponent";
 // still in progress
-export default function RentalPage(){
+export default function ResalePage(){
     return <div className="content-container">
         <Header />
         <ScrollComponent showBelow={250} />
