@@ -11,13 +11,15 @@ import {
   Menu,
   Tooltip,
   Avatar,
-  Link
+  Link,
 } from "@mui/material";
 import WeekendIcon from "@mui/icons-material/Weekend";
-import avatar from "../../assets/avatar.jpg";
+// import avatar from "../../assets/avatar.jpg";
 import avatar2 from "../../assets/avatar2.jpg";
 
 // const isRoleSeller = window.localStorage.getItem("isRoleSeller");
+
+const role = window.localStorage.getItem("role");
 
 export default function Header() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -137,10 +139,26 @@ export default function Header() {
               onClose={handleCloseUserMenu}
             >
               <MenuItem>
-                <Link color='black' underline='none' href="/profile">
+                <Link color="black" underline="none" href="/profile">
                   <Typography textAlign="center">My Account</Typography>
                 </Link>
               </MenuItem>
+
+              {role === "Seller" && (
+                <MenuItem>
+                  <Link color="black" underline="none" href="/manageListing">
+                    <Typography textAlign="center">Manage Listing</Typography>
+                  </Link>
+                </MenuItem>
+              )}
+
+              {role === "Buyer" && (
+                <MenuItem>
+                  <Link color="black" underline="none" href="/interest">
+                    <Typography textAlign="center">View Interest</Typography>
+                  </Link>
+                </MenuItem>
+              )}
 
               <MenuItem onClick={handleLogout}>
                 <Typography textAlign="center">Logout</Typography>

@@ -9,6 +9,8 @@ import RegisterPage from "./Components/RegisterPage";
 import ProfilePage from "./Components/ProfilePage";
 import SellerPage from "./Components/SellerPage";
 import NewListingPage from "./Components/NewListingPage";
+import ManageListingPage from './Components/ManageListingPage';
+import { ViewInterestPage } from './Components/ViewInterestPage';
 import { indigo, red } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -44,7 +46,8 @@ function App() {
             <Route path="register" element={<RegisterPage />}></Route> 
             <Route path="profile" element={<ProfilePage />}></Route> 
             <Route path="sell" element={<SellerPage/>}></Route>
-            <Route path="newlist" element={<NewListingPage/>}></Route>
+            <Route path="newlist" element={<NewListingPage/>}></Route>            <Route path="interest" element={<ViewInterestPage />}></Route> 
+            <Route path="manageListing" element={<ManageListingPage />}></Route> 
           </Routes>
         </Router>
       </ThemeProvider>

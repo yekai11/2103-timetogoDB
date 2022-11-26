@@ -85,7 +85,11 @@ export default function LoginPage() {
         });
       }
       if (result.status === 401) {
-        window.localStorage.setItem("isLoggedIn", false);
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          window.localStorage.setItem("isLoggedIn", false);
+        }, 1500);
       }
     });
   };
@@ -166,7 +170,26 @@ export default function LoginPage() {
                 Quickly login to find a house and spend more money.
               </Typography>
             </Box>
-
+            {window.localStorage.getItem("isLoggedIn") == "false" && (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  border: 0.5,
+                  borderColor:'#ebeded',
+                  backgroundColor:'#ed9595',
+                  width: "100%",
+                  height: "10%",
+                  mb:2,
+                  borderRadius:3
+                }}
+              >
+                <Typography>
+                  Login Failed, Email or Password Incorrect
+                </Typography>
+              </Box>
+            )}
             <TextField
               color="primary"
               label="Email"
