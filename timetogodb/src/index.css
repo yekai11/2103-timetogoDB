@@ -24,3 +24,24 @@ code {
 .right-panel {
   flex: 2;
 }
+
+/* card styling for rental/resale */
+.ListCardContainer{
+  justify-content: center;
+}
+
+.ListCard{
+  margin: auto;
+  margin-left: 5%;
+  margin-bottom: 4%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  text-align: left;
+}
+
+.ListButton{
+ text-align: center;
+}
+
+.card-text{
+  margin: 20px;
+}

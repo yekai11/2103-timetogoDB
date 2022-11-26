@@ -122,11 +122,7 @@ export default function SearchSection() {
           color: "primary",
         }}
       >
-
-
-
-
-        <br></br><br></br>
+<br></br><br></br>
         <Box boxShadow={2} borderRadius={4}
           sx={{
             display: "flex",
@@ -153,12 +149,7 @@ export default function SearchSection() {
           borderColor : '#000000'
         }}/>
 
-
-
-
-
-
-            {/* 1st filter option */}
+{/* 1st filter option */}
           <Box
             sx={{
               display: "flex", flexDirection: "row", alignItems: "center",
@@ -187,12 +178,7 @@ export default function SearchSection() {
             />
           </Box>
 
-
-
-
-
-
-            {/* 2nd filter option */}
+{/* 2nd filter option */}
           <Box
             sx={{
               display: "flex", flexDirection: "row",
@@ -218,12 +204,7 @@ export default function SearchSection() {
             </Box>
           </Box>
 
-
-
-
-
-
-            {/* 3rd filter option */}
+{/* 3rd filter option */}
             <Box
             sx={{
               display: "flex", flexDirection: "row",
@@ -249,12 +230,7 @@ export default function SearchSection() {
             </Box>
           </Box>
 
-
-
-
-
-
-            {/* 4th filter option */}
+{/* 4th filter option */}
             <Box
             sx={{
               display: "flex", flexDirection: "row",
@@ -280,12 +256,7 @@ export default function SearchSection() {
             </Box>
           </Box>
 
-
-
-
-
-
-            {/* 5th filter option */}
+{/* 5th filter option */}
           <Box
             sx={{
               display: "flex", flexDirection: "row",
@@ -310,7 +281,6 @@ export default function SearchSection() {
               />
             </Box>
           </Box>
-
 
           <Button variant="contained" sx={{ width: "50%", mt: 1, mb: 1 }}>
             Apply  
