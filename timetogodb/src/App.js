@@ -7,6 +7,8 @@ import ResalePage from "./Components/ResalePage";
 import LoginPage from "./Components/LoginPage";
 import RegisterPage from "./Components/RegisterPage";
 import ProfilePage from "./Components/ProfilePage";
+import ManageListingPage from './Components/ManageListingPage';
+import { ViewInterestPage } from './Components/ViewInterestPage';
 import { indigo, red } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -41,7 +43,8 @@ function App() {
             <Route path="resale" element={<ResalePage />}></Route>
             <Route path="register" element={<RegisterPage />}></Route> 
             <Route path="profile" element={<ProfilePage />}></Route> 
-
+            <Route path="interest" element={<ViewInterestPage />}></Route> 
+            <Route path="manageListing" element={<ManageListingPage />}></Route> 
           </Routes>
         </Router>
       </ThemeProvider>

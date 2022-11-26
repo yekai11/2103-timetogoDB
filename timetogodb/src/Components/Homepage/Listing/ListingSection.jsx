@@ -1,38 +1,12 @@
-import {
-  Typography,
-  Box,
-  Link,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Slide,
-} from "@mui/material";
+import { Typography, Box, Link, Button } from "@mui/material";
 import React from "react";
 import a_hdb from "../../../assets/aesthetic_hdb.jpg";
 import hdb_homepage from "../../../assets/hdb_homepage.jpg";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import LocationIcon from "@mui/icons-material/LocationOn";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
-export default function ListingSection() {
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function ListingSection({ openDialog }) {
   return (
     <div>
       <Box
@@ -86,7 +60,7 @@ export default function ListingSection() {
             {/*First card */}
             <Box
               sx={{
-                width: "30%",
+                width: "25%",
                 height: "100%",
                 backgroundColor: "white",
               }}
@@ -113,10 +87,9 @@ export default function ListingSection() {
                     alignItems: "center",
                   }}
                 >
-                  <LocationOnIcon
+                  <LocationIcon
                     color="primary"
-                    fontSize="large"
-                    sx={{ paddingTop: 3 }}
+                    sx={{ paddingTop: 3, fontSize: 60 }}
                   />
                   <Typography
                     variant="h4"
@@ -163,11 +136,10 @@ export default function ListingSection() {
                   </Typography>
                 </Box>
                 <Button
-                  onclick={handleClickOpen}
-                  startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
+                  onclick={() => openDialog(true)}
                   variant="contained"
                 >
-                  Indicate Interest
+                  View Details
                 </Button>
               </Box>
             </Box>
@@ -175,7 +147,7 @@ export default function ListingSection() {
             {/*Second card */}
             <Box
               sx={{
-                width: "30%",
+                width: "25%",
                 height: "100%",
                 backgroundColor: "white",
               }}
@@ -202,10 +174,9 @@ export default function ListingSection() {
                     alignItems: "center",
                   }}
                 >
-                  <LocationOnIcon
+                  <LocationIcon
                     color="primary"
-                    fontSize="large"
-                    sx={{ paddingTop: 3 }}
+                    sx={{ paddingTop: 3, fontSize: 60 }}
                   />
                   <Typography
                     variant="h4"
@@ -252,11 +223,10 @@ export default function ListingSection() {
                   </Typography>
                 </Box>
                 <Button
-                  onclick={handleClickOpen}
-                  startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
+                  onclick={() => openDialog(true)}
                   variant="contained"
                 >
-                  Indicate Interest
+                  View Details
                 </Button>
               </Box>
             </Box>
@@ -264,7 +234,7 @@ export default function ListingSection() {
             {/*Third card */}
             <Box
               sx={{
-                width: "30%",
+                width: "25%",
                 height: "100%",
                 backgroundColor: "white",
               }}
@@ -291,10 +261,9 @@ export default function ListingSection() {
                     alignItems: "center",
                   }}
                 >
-                  <LocationOnIcon
+                  <LocationIcon
                     color="primary"
-                    fontSize="large"
-                    sx={{ paddingTop: 3 }}
+                    sx={{ paddingTop: 3, fontSize: 60 }}
                   />
                   <Typography
                     variant="h4"
@@ -341,11 +310,10 @@ export default function ListingSection() {
                   </Typography>
                 </Box>
                 <Button
-                  onclick={handleClickOpen}
-                  startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
+                  onclick={() => openDialog(true)}
                   variant="contained"
                 >
-                  Indicate Interest
+                  View Details
                 </Button>
               </Box>
             </Box>
@@ -407,26 +375,6 @@ export default function ListingSection() {
             </Box>
           </Box>
         </Box>
-        <Dialog
-          open={open}
-          TransitionComponent={Transition}
-          keepMounted
-          onClose={handleClose}
-          aria-describedby="alert-dialog-slide-description"
-        >
-          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-slide-description">
-              Let Google help apps determine location. This means sending
-              anonymous location data to Google, even when no apps are running.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Disagree</Button>
-            <Button onClick={handleClose}>Agree</Button>
-          </DialogActions>
-        </Dialog>
-
       </Box>
     </div>
   );
