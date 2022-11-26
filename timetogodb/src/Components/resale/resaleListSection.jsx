@@ -45,7 +45,11 @@ export default function ListingSection() {
       if (result.status === 200) {
         console.log(result);
         result.json().then((response) => {
-          console.log(response);
+          /*this response is where the json is stored at.
+          its a huge array of objects like CardInfo example below
+          Need to setup DB to know what is sent back
+          */
+          console.log(response); 
         });
       }
       if (result.status === 400) {
