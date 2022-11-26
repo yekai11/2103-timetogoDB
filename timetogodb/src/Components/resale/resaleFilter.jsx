@@ -18,6 +18,7 @@ import { styled, lighten, darken } from "@mui/system";
 const filterResaleAPI = "http://localhost:5000/resale/filterResale"; //const url for easy changing of api links 
 
 /* values here should be taken from DB */ const testLocationData = [ // no need to convert
+  { title: "All of Singapore" },
   { title: "ANG MO KIO" },
   { title: "BEDOK" },
   { title: "BISHAN" },
@@ -47,6 +48,7 @@ const filterResaleAPI = "http://localhost:5000/resale/filterResale"; //const url
 ]; 
 
 /* values here should be taken from DB */ const testFlatTypeData = [ // no need to convert
+  { label: "All types" },
   { label: "1 ROOM" },
   { label: "2 ROOM" },
   { label: "3 ROOM" },
@@ -57,6 +59,7 @@ const filterResaleAPI = "http://localhost:5000/resale/filterResale"; //const url
 ]; 
 
 /* values here should be taken from DB */ const testPriceData = [// Conversion to range needed
+  { label: "All prices" },
   { label: "$200k & below" },
   { label: "$201k - $300k" },
   { label: "$301k - $400k" },
@@ -66,6 +69,7 @@ const filterResaleAPI = "http://localhost:5000/resale/filterResale"; //const url
 ]; 
 
 /* values here should be taken from DB */ const testStoreyData = [ // conversion to range needed
+  { label: "All Floors" },
   { label: "1st Floor - 3rd Floor" },
   { label: "4th Floor - 6th Floor" },
   { label: "7th Floor - 9th Floor" },
@@ -86,6 +90,7 @@ const filterResaleAPI = "http://localhost:5000/resale/filterResale"; //const url
 ]; 
 
 /* values here should be taken from DB */ const testAreaData = [ // conversion to range needed
+  { label: "All sizes" },
   { label: "30 to 50 sq m" },
   { label: "60 to 80 sq m" },
   { label: "90 to 110 sq m" },
@@ -204,7 +209,7 @@ export default function SearchSection() {
             <LocationOnIcon color="primary" fontSize="large" />
             <Autocomplete
               disablePortal
-              defaultValue={testLocationData[5]}
+              defaultValue={testLocationData[0]}
               options={options.sort(
                 (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
               )}
@@ -245,7 +250,7 @@ export default function SearchSection() {
               <Autocomplete
                 disablePortal
                 options={testFlatTypeData}
-                defaultValue={testFlatTypeData[4]}
+                defaultValue={testFlatTypeData[0]}
                 sx={{ width: "16vw", ml: 1 }}
                 renderInput={(params) => (
                   <TextField variant="filled" {...params} label="Flat Type" />
@@ -276,7 +281,7 @@ export default function SearchSection() {
               <Autocomplete
                 disablePortal
                 options={testPriceData}
-                defaultValue={testPriceData[4]}
+                defaultValue={testPriceData[0]}
                 sx={{ width: "16vw", ml: 1 }}
                 renderInput={(params) => (
                   <TextField variant="filled" {...params} label="Price Range" />
@@ -307,7 +312,7 @@ export default function SearchSection() {
               <Autocomplete
                 disablePortal
                 options={testStoreyData}
-                defaultValue={testStoreyData[4]}
+                defaultValue={testStoreyData[0]}
                 sx={{ width: "16vw", ml: 1 }}
                 renderInput={(params) => (
                   <TextField
@@ -342,7 +347,7 @@ export default function SearchSection() {
               <Autocomplete
                 disablePortal
                 options={testAreaData}
-                defaultValue={testAreaData[4]}
+                defaultValue={testAreaData[0]}
                 sx={{ width: "16vw", ml: 1 }}
                 renderInput={(params) => (
                   <TextField variant="filled" {...params} label="Area Size" />
