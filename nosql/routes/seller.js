@@ -1,4 +1,5 @@
 const express = require("express");
+const assert = require("assert");
 const database = require("../database");
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.post("/addListing", async (req, res) => {
             storey_range,
             num_of_rooms,
             floor_area_sqm,
-            account_id,
+            accountID,
             listing_type,
             price,
         } = req.body; // setting objects for easy reference
@@ -34,7 +35,7 @@ router.post("/addListing", async (req, res) => {
             floor_area_sqm: floor_area_sqm
         };
 
-        const listings = db.collection("account").find().sort({ account_id: -1 }).limit(1); // Get highest listing_id
+        const listings = db.collection("listing").find().sort({ listing_id: -1 }).limit(1); // Get highest listing_id
         listings.forEach(listing => {
             newListing.listing_id = listing.listing_id + 1; // Auto-increment listing_id
         }, () => {
@@ -44,7 +45,7 @@ router.post("/addListing", async (req, res) => {
             });
 
             // Insert into account collection
-            db.collection("account").updateOne({ account_id: account_id }, { $set: { listing_id: newListing.list_id } }, (err, result) => {
+            db.collection("account").updateOne({ account_id: accountID }, { $set: { listing_id: newListing.list_id } }, (err, result) => {
                 assert.equal(null, err);
                 res.sendStatus(201);
                 database.close();
@@ -140,10 +141,10 @@ router.post("/deleteListing", async (req, res) => {
 });
 
 /* Endpoint to get one seller listing to populate update form values */
-router.get("/oneListing", async (req, res) => {
+router.get("/oneListing/:listing_id", async (req, res) => {
     try {
         const db = database.connect();
-        const { listing_id } = req.body; // setting objects for easy reference
+        const { listing_id } = req.params; // setting objects for easy reference
         console.log(listing_id); // for debugging
 
         /* Query which returns a specific listing by id */

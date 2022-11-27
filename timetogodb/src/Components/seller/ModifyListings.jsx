@@ -14,8 +14,8 @@ import {
   Radio,
   TextField,
 } from "@mui/material";
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { json, useParams } from "react-router-dom";
 // pictures
 import hdb3 from "../../assets/hdb3.jpg";
 // icons
@@ -23,7 +23,7 @@ import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import Looks3Icon from "@mui/icons-material/Looks3";
 
-const handleModifyListingAPI = "http://localhost:5000/seller/updateListing"; 
+const handleModifyListingAPI = "http://localhost:5000/seller/updateListing";
 
 const testFlatTypeData = [
   // copy of the filter options
@@ -61,7 +61,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function CreateListing() {
+export default function ModifyListing() {
   const [area, setArea] = useState("");
   const [Postal, setPostal] = useState("");
   const [Street, setStreet] = useState("");
@@ -71,6 +71,21 @@ export default function CreateListing() {
   const [FloorSize, setFloorSize] = useState("");
   const [ListingType, setListingType] = useState("");
   const [Price, setPrice] = useState("");
+  const { listing_id } = useParams();
+
+  useEffect(()=>{
+    fetch(`http://localhost:5000/seller/oneListing/${listing_id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }).then((result) => {
+      result.json().then((json_result) =>{
+        console.log(json_result.area); // does the result return a json object of the listing ?
+      })
+    })
+  },[]);
 
   // this whole chunk of codes to handle change in values on the forms
   const [accountID, setAccountID] = React.useState(
@@ -183,14 +198,14 @@ export default function CreateListing() {
               you updating your house address?
             </Typography>
 
-            <Typography
+            {/* <Typography
               variant="body2"
               color="textSecondary"
               component="p"
               gutterBottom
             >
               Fill up the form and your house will be listed!
-            </Typography>
+            </Typography> */}
 
             {/* first section of options */}
             <Grid container spacing={1}>

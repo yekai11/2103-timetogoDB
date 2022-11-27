@@ -38,9 +38,9 @@ router.post("/deleteInterest", async (req, res) => {
 });
 
 /* Endpoint to get all listings where 1 account is interested in */
-router.get("/accountInterest", async (req, res) => {
+router.get("/accountInterest/:account_id", async (req, res) => {
   try {
-    const { account_id } = req.body; // setting objects for easy reference
+    const { account_id } = req.params; // setting objects for easy reference
     console.log(account_id); // for debugging
 
     const accountInterestQuery = await pool.query(

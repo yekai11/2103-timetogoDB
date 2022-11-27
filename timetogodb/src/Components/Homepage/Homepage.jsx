@@ -22,22 +22,22 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function Homepage() {
 
   const [dialog, setDialog] = React.useState(false);
-
-  const handleCloseDialog = () => {
-    setDialog(false);
-  };
+  const {render, dialogC, handleCloseDialog} = ListingSection();
+  // const handleCloseDialog = () => {
+  //   setDialogC(false);
+  // };
 
   return (
     <div>
       <Header />
       <ScrollComponent showBelow={250} />
       <SearchComponent />
-      <ListingSection openDialog={setDialog}/>
+      {render}
       <FeatureSection />
       <FooterSection />
       
       <Dialog
-          open={dialog}
+          open={dialogC}
           TransitionComponent={Transition}
           keepMounted
           onClose={handleCloseDialog}

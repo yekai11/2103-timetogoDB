@@ -100,15 +100,8 @@ export default function RegisterPage() {
         role: role,
       }),
     }).then((result) => {
-      /*
-      This is what comes back, it will return a status code 201 if account successfully created
-      If validation error, status code 400 will be returned
-      If email already registered, status code 409 will be returned 
-      */
-      console.log("In result");
-      console.log(result.status); // this is how u access the status code
-
       if (result.status === 201) {
+        window.localStorage.clear();
         navigate("/");
       }
     });

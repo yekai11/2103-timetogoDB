@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {
   Button,
   Box,
@@ -9,10 +9,10 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography
+  Typography,
 } from "@mui/material";
-import Header from "../Components/Header/HeaderComponent";
-import FooterSection from "../Components/Homepage/FooterSection";
+import Header from "../Header/HeaderComponent";
+import FooterSection from "../Homepage/FooterSection";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -36,22 +36,11 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, 3.9),
 ];
 
+export default function ManageListingPage() {
 
-export function ViewInterestPage() {
-  useEffect(()=>{
-    const account_id = window.localStorage.getItem("accountID");
-    fetch(`http://localhost:5000/interest/accountInterest/${account_id}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }).then((result) => {
-      result.json().then((json_result) =>{
-        console.log(json_result.area);// does this not work ?
-      })
-    })
-  },[]);
+  const handleEdit = (listing_id) =>{
+    window.location.href = `modifyListing/${listing_id}`;
+  }
 
   return (
     <div style={{ height: "100vh", width: "auto" }}>
@@ -67,7 +56,7 @@ export function ViewInterestPage() {
           my:2
         }}
       >
-        <Typography variant="h3" align='center'>My Favourites</Typography>
+        <Typography variant="h3" align='center'>My Listings</Typography>
         <TableContainer
           component={Paper}
           elevation={2}
@@ -126,9 +115,9 @@ export function ViewInterestPage() {
                 </TableCell>
                 <TableCell
                   align="center"
-                  sx={{ fontSize: "16px", fontWeight: "bold" }}
+                  sx={{ fontSize: "16px", fontWeight: "bold", color:'white' }}
                 >
-                  {""}
+                  {' '}
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -148,8 +137,8 @@ export function ViewInterestPage() {
 
                   <TableCell align="center">
                     {/* Button onClick={to delete an interest} */}
-                    <Button variant="contained" color="secondary">
-                      Remove
+                    <Button variant="contained" color="primary" onClick={() => handleEdit(12)}>
+                      Edit
                     </Button>
                   </TableCell>
                 </TableRow>

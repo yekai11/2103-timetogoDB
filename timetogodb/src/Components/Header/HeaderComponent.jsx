@@ -154,7 +154,7 @@ export default function Header() {
 
               {role === "Buyer" && (
                 <MenuItem>
-                  <Link color="black" underline="none" href="/interest">
+                  <Link color="black" underline="none" href="/manageInterest">
                     <Typography textAlign="center">View Interest</Typography>
                   </Link>
                 </MenuItem>

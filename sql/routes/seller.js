@@ -213,9 +213,9 @@ router.post("/deleteListing", async (req, res) => {
 });
 
 /* Endpoint to get one seller listing to populate update form values */
-router.get("/oneListing", async (req, res) => {
+router.get("/oneListing/:listing_id", async (req, res) => {
   try {
-    const { listing_id } = req.body; // setting objects for easy reference
+    const { listing_id } = req.params; // setting objects for easy reference
     console.log(listing_id); // for debugging
 
     /* Query which returns a specific listing by id */

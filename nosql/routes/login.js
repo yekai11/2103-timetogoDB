@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
 
         const accountDetails = { // put account details in a json file
             accountID: account.account_id,
-            role: account.role,
+            role: account.role_id,
             name: account.name,
             username: account.username,
             email: account.email,
