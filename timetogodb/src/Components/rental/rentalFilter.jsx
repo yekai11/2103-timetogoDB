@@ -327,7 +327,8 @@ export default function SearchSection() {
             variant="contained"
             sx={{ width: "50%", mt: 1, mb: 1 }}
             onClick={handleResaleFilter}
-          > 
+          >
+            Apply
           </Button>
         </Box>
       </Box>
