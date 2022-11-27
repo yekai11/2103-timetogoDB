@@ -151,10 +151,10 @@ router.post("/deleteListing", async (req, res) => {
 router.get("/oneListing", async (req, res) => {
   try {
     const { listing_id } = req.body; // setting objects for easy reference
-    console.log(block); // for debugging
+    console.log(listing_id); // for debugging
 
-    /* Query which returns all resale flats */
-    const getAllResaleQuery = await pool.query(
+    /* Query which returns a specific listing by id */
+    const getListingQuery = await pool.query(
       `
       SELECT L.listing_id, L.price, L.date_of_listing, F.postal_code, F.block, F.area, F.street, F.storey_range, F.num_of_rooms, F.floor_area_sqm,
       A.name, A.username, A.email, A.phone_number,
@@ -173,9 +173,9 @@ router.get("/oneListing", async (req, res) => {
       `
     );
 
-    console.log(getAllResaleQuery.rows);
+    console.log(getListingQuery.rows);
 
-    res.json(getAllResaleQuery.rows);
+    res.json(getListingQuery.rows);
     return;
   } catch (err) {
     console.log(err);
