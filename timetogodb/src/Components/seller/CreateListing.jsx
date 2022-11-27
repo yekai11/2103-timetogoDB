@@ -146,7 +146,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return (
       <div className="App"> 
         
-        <Typography gutterBottom variant="h3" align="center" style={{padding: "25px", margin: "auto" }}>
+        <Typography gutterBottom variant="h3" align="center" style={{padding: "45px", margin: "auto" }}>
           Create a New Listing
         </Typography>
 
@@ -159,18 +159,19 @@ const Transition = React.forwardRef(function Transition(props, ref) {
               component="img"
               height="300"
               src={hdb2}
-              alt="green iguana"
             />
-            <Typography gutterBottom variant="h5" style={{padding: "15px"}}>
+            <Typography gutterBottom variant="h5" style={{padding: "35px"}}>
               <LooksOneIcon color="primary" fontSize="large"></LooksOneIcon> Where is your house located?
             </Typography>
 
             <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
               Fill up the form and your house will be listed!
             </Typography> 
-
+            
+            {/* first section of options */}
             <form>
               <Grid container spacing={1}>
+              {/* area  */}
                 <Grid item xs={12}>
                   <TextField 
                       placeholder="Enter Area" 
@@ -181,6 +182,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                       onChange={handleAreaChange}
                   />
                 </Grid>
+              {/* postal code */}
                 <Grid item xs={12}>
                   <TextField 
                       type="number" 
@@ -191,6 +193,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                       defaultValue={Postal}
                       fullWidth required />
                 </Grid>
+              {/* street name */}
                 <Grid item xs={12}>
                   <TextField 
                       placeholder="Enter Street" 
@@ -200,7 +203,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                       defaultValue={Street}
                       fullWidth required />
                 </Grid>
-                <Grid item xs={12}>
+              {/* block number */}
+              <Grid item xs={12}>
                   <TextField 
                       placeholder="Enter Block Number" 
                       label="Block Number" 
@@ -211,11 +215,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                 </Grid>
               </Grid>
 
-              <Typography gutterBottom variant="h5" style={{padding: "15px", margin: "25px"}}>
+              {/* second section of options */}
+              <Typography gutterBottom variant="h5" style={{padding: "35px", margin: "25px"}}>
                 <LooksTwoIcon color="primary" fontSize="large"></LooksTwoIcon> Tell us more about your house
               </Typography> 
 
               <Grid container spacing={3} sx={{marginLeft: "24px"}}>
+              {/* flat type/number of rooms */}
                 <Grid item xs={4}>
                     <Autocomplete
                         disablePortal
@@ -228,7 +234,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                         )}
                     />
                 </Grid>
-                <Grid item xs={4}>
+              {/* storey range */}
+              <Grid item xs={4}>
                     <Autocomplete
                         disablePortal
                         onSelect={handleStoreyRangeChange}
@@ -240,7 +247,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                         )}
                     />
                   </Grid>
-                <Grid item xs={4}>
+              {/* flat size/area sq */}
+              <Grid item xs={4}>
                     <Autocomplete
                         disablePortal
                         onSelect={handleFloorSizeChange}
@@ -254,11 +262,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                     />
                   </Grid>
               </Grid>
-
-              <Typography gutterBottom variant="h5" style={{padding: "15px", margin: "25px"}}>
+              
+              {/* third section of options */}
+              <Typography gutterBottom variant="h5" style={{padding: "35px", margin: "25px"}}>
                 <Looks3Icon color="primary" fontSize="large"></Looks3Icon> Some final details.. 
               </Typography>
-
+              {/* listing type selection */}
               <Grid container spacing={3} columns={6} sx={{marginLeft: "24px"}}>
                 <Grid item xs={3}>
                   <FormControl>
@@ -279,7 +288,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                     <br></br><br></br>
                   </FormControl>
                 </Grid>
-                <Grid item xs={2}>
+              {/* price */}
+              <Grid item xs={2}>
                     <br></br>
                     <TextField 
                         type="number" 

@@ -1,15 +1,13 @@
 import {
   Typography,
   Box,
-  //Link,
   Button,
-  Slide,
+  Slide, Grid
 } from "@mui/material";
 import React, { useEffect } from "react";
 // pictures
-import a_hdb from "../../assets/aesthetic_hdb.jpg";
-//import hdb_homepage from "../../assets/hdb_homepage.jpg";
-import building from "../../assets/building.jpg";
+import hdb1 from "../../assets/hdb1.jpg";
+import resaleListIcon from "../../assets/resaleListIcon.jpg";
 // various icons
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -18,11 +16,11 @@ import LayersIcon from '@mui/icons-material/Layers';
 // these are bootstrap card configurations
 import {Card} from "react-bootstrap";
 import {ListGroup} from "react-bootstrap";
-import {Grid} from '@mui/material';
 
 
 const allResaleAPI = "http://localhost:5000/resale/allResale"; //const url for easy changing of api links
 
+// button leads you back to the top after scrolling a certain amount
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -64,7 +62,7 @@ export default function ListingSection() {
   const renderCard = (card, index) => {
     return (
       <Card style={{ width: "18rem" }} key={index} className="ListCard">
-      <Card.Img variant="top" src={a_hdb} />
+      <Card.Img variant="top" src={resaleListIcon} />
         <Card.Body>
           <Card.Title className="align-self-left">
               <Box
@@ -141,13 +139,13 @@ export default function ListingSection() {
           alt="banner"
           style={{
             zIndex: -1,
-            height: "55%",
+            height: "500",
             width: "100%",
             position: "absolute",
             opacity: 0.4,
             objectFit: "cover",
           }}
-          src={building}
+          src={hdb1}
         ></img>
         <Typography variant="h3" sx={{ fontWeight: 400, paddingLeft: 5 }}>
           View Resale Homes
