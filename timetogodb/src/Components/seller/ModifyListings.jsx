@@ -23,7 +23,7 @@ import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import Looks3Icon from "@mui/icons-material/Looks3";
 
-const handleSubmitAPI = "http://localhost:5000/resale/filterResale"; // not sure how this works for this page
+const handleModifyListingAPI = "http://localhost:5000/seller/updateListing"; 
 
 const testFlatTypeData = [
   // copy of the filter options
@@ -128,7 +128,7 @@ export default function CreateListing() {
     //   ListingType: ListingType,
     //   Price: Price,
     // });
-    fetch(handleSubmitAPI, {
+    fetch(handleModifyListingAPI, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -147,7 +147,7 @@ export default function CreateListing() {
       }),
     }).then((result) => {
       /*
-      This is what comes back, it will return a status code 200 if account successfully created
+      This is what comes back, it will return a status code 200 if listing successfully updated
       If validation error, status code 400 will be returned
       If email already registered, status code 409 will be returned
       */
