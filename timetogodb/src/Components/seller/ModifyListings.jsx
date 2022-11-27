@@ -136,14 +136,14 @@ export default function CreateListing() {
       body: JSON.stringify({
         accountID: accountID,
         area: area,
-        Postal: Postal,
-        Street: Street,
-        Block: Block,
-        FlatType: FlatType,
-        StoreyRange: StoreyRange,
-        FloorSize: FloorSize,
-        ListingType: ListingType,
-        Price: Price,
+        postal_code: Postal,
+        street: Street,
+        block: Block,
+        num_of_rooms: FlatType,
+        storey_range: StoreyRange,
+        floor_area_sqm: FloorSize,
+        listing_type: ListingType,
+        price: Price,
       }),
     }).then((result) => {
       /*
