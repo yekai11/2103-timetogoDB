@@ -24,7 +24,7 @@ import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import Looks3Icon from "@mui/icons-material/Looks3";
   
-const handleSubmitAPI = "http://localhost:5000/resale/filterResale"; // not sure how this works for this page 
+const createListingAPI = "http://localhost:5000/seller/addListing"; // not sure how this works for this page 
 
 const testFlatTypeData = [ // copy of the filter options
   { label: "1 ROOM" },
@@ -128,7 +128,7 @@ export default function CreateListing() {
     //   ListingType: ListingType,
     //   Price: Price,
     // });
-    fetch(handleSubmitAPI, {
+    fetch(createListingAPI, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

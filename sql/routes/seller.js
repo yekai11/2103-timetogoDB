@@ -61,22 +61,42 @@ router.post("/addListing", async (req, res) => {
       storey_range,
       num_of_rooms,
       floor_area_sqm,
-      account_id,
+      accountID,
       listing_type,
       price,
     } = req.body; // setting objects for easy reference
     console.log(block); // for debugging
 
-    const listing_type_id = convertListingTypeToInt(listing_type);
+    // const listing_id_int = parseInt(listing_id); // convert
+    const price_int = parseInt(price); // convert Price to int
+    const postal_code_int = parseInt(postal_code); // convert Postal to int
+    const floor_area_sqm_int = parseInt(floor_area_sqm); // convert FloorSize to int
+    const account_id_int = parseInt(accountID); // convert FloorSize to int
+    const listing_type_int = convertListingTypeToInt(listing_type); // converts listing type to int values in database
+
+    const storey_range_DB = convertFormatToDB_FloorRange(storey_range); // converts storey_range to db format
+
+    // console.log(
+    //   price_int,
+    //   postal_code_int,
+    //   floor_area_sqm_int,
+    //   account_id_int,
+    //   listing_type_int,
+    //   storey_range_DB,
+    //   block,
+    //   area,
+    //   street,
+    //   num_of_rooms
+    // ); // for debugging
 
     const insertNewFlatQuery = await pool.query(
       `WITH rows AS (
-        INSERT INTO Flat (flat_id, postal_code, block, area, street, storey_range, num_of_rooms) VALUES
-        (DEFAULT, ${postal_code}, '${block}', '${area}', '${street}','${storey_range}', '${num_of_rooms}', ${floor_area_sqm})
+        INSERT INTO Flat (flat_id, postal_code, block, area, street, storey_range, num_of_rooms, floor_area_sqm) VALUES
+        (DEFAULT, ${postal_code_int}, '${block}', '${area}', '${street}','${storey_range_DB}', '${num_of_rooms}', ${floor_area_sqm_int})
         RETURNING flat_id
     )
     INSERT INTO Listing (listing_id, account_id, flat_id, listing_type_id, price, date_of_listing)
-    SELECT flat_id, ${account_id}, flat_id, ${listing_type_id}, ${price}, NOW()
+    SELECT flat_id, ${account_id_int}, flat_id, ${listing_type_int}, ${price_int}, NOW()
     FROM rows;    
     `
     );
