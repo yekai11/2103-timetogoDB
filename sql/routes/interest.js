@@ -10,7 +10,7 @@ router.post("/addInterest", async (req, res) => {
 
     const insertInterestQuery = await pool.query(
       `INSERT INTO Interest (interest_id, account_id, listing_id) 
-      VALUES ((SELECT MAX(interest_id)+1 FROM Interest), ${account_id}, ${listing_id});`
+      VALUES (DEFAULT, ${account_id}, ${listing_id});`
     );
 
     res.sendStatus(201);
