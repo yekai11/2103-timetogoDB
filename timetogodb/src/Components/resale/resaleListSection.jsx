@@ -1,5 +1,5 @@
 import { Typography, Box, Button, Slide, Grid } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 // pictures
 import hdb1 from "../../assets/hdb1.jpg";
 import resaleListIcon from "../../assets/resaleListIcon.jpg";
@@ -11,6 +11,10 @@ import LayersIcon from "@mui/icons-material/Layers";
 // these are bootstrap card configurations
 import { Card } from "react-bootstrap";
 import { ListGroup } from "react-bootstrap";
+// testing multiple page implementation
+import Pagination from "../multiplepage/Pagination";
+
+let PageSize = 30;
 
 const allResaleAPI = "http://localhost:5000/resale/allResale"; //const url for easy changing of api links
 
@@ -20,6 +24,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function ListingSection() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+
   const [cardInfo, setCardInfo] = React.useState([]);
 
   const [open, setOpen] = React.useState(false);
@@ -51,6 +57,12 @@ export default function ListingSection() {
       }
     });
   }, []);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return cardInfo.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
 
   const renderCard = (card, index) => {
     return (
@@ -163,9 +175,18 @@ export default function ListingSection() {
       </Box>
       <br></br>
       <br></br>
-      <Grid container>{cardInfo.map(renderCard)}</Grid>
+      <Grid container>        
+        {currentTableData.map(renderCard)}
+      </Grid>
       <br></br>
       <br></br>
+      <Pagination
+        className="pagination-bar"
+        currentPage={currentPage}
+        totalCount={cardInfo.length}
+        pageSize={PageSize}
+        onPageChange={(page) => setCurrentPage(page)}
+      />
     </div>
   );
 }
