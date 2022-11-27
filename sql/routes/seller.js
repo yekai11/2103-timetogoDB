@@ -93,39 +93,39 @@ router.post("/updateListing", async (req, res) => {
   try {
     const {
       // listing_id,
-      Postal,
-      Block,
+      postal_code,
+      block,
       area,
-      Street,
-      StoreyRange,
-      FlatType,
-      FloorSize,
-      ListingType,
-      Price,
+      street,
+      storey_range,
+      num_of_rooms,
+      floor_area_sqm,
+      listing_type,
+      price,
     } = req.body; // setting objects for easy reference
     console.log(JSON.stringify(req.body)); // for debugging
 
     // const listing_id_int = parseInt(listing_id); // convert
-    const Price_int = parseInt(Price); // convert Price to int
-    const Postal_int = parseInt(Postal); // convert Postal to int
-    const FloorSize_int = parseInt(FloorSize); // convert FloorSize to int
-    const listing_type_int = convertListingTypeToInt(ListingType); // converts listing type to int values in database
+    const price_int = parseInt(price); // convert Price to int
+    const postal_code_int = parseInt(postal_code); // convert Postal to int
+    const floor_area_sqm_int = parseInt(floor_area_sqm); // convert FloorSize to int
+    const listing_type_int = convertListingTypeToInt(listing_type); // converts listing type to int values in database
 
-    const StoreyRange_DB = convertFormatToDB_FloorRange(StoreyRange); // converts storey_range to db format
+    const storey_range_DB = convertFormatToDB_FloorRange(storey_range); // converts storey_range to db format
 
     const updateFlatListingQuery = await pool.query(
       `
-      UPDATE Listing SET price = ${Price_int}
+      UPDATE Listing SET price = ${price_int}
       WHERE Listing.listing_id = ${listing_id_int};
       
       UPDATE Listing SET listing_type_id = ${listing_type_int}
       WHERE Listing.listing_id = ${listing_id_int};
       
-      UPDATE Flat SET postal_code = ${Postal_int}
+      UPDATE Flat SET postal_code = ${postal_code_int}
       WHERE Flat.flat_id = 
       (SELECT flat_id FROM Listing WHERE Listing.listing_id = ${listing_id_int});
       
-      UPDATE Flat SET block = '${Block}'
+      UPDATE Flat SET block = '${block}'
       WHERE Flat.flat_id = 
       (SELECT flat_id FROM Listing WHERE Listing.listing_id = ${listing_id_int});
 
@@ -133,19 +133,19 @@ router.post("/updateListing", async (req, res) => {
       WHERE Flat.flat_id = 
       (SELECT flat_id FROM Listing WHERE Listing.listing_id = ${listing_id_int});
 
-      UPDATE Flat SET street = '${Street}'
+      UPDATE Flat SET street = '${street}'
       WHERE Flat.flat_id = 
       (SELECT flat_id FROM Listing WHERE Listing.listing_id = ${listing_id_int});
       
-      UPDATE Flat SET storey_range = '${StoreyRange_DB}'
+      UPDATE Flat SET storey_range = '${storey_range_DB}'
       WHERE Flat.flat_id = 
       (SELECT flat_id FROM Listing WHERE Listing.listing_id = ${listing_id_int});
       
-      UPDATE Flat SET num_of_rooms = '${FlatType}'
+      UPDATE Flat SET num_of_rooms = '${num_of_rooms}'
       WHERE Flat.flat_id = 
       (SELECT flat_id FROM Listing WHERE Listing.listing_id = ${listing_id_int});
 
-      UPDATE Flat SET floor_area_sqm = ${FloorSize_int}
+      UPDATE Flat SET floor_area_sqm = ${floor_area_sqm_int}
       WHERE Flat.flat_id = 
       (SELECT flat_id FROM Listing WHERE Listing.listing_id = ${listing_id_int});            
       `
@@ -153,15 +153,15 @@ router.post("/updateListing", async (req, res) => {
 
     const returnUpdatedData = {
       listing_id: listing_id,
-      Postal: Postal,
-      Block: Block,
+      postal_code: Postal,
+      block: Block,
       area: area,
-      Street: Street,
-      StoreyRange: StoreyRange,
-      FlatType: FlatType,
-      FloorSize: FloorSize,
-      ListingType: ListingType,
-      Price: Price,
+      street: Street,
+      storey_range: StoreyRange,
+      num_of_rooms: FlatType,
+      floor_area_sqm: FloorSize,
+      listing_type: ListingType,
+      price: Price,
     };
 
     res.json(returnUpdatedData);
