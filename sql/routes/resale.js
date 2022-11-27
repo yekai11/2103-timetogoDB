@@ -77,7 +77,7 @@ router.get("/allResale", async (req, res) => {
       `
     );
 
-    /* Uncomment this query to test a smaller dataset */
+    // /* Uncomment this query to test a smaller dataset */
     // const getAllResaleQuery = await pool.query(
     //     `SELECT L.listing_id, L.price, L.date_of_listing, F.postal_code, F.block, F.area, F.street, F.storey_range, F.num_of_rooms, F.floor_area_sqm,
     //     A.name, A.username, A.email, A.phone_number,
@@ -92,7 +92,7 @@ router.get("/allResale", async (req, res) => {
     //     JOIN
     //     ListingType AS LT
     //     ON L.listing_type_id = LT.listing_type_id
-    //     WHERE area = 'BEDOK' AND num_of_rooms = '2 ROOM' AND price <= 200000;
+    //     WHERE area = 'BEDOK' AND num_of_rooms = '2 ROOM' AND price <= 200000 AND L.listing_type_id = 1;
     //     `
     //   );
 
