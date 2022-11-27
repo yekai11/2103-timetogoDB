@@ -50,10 +50,10 @@
 # 2. Running the application  
 
 1. Open up the repositry in VScode
-2. Open up a terminal, and navigate to ``.\server\`` using command ``cd .\server\``
+2. Open up a terminal, and navigate to ``.\sql\`` using command ``cd .\sql\``
 3. Run the command ``npm install``
 4. In the meantime, open up a seperate instance of the terminal, and navigate to ``.\timetogodb`` using command ``cd .\timetogodb\``
 5. Run the command ``npm install``, and wait for npm to download the dependencies. Here is a relevant meme while you wait: https://www.reddit.com/r/ProgrammerHumor/comments/vrtt89/everytime_i_npm_install/
-6. Once all the dependencies for the server and front end has been installed, you can start the front end with the command ``npm start`` in the ``timetogodb`` terminal, but for server, use the command ``npm run dev`` in the ``server`` terminal
+6. Once all the dependencies for the server and front end has been installed, you can start the front end with the command ``npm start`` in the ``timetogodb`` terminal, but for server, use the command ``npm run dev`` in the ``.\sql\`` terminal
 7. Launch pgadmin4, keep logging in until you have ``houseDB`` up and running
 8. Everything should be up and running now. Congrats!
