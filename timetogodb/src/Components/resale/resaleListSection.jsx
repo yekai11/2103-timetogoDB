@@ -28,6 +28,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function ListingSection() {
+  const [cardInfo, setCardInfo] = React.useState([]);
 
   const [open, setOpen] = React.useState(false);
 
@@ -43,65 +44,66 @@ export default function ListingSection() {
       If get resale data error, status code 400 will be returned
       */
       if (result.status === 200) {
-        console.log(result);
+        // console.log(result);
         result.json().then((response) => {
           /*this response is where the json is stored at.
           its a huge array of objects like CardInfo example below
           Need to setup DB to know what is sent back
           */
-          console.log(response); 
+          console.log(response);
+          setCardInfo(response);
         });
       }
       if (result.status === 400) {
         // error here
       }
     });
-  });
+  }, []);
 
-  const cardInfo = [
-    {
-      area: "Ang Mo Kio",
-      street: "Ang Mo Kio Street 62",
-      room: "2-Room",
-      areaSize: "300 sq ft",
-      price: "300k",
-    },
-    {
-      area: "Bedok",
-      street: "Bedok North Street 3",
-      room: "3-Room",
-      areaSize: "400 sq ft",
-      price: "400k",
-    },
-    {
-      area: "Bishan",
-      street: "Bishan Street 11",
-      room: "4-Room",
-      areaSize: "700 sq ft",
-      price: "450k",
-    },
-    {
-      area: "Bukit Batok",
-      street: "Bukit Batok Rd",
-      room: "4-Room",
-      areaSize: "600 sq ft",
-      price: "500k",
-    },
-    {
-      area: "Bukit Merah",
-      street: "Jalan Bukit Merah",
-      room: "5-Room",
-      areaSize: "900 sq ft",
-      price: "600k",
-    },
-    {
-      area: "Bukit Panjang",
-      street: "Pending Rd",
-      room: "5-Room",
-      areaSize: "900 sq ft",
-      price: "800k",
-    }
-  ];
+  // const cardInfo = [
+  //   {
+  //     area: "Ang Mo Kio",
+  //     street: "Ang Mo Kio Street 62",
+  //     room: "2-Room",
+  //     areaSize: "300 sq ft",
+  //     price: "300k",
+  //   },
+  //   {
+  //     area: "Bedok",
+  //     street: "Bedok North Street 3",
+  //     room: "3-Room",
+  //     areaSize: "400 sq ft",
+  //     price: "400k",
+  //   },
+  //   {
+  //     area: "Bishan",
+  //     street: "Bishan Street 11",
+  //     room: "4-Room",
+  //     areaSize: "700 sq ft",
+  //     price: "450k",
+  //   },
+  //   {
+  //     area: "Bukit Batok",
+  //     street: "Bukit Batok Rd",
+  //     room: "4-Room",
+  //     areaSize: "600 sq ft",
+  //     price: "500k",
+  //   },
+  //   {
+  //     area: "Bukit Merah",
+  //     street: "Jalan Bukit Merah",
+  //     room: "5-Room",
+  //     areaSize: "900 sq ft",
+  //     price: "600k",
+  //   },
+  //   {
+  //     area: "Bukit Panjang",
+  //     street: "Pending Rd",
+  //     room: "5-Room",
+  //     areaSize: "900 sq ft",
+  //     price: "800k",
+  //   }
+  // ];
 
   const renderCard = (card, index) => {
     return (

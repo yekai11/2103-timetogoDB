@@ -2,21 +2,21 @@ const express = require("express");
 const pool = require("../database");
 const router = express.Router();
 
-// const convertFormatToDB_Price = (selectedPrice) => {
-//   if (selectedPrice === "$200k & below") {
-//     return "<= 200000";
-//   } else if (selectedPrice === "$201k - $300k") {
-//     return "BETWEEN 200001 AND 300000";
-//   } else if (selectedPrice === "$301k - $400k") {
-//     return "BETWEEN 300001 AND 400000";
-//   } else if (selectedPrice === "$401k - $500k") {
-//     return "BETWEEN 400001 AND 500000";
-//   } else if (selectedPrice === "$501k - $600k") {
-//     return "BETWEEN 500001 AND 600000";
-//   } else if (selectedPrice === "$601k & Above") {
-//     return "> 600001";
-//   }
-// };
+const convertFormatToDB_Price = (selectedPrice) => {
+  if (selectedPrice === "$200k & below") {
+    return "<= 200000";
+  } else if (selectedPrice === "$201k - $300k") {
+    return "BETWEEN 200001 AND 300000";
+  } else if (selectedPrice === "$301k - $400k") {
+    return "BETWEEN 300001 AND 400000";
+  } else if (selectedPrice === "$401k - $500k") {
+    return "BETWEEN 400001 AND 500000";
+  } else if (selectedPrice === "$501k - $600k") {
+    return "BETWEEN 500001 AND 600000";
+  } else if (selectedPrice === "$601k & Above") {
+    return "> 600001";
+  }
+};
 
 // const convertFormatToDB_FloorRange = (selectedFloor) => {
 //   if (selectedFloor === "1st Floor - 3rd Floor") {
@@ -58,7 +58,7 @@ const router = express.Router();
 
 router.get("/allResale", async (req, res) => {
   try {
-
+    /* Query which returns all resale flats */
     const getAllResaleQuery = await pool.query(
       `SELECT L.listing_id, L.price, L.date_of_listing, F.postal_code, F.block, F.area, F.street, F.storey_range, F.num_of_rooms, F.floor_area_sqm,
       A.name, A.username, A.email, A.phone_number,
@@ -77,6 +77,25 @@ router.get("/allResale", async (req, res) => {
       `
     );
 
+    /* Uncomment this query to test a smaller dataset */
+    // const getAllResaleQuery = await pool.query(
+    //     `SELECT L.listing_id, L.price, L.date_of_listing, F.postal_code, F.block, F.area, F.street, F.storey_range, F.num_of_rooms, F.floor_area_sqm,
+    //     A.name, A.username, A.email, A.phone_number,
+    //     LT.listing_type
+    //     FROM Flat As F
+    //     JOIN
+    //     Listing AS L
+    //     ON L.flat_id = F.flat_id
+    //     JOIN
+    //     Account AS A
+    //     ON L.account_id = A.account_id
+    //     JOIN
+    //     ListingType AS LT
+    //     ON L.listing_type_id = LT.listing_type_id
+    //     WHERE area = 'BEDOK' AND num_of_rooms = '2 ROOM' AND price <= 200000;
+    //     `
+    //   );
+
     console.log(getAllResaleQuery.rows);
 
     res.json(getAllResaleQuery.rows);
@@ -86,24 +105,37 @@ router.get("/allResale", async (req, res) => {
   }
 });
 
-// router.post("/filterResale", async (req, res) => {
-//   try {
-//     const { accountID } = req.body; // setting objects for easy reference
-//     console.log(typeof accountID); // for debugging
+router.post("/filterResale", async (req, res) => {
+  try {
+    const { area, num_of_rooms, price, storey_range, floor_area_sqm } =
+      req.body; // setting objects for easy reference
+    console.log(area); // for debugging
 
-//     const accountID_int = parseInt(accountID); // converts string to int
+    const filterQuery = await pool.query(
+      `SELECT L.listing_id, L.price, L.date_of_listing, F.postal_code, F.block, F.area, F.street, F.storey_range, F.num_of_rooms, F.floor_area_sqm,
+      A.name, A.username, A.email, A.phone_number,
+      LT.listing_type
+      FROM Flat As F
+      JOIN
+      Listing AS L
+      ON L.flat_id = F.flat_id
+      JOIN
+      Account AS A
+      ON L.account_id = A.account_id
+      JOIN
+      ListingType AS LT
+      ON L.listing_type_id = LT.listing_type_id
+      WHERE area = '${area}'AND num_of_rooms = '${num_of_rooms}'AND 
+      price >= ${price} AND storey_range = '${storey_range}'AND 
+      floor_area_sqm >= ${floor_area_sqm};
+      `
+    );
 
-//     console.log(typeof accountID_int); // for debugging
-
-//     const deleteQuery = await pool.query(
-//       `DELETE FROM Account WHERE account_id = ${accountID_int}`
-//     );
-
-//     res.sendStatus(200);
-//     return;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+    res.sendStatus(200);
+    return;
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = router;
