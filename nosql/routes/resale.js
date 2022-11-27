@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../database");
+const database = require("../database");
 const router = express.Router();
 
 // const convertFormatToDB_Price = (selectedPrice) => {
@@ -56,10 +56,11 @@ const router = express.Router();
 //   }
 // };
 
+/* Endpoint to get all resale flat listings */
 router.get("/allResale", async (req, res) => {
     try {
+        let listings = [];
         const db = database.connect();
-        const listings = [];
         const query = db.collection("listing").find({ listing_type: "resale" });
         query.forEach((listing, err) => {
             assert.equal(err, null);
@@ -68,11 +69,13 @@ router.get("/allResale", async (req, res) => {
             database.close();
             res.json(listings);
         });
+        return;
     } catch (err) {
         console.log(err);
     }
 });
 
+/* Endpoint for resale filter */
 // router.post("/filterResale", async (req, res) => {
 //   try {
 //     const { accountID } = req.body; // setting objects for easy reference
