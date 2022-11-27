@@ -23,8 +23,15 @@ app.use('/login', loginRouter);
 
 // Profile
 const profileRouter = require('./routes/profile');
-const assert = require("assert");
 app.use('/profile', profileRouter);
+
+// Resale
+const resaleRouter = require('./routes/resale')
+app.use('/resale', resaleRouter);
+
+// Rental
+const rentalRouter = require('./routes/rental')
+app.use('/rental', rentalRouter);
 
 /* Start server */
 const port = process.env.PORT || 5000;
