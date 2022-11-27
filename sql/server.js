@@ -33,6 +33,10 @@ app.use('/resale', resaleRouter);
 const rentalRouter = require('./routes/rental')
 app.use('/rental', rentalRouter);
 
+// Interest
+const interestRouter = require('./routes/interest')
+app.use('/interest', interestRouter);
+
 // Start server
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
