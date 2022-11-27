@@ -1,11 +1,12 @@
 import {
-    Typography, Autocomplete,
+    Typography, Autocomplete, 
     Button, Slide, Grid, 
     Card, CardMedia, CardContent, 
     FormLabel, FormControl, FormControlLabel,
     RadioGroup, Radio, TextField
   } from "@mui/material";
   import React from "react";
+  import {useState} from 'react';
   // pictures
   import hdb2 from "../../assets/hdb2.jpg";
   // icons
@@ -53,69 +54,99 @@ const testAreaData = [ // copy of the filter options
 { label: "140 sq m & Above" },
 ];
 
-/* submit handler */
-const handleSubmit = () => {
-  fetch(handleSubmitAPI, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({
-      // //insert fields here
-      // area: ,
-      // num_of_rooms: ,
-      // price: ,
-      // storey_range: ,
-      // floor_area_sqm: ,
-    }),
-  }).then((result) => {
-    /*
-    This is what comes back, it will return a status code 200 if account successfully created
-    If validation error, status code 400 will be returned
-    If email already registered, status code 409 will be returned 
-    */
-    console.log("In result");
-    console.log(result.status); // this is how u access the status code
-  });
-};
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
   
   export default function CreateListing() {
   
-    const [area, setArea] = React.useState("");
-    const [data, setData] = React.useState({
-      area: {},
-      street: {},
-      block: {},
-      postal_code: {},
-      num_of_rooms: {},
-      storey_range: {},
-      floor_area_sqm: {},
-      price: {},
-      listing_type: {},
-    });
+    const [area, setArea] = useState("");
+    const [Postal, setPostal] = useState("");
+    const [Street, setStreet] = useState("");
+    const [Block, setBlock] = useState("");
+    const [FlatType, setFlatType] = useState("");//<string | null>(null);
+    const [StoreyRange, setStoreyRange] = useState("");
+    const [FloorSize, setFloorSize] = useState("");
+    const [ListingType, setListingType] = useState("");
+    const [Price, setPrice] = useState("");
 
-
+    // this whole chunk of codes to handle change in values on the forms 
+    const [accountID, setAccountID] = React.useState(
+      window.localStorage.getItem("accountID")
+    );
+    
     const handleAreaChange = (event) => {
-      setArea(event.target.event);
+      setArea(event.target.value);
     }
 
-  
-    function handle(submitForm){
-      const newdata={...data}
-      newdata[submitForm.target.id] = submitForm.target.value
-      setData(newdata)
-      console.log(newdata)
-    } 
+    const handlePostalChange = (event) => {
+      setPostal(event.target.value);
+    }
 
-    
+    const handleStreetChange = (event) => {
+      setStreet(event.target.value);
+    }
+
+    const handleBlockChange = (event) => {
+      setBlock(event.target.value);
+    }
+
+    const handleFlatTypeChange = (event) => {
+      setFlatType(event.target.value);
+    }
+
+    const handleStoreyRangeChange = (event) => {
+      setStoreyRange(event.target.value);
+    }
+
+    const handleFloorSizeChange = (event) => {
+      setFloorSize(event.target.value);
+    }
+
+    const handleListingTypeChange = (event) => {
+      setListingType(event.target.value);
+    }
+
+    const handlePriceChange = (event) => {
+      setPrice(event.target.value);
+    }
+  // end form handling
+
+  /* submit handler */
+  const handleSubmit = () => {
+    fetch(handleSubmitAPI, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        accountID: accountID,
+        area: area,
+        Postal: Postal,
+        Street: Street,
+        Block: Block,
+        FlatType: FlatType,
+        StoreyRange: StoreyRange,
+        FloorSize: FloorSize,
+        ListingType: ListingType,
+        Price: Price,
+      }),
+    }).then((result) => {
+      /*
+      This is what comes back, it will return a status code 200 if account successfully created
+      If validation error, status code 400 will be returned
+      If email already registered, status code 409 will be returned 
+      */
+      console.log("In result");
+      console.log(result.status); // this is how u access the status code
+    });
+  };
+  // end submit handler
+
     return (
       <div className="App"> 
         
-        <Typography gutterBottom variant="h3" align="center" style={{padding: "25px", margin: "auto" }}>
+        <Typography gutterBottom variant="h3" align="center" style={{padding: "45px", margin: "auto" }}>
           Create a New Listing
         </Typography>
 
@@ -128,60 +159,74 @@ const Transition = React.forwardRef(function Transition(props, ref) {
               component="img"
               height="300"
               src={hdb2}
-              alt="green iguana"
             />
-            <Typography gutterBottom variant="h5" style={{padding: "15px"}}>
+            <Typography gutterBottom variant="h5" style={{padding: "35px"}}>
               <LooksOneIcon color="primary" fontSize="large"></LooksOneIcon> Where is your house located?
             </Typography>
 
             <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
               Fill up the form and your house will be listed!
             </Typography> 
-
+            
+            {/* first section of options */}
             <form>
               <Grid container spacing={1}>
+              {/* area  */}
                 <Grid item xs={12}>
                   <TextField 
                       placeholder="Enter Area" 
                       label="Area" 
                       variant="outlined" 
                       fullWidth required 
-                      value={area}
+                      defaultValue={area}
                       onChange={handleAreaChange}
                   />
                 </Grid>
+              {/* postal code */}
                 <Grid item xs={12}>
                   <TextField 
                       type="number" 
                       placeholder="Enter Postal Code" 
                       label="Postal Code" 
                       variant="outlined" 
+                      onChange={handlePostalChange} 
+                      defaultValue={Postal}
                       fullWidth required />
                 </Grid>
+              {/* street name */}
                 <Grid item xs={12}>
                   <TextField 
                       placeholder="Enter Street" 
                       label="Street" 
                       variant="outlined" 
+                      onChange={handleStreetChange} 
+                      defaultValue={Street}
                       fullWidth required />
                 </Grid>
-                <Grid item xs={12}>
+              {/* block number */}
+              <Grid item xs={12}>
                   <TextField 
                       placeholder="Enter Block Number" 
                       label="Block Number" 
-                      variant="outlined" 
+                      variant="outlined"
+                      onChange={handleBlockChange} 
+                      defaultValue={Block}
                       fullWidth required />
                 </Grid>
               </Grid>
 
-              <Typography gutterBottom variant="h5" style={{padding: "15px", margin: "25px"}}>
+              {/* second section of options */}
+              <Typography gutterBottom variant="h5" style={{padding: "35px", margin: "25px"}}>
                 <LooksTwoIcon color="primary" fontSize="large"></LooksTwoIcon> Tell us more about your house
               </Typography> 
 
               <Grid container spacing={3} sx={{marginLeft: "24px"}}>
+              {/* flat type/number of rooms */}
                 <Grid item xs={4}>
                     <Autocomplete
                         disablePortal
+                        onSelect={handleFlatTypeChange}
+                        defaultValue={FlatType || null}
                         options={testFlatTypeData}
                         sx={{ width: "16vw", ml: 1 }}
                         renderInput={(params) => (
@@ -189,9 +234,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                         )}
                     />
                 </Grid>
-                <Grid item xs={4}>
+              {/* storey range */}
+              <Grid item xs={4}>
                     <Autocomplete
                         disablePortal
+                        onSelect={handleStoreyRangeChange}
+                        defaultValue={StoreyRange || null}
                         options={testStoreyData}
                         sx={{ width: "16vw", ml: 1 }}
                         renderInput={(params) => (
@@ -199,11 +247,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                         )}
                     />
                   </Grid>
-                <Grid item xs={4}>
+              {/* flat size/area sq */}
+              <Grid item xs={4}>
                     <Autocomplete
                         disablePortal
-                        onChange={(submitForm) => handle(submitForm)} id="floor_area_sqm" value={data.floor_area_sqm}
-                        isOptionEqualToValue={(option, value) => option.id === value.id}
+                        onSelect={handleFloorSizeChange}
+                        defaultValue={FloorSize || null}
+                        id="floor_area_sqm" 
                         options={testAreaData}
                         sx={{ width: "16vw", ml: 1 }}
                         renderInput={(params) => (
@@ -212,11 +262,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                     />
                   </Grid>
               </Grid>
-
-              <Typography gutterBottom variant="h5" style={{padding: "15px", margin: "25px"}}>
+              
+              {/* third section of options */}
+              <Typography gutterBottom variant="h5" style={{padding: "35px", margin: "25px"}}>
                 <Looks3Icon color="primary" fontSize="large"></Looks3Icon> Some final details.. 
               </Typography>
-
+              {/* listing type selection */}
               <Grid container spacing={3} columns={6} sx={{marginLeft: "24px"}}>
                 <Grid item xs={3}>
                   <FormControl>
@@ -227,20 +278,26 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                     </FormLabel>
                     <RadioGroup row
                       aria-labelledby="radio-buttons-group-label"
-                      name="row-radio-buttons-group" >
+                      name="row-radio-buttons-group" 
+                      onChange={handleListingTypeChange}
+                      defaultValue={ListingType || null}
+                    >
                         <FormControlLabel value="resale" control={<Radio required={true}/>} label="Resale" required/>
                         <FormControlLabel value="rental" control={<Radio required={true}/>} label="Rental" required/>
                     </RadioGroup>
                     <br></br><br></br>
                   </FormControl>
                 </Grid>
-                <Grid item xs={2}>
+              {/* price */}
+              <Grid item xs={2}>
                     <br></br>
                     <TextField 
                         type="number" 
                         placeholder="Enter Price" 
                         label="Price" 
                         variant="outlined" 
+                        onChange={handlePriceChange}
+                        defaultValue={Price}
                         required />
                 </Grid>
               </Grid>

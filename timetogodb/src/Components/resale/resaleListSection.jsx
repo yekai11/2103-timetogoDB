@@ -1,15 +1,13 @@
 import {
   Typography,
   Box,
-  //Link,
   Button,
-  Slide,
+  Slide, Grid
 } from "@mui/material";
 import React, { useEffect } from "react";
 // pictures
-import a_hdb from "../../assets/aesthetic_hdb.jpg";
-//import hdb_homepage from "../../assets/hdb_homepage.jpg";
-import building from "../../assets/building.jpg";
+import hdb1 from "../../assets/hdb1.jpg";
+import resaleListIcon from "../../assets/resaleListIcon.jpg";
 // various icons
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -18,11 +16,11 @@ import LayersIcon from '@mui/icons-material/Layers';
 // these are bootstrap card configurations
 import {Card} from "react-bootstrap";
 import {ListGroup} from "react-bootstrap";
-import {Grid} from '@mui/material';
 
 
 const allResaleAPI = "http://localhost:5000/resale/allResale"; //const url for easy changing of api links
 
+// button leads you back to the top after scrolling a certain amount
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -60,55 +58,11 @@ export default function ListingSection() {
     });
   }, []);
 
-  // const cardInfo = [
-  //   {
-  //     area: "Ang Mo Kio",
-  //     street: "Ang Mo Kio Street 62",
-  //     room: "2-Room",
-  //     areaSize: "300 sq ft",
-  //     price: "300k",
-  //   },
-  //   {
-  //     area: "Bedok",
-  //     street: "Bedok North Street 3",
-  //     room: "3-Room",
-  //     areaSize: "400 sq ft",
-  //     price: "400k",
-  //   },
-  //   {
-  //     area: "Bishan",
-  //     street: "Bishan Street 11",
-  //     room: "4-Room",
-  //     areaSize: "700 sq ft",
-  //     price: "450k",
-  //   },
-  //   {
-  //     area: "Bukit Batok",
-  //     street: "Bukit Batok Rd",
-  //     room: "4-Room",
-  //     areaSize: "600 sq ft",
-  //     price: "500k",
-  //   },
-  //   {
-  //     area: "Bukit Merah",
-  //     street: "Jalan Bukit Merah",
-  //     room: "5-Room",
-  //     areaSize: "900 sq ft",
-  //     price: "600k",
-  //   },
-  //   {
-  //     area: "Bukit Panjang",
-  //     street: "Pending Rd",
-  //     room: "5-Room",
-  //     areaSize: "900 sq ft",
-  //     price: "800k",
-  //   }
-  // ];
 
   const renderCard = (card, index) => {
     return (
       <Card style={{ width: "18rem" }} key={index} className="ListCard">
-      <Card.Img variant="top" src={a_hdb} />
+      <Card.Img variant="top" src={resaleListIcon} />
         <Card.Body>
           <Card.Title className="align-self-left">
               <Box
@@ -185,13 +139,13 @@ export default function ListingSection() {
           alt="banner"
           style={{
             zIndex: -1,
-            height: "55%",
+            height: "500",
             width: "100%",
             position: "absolute",
             opacity: 0.4,
             objectFit: "cover",
           }}
-          src={building}
+          src={hdb1}
         ></img>
         <Typography variant="h3" sx={{ fontWeight: 400, paddingLeft: 5 }}>
           View Resale Homes
