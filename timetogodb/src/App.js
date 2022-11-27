@@ -46,7 +46,8 @@ function App() {
             <Route path="register" element={<RegisterPage />}></Route> 
             <Route path="profile" element={<ProfilePage />}></Route> 
             <Route path="sell" element={<SellerPage/>}></Route>
-            <Route path="newlist" element={<NewListingPage/>}></Route>            <Route path="interest" element={<ViewInterestPage />}></Route> 
+            <Route path="newlist" element={<NewListingPage/>}></Route>            
+            <Route path="interest" element={<ViewInterestPage />}></Route> 
             <Route path="manageListing" element={<ManageListingPage />}></Route> 
           </Routes>
         </Router>

@@ -297,7 +297,7 @@ export default function SearchSection() {
             </Box>
           </Box>
 
-      {/* 5th filter option */}
+{/* 5th filter option */}
           <Box
             sx={{
               display: "flex", flexDirection: "row",
@@ -323,13 +323,15 @@ export default function SearchSection() {
             </Box>
           </Box>
 
-          <Button variant="contained" sx={{ width: "50%", mt: 1, mb: 1 }}>
-            Apply  
+          <Button
+            variant="contained"
+            sx={{ width: "50%", mt: 1, mb: 1 }}
+            onClick={handleResaleFilter}
+          > 
           </Button>
         </Box>
       </Box>
-      <br></br>
-      <br></br>
+      <br></br><br></br>
     </div>
   );
 }
