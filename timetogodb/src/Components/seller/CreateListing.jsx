@@ -1,11 +1,12 @@
 import {
-    Typography, Autocomplete,
+    Typography, Autocomplete, 
     Button, Slide, Grid, 
     Card, CardMedia, CardContent, 
     FormLabel, FormControl, FormControlLabel,
     RadioGroup, Radio, TextField
   } from "@mui/material";
   import React from "react";
+  import {useState} from 'react';
   // pictures
   import hdb2 from "../../assets/hdb2.jpg";
   // icons
@@ -53,65 +54,95 @@ const testAreaData = [ // copy of the filter options
 { label: "140 sq m & Above" },
 ];
 
-/* submit handler */
-const handleSubmit = () => {
-  fetch(handleSubmitAPI, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({
-      // //insert fields here
-      // area: ,
-      // num_of_rooms: ,
-      // price: ,
-      // storey_range: ,
-      // floor_area_sqm: ,
-    }),
-  }).then((result) => {
-    /*
-    This is what comes back, it will return a status code 200 if account successfully created
-    If validation error, status code 400 will be returned
-    If email already registered, status code 409 will be returned 
-    */
-    console.log("In result");
-    console.log(result.status); // this is how u access the status code
-  });
-};
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
   
   export default function CreateListing() {
   
-    const [area, setArea] = React.useState("");
-    const [data, setData] = React.useState({
-      area: {},
-      street: {},
-      block: {},
-      postal_code: {},
-      num_of_rooms: {},
-      storey_range: {},
-      floor_area_sqm: {},
-      price: {},
-      listing_type: {},
-    });
+    const [area, setArea] = useState("");
+    const [Postal, setPostal] = useState("");
+    const [Street, setStreet] = useState("");
+    const [Block, setBlock] = useState("");
+    const [FlatType, setFlatType] = useState("");//<string | null>(null);
+    const [StoreyRange, setStoreyRange] = useState("");
+    const [FloorSize, setFloorSize] = useState("");
+    const [ListingType, setListingType] = useState("");
+    const [Price, setPrice] = useState("");
 
-
+    // this whole chunk of codes to handle change in values on the forms 
+    const [accountID, setAccountID] = React.useState(
+      window.localStorage.getItem("accountID")
+    );
+    
     const handleAreaChange = (event) => {
-      setArea(event.target.event);
+      setArea(event.target.value);
     }
 
-  
-    function handle(submitForm){
-      const newdata={...data}
-      newdata[submitForm.target.id] = submitForm.target.value
-      setData(newdata)
-      console.log(newdata)
-    } 
+    const handlePostalChange = (event) => {
+      setPostal(event.target.value);
+    }
 
-    
+    const handleStreetChange = (event) => {
+      setStreet(event.target.value);
+    }
+
+    const handleBlockChange = (event) => {
+      setBlock(event.target.value);
+    }
+
+    const handleFlatTypeChange = (event) => {
+      setFlatType(event.target.value);
+    }
+
+    const handleStoreyRangeChange = (event) => {
+      setStoreyRange(event.target.value);
+    }
+
+    const handleFloorSizeChange = (event) => {
+      setFloorSize(event.target.value);
+    }
+
+    const handleListingTypeChange = (event) => {
+      setListingType(event.target.value);
+    }
+
+    const handlePriceChange = (event) => {
+      setPrice(event.target.value);
+    }
+  // end form handling
+
+  /* submit handler */
+  const handleSubmit = () => {
+    fetch(handleSubmitAPI, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        accountID: accountID,
+        area: area,
+        Postal: Postal,
+        Street: Street,
+        Block: Block,
+        FlatType: FlatType,
+        StoreyRange: StoreyRange,
+        FloorSize: FloorSize,
+        ListingType: ListingType,
+        Price: Price,
+      }),
+    }).then((result) => {
+      /*
+      This is what comes back, it will return a status code 200 if account successfully created
+      If validation error, status code 400 will be returned
+      If email already registered, status code 409 will be returned 
+      */
+      console.log("In result");
+      console.log(result.status); // this is how u access the status code
+    });
+  };
+  // end submit handler
+
     return (
       <div className="App"> 
         
@@ -146,7 +177,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                       label="Area" 
                       variant="outlined" 
                       fullWidth required 
-                      value={area}
+                      defaultValue={area}
                       onChange={handleAreaChange}
                   />
                 </Grid>
@@ -156,6 +187,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                       placeholder="Enter Postal Code" 
                       label="Postal Code" 
                       variant="outlined" 
+                      onChange={handlePostalChange} 
+                      defaultValue={Postal}
                       fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
@@ -163,13 +196,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                       placeholder="Enter Street" 
                       label="Street" 
                       variant="outlined" 
+                      onChange={handleStreetChange} 
+                      defaultValue={Street}
                       fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField 
                       placeholder="Enter Block Number" 
                       label="Block Number" 
-                      variant="outlined" 
+                      variant="outlined"
+                      onChange={handleBlockChange} 
+                      defaultValue={Block}
                       fullWidth required />
                 </Grid>
               </Grid>
@@ -182,6 +219,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                 <Grid item xs={4}>
                     <Autocomplete
                         disablePortal
+                        onSelect={handleFlatTypeChange}
+                        defaultValue={FlatType || null}
                         options={testFlatTypeData}
                         sx={{ width: "16vw", ml: 1 }}
                         renderInput={(params) => (
@@ -192,6 +231,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                 <Grid item xs={4}>
                     <Autocomplete
                         disablePortal
+                        onSelect={handleStoreyRangeChange}
+                        defaultValue={StoreyRange || null}
                         options={testStoreyData}
                         sx={{ width: "16vw", ml: 1 }}
                         renderInput={(params) => (
@@ -202,8 +243,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                 <Grid item xs={4}>
                     <Autocomplete
                         disablePortal
-                        onChange={(submitForm) => handle(submitForm)} id="floor_area_sqm" value={data.floor_area_sqm}
-                        isOptionEqualToValue={(option, value) => option.id === value.id}
+                        onSelect={handleFloorSizeChange}
+                        defaultValue={FloorSize || null}
+                        id="floor_area_sqm" 
                         options={testAreaData}
                         sx={{ width: "16vw", ml: 1 }}
                         renderInput={(params) => (
@@ -227,7 +269,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                     </FormLabel>
                     <RadioGroup row
                       aria-labelledby="radio-buttons-group-label"
-                      name="row-radio-buttons-group" >
+                      name="row-radio-buttons-group" 
+                      onChange={handleListingTypeChange}
+                      defaultValue={ListingType || null}
+                    >
                         <FormControlLabel value="resale" control={<Radio required={true}/>} label="Resale" required/>
                         <FormControlLabel value="rental" control={<Radio required={true}/>} label="Rental" required/>
                     </RadioGroup>
@@ -241,6 +286,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                         placeholder="Enter Price" 
                         label="Price" 
                         variant="outlined" 
+                        onChange={handlePriceChange}
+                        defaultValue={Price}
                         required />
                 </Grid>
               </Grid>
