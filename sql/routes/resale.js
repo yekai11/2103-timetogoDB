@@ -56,6 +56,7 @@ const convertFormatToDB_Price = (selectedPrice) => {
 //   }
 // };
 
+/* Endpoint to get all resale flat listings */
 router.get("/allResale", async (req, res) => {
   try {
     /* Query which returns all resale flats */
@@ -105,6 +106,7 @@ router.get("/allResale", async (req, res) => {
   }
 });
 
+/* Endpoint for resale filter */
 router.post("/filterResale", async (req, res) => {
   try {
     const { area, num_of_rooms, price, storey_range, floor_area_sqm } =

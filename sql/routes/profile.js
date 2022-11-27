@@ -2,6 +2,7 @@ const express = require("express");
 const pool = require("../database");
 const router = express.Router();
 
+/* Endpoint to delete entire user account */
 router.post("/delete", async (req, res) => {
   try {
     const { accountID } = req.body; // setting objects for easy reference
@@ -22,6 +23,7 @@ router.post("/delete", async (req, res) => {
   }
 });
 
+/* Endpoint to update user account */
 router.post("/update", async (req, res) => {
   try {
     const { accountID, name, username, email, phoneNumber } = req.body; // setting objects for easy reference

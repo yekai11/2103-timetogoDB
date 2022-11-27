@@ -2,6 +2,7 @@ const express = require("express");
 const pool = require("../database");
 const router = express.Router();
 
+/* Endpoint to get all rental flat listings */
 router.get("/allRental", async (req, res) => {
   try {
     /* Query which returns all rental flats */
@@ -53,6 +54,7 @@ router.get("/allRental", async (req, res) => {
   }
 });
 
+/* Endpoint for resale filter */
 // router.post("/filterRental", async (req, res) => {
 //   try {
 //     const { accountID } = req.body; // setting objects for easy reference

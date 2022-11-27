@@ -40,6 +40,7 @@ function convertRoleToInt(role) {
   }
 }
 
+/* Endpoint for registration creation */
 router.post("/", async (req, res) => {
   try {
     const { name, username, email, password, phoneNumber, role } = req.body; // setting objects for easy reference

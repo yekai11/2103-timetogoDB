@@ -19,6 +19,7 @@ function roleIDConvertToString(role) {
   }
 }
 
+/* Endpoint for login */
 router.post("/", async (req, res) => {
   try {
     const { email, password } = req.body;
