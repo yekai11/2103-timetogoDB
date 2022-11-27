@@ -1,9 +1,4 @@
-import {
-  Typography,
-  Box,
-  Button,
-  Slide, Grid
-} from "@mui/material";
+import { Typography, Box, Button, Slide, Grid } from "@mui/material";
 import React, { useEffect } from "react";
 // pictures
 import hdb1 from "../../assets/hdb1.jpg";
@@ -12,11 +7,10 @@ import resaleListIcon from "../../assets/resaleListIcon.jpg";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ApartmentIcon from "@mui/icons-material/Apartment";
-import LayersIcon from '@mui/icons-material/Layers';
+import LayersIcon from "@mui/icons-material/Layers";
 // these are bootstrap card configurations
-import {Card} from "react-bootstrap";
-import {ListGroup} from "react-bootstrap";
-
+import { Card } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 
 const allResaleAPI = "http://localhost:5000/resale/allResale"; //const url for easy changing of api links
 
@@ -58,43 +52,51 @@ export default function ListingSection() {
     });
   }, []);
 
-
   const renderCard = (card, index) => {
     return (
       <Card style={{ width: "18rem" }} key={index} className="ListCard">
-      <Card.Img variant="top" src={resaleListIcon} />
+        <Card.Img variant="top" src={resaleListIcon} />
         <Card.Body>
           <Card.Title className="align-self-left">
-              <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
               <LocationOnIcon color="primary" fontSize="large" />
-                  <Typography
-                    variant="h4"
-                    align="left "
-                    sx={{ mt: 1, fontSize: 28, paddingBottom: 1, fontWeight: 500, color: "#242424" }}
-                  > {card.area} {/* assume area from DB here */}
-                  </Typography>
-                </Box>
-          </Card.Title> 
-            <hr></hr>
-            <Card.Text>{card.street}</Card.Text> {/* assume street address from DB */}
-            <hr style={{margin: 0}}></hr>
+              <Typography
+                variant="h4"
+                align="left "
+                sx={{
+                  mt: 1,
+                  fontSize: 28,
+                  paddingBottom: 1,
+                  fontWeight: 500,
+                  color: "#242424",
+                }}
+              >
+                {" "}
+                {card.area} {/* assume area from DB here */}
+              </Typography>
+            </Box>
+          </Card.Title>
+          <hr></hr>
+          <Card.Text>{card.street}</Card.Text>{" "}
+          {/* assume street address from DB */}
+          <hr style={{ margin: 0 }}></hr>
         </Card.Body>
 
         <ListGroup horizontal className="flex-fill border-0">
-            <ListGroup.Item className="flex-fill border-0">
-                <ApartmentIcon color="primary" fontSize="large" />
-              {card.room} {/* assume no of rooms from DB */}
-            </ListGroup.Item>
-            <ListGroup.Item className="flex-fill border-0">
-                <LayersIcon color="primary" fontSize="large" />
-              {card.areaSize} {/* assume area of flat from DB */}
-            </ListGroup.Item>
+          <ListGroup.Item className="flex-fill border-0">
+            <ApartmentIcon color="primary" fontSize="large" />
+            {card.room} {/* assume no of rooms from DB */}
+          </ListGroup.Item>
+          <ListGroup.Item className="flex-fill border-0">
+            <LayersIcon color="primary" fontSize="large" />
+            {card.areaSize} {/* assume area of flat from DB */}
+          </ListGroup.Item>
         </ListGroup>
 
         <Card.Text>
@@ -110,22 +112,23 @@ export default function ListingSection() {
         </Card.Text>
 
         <Card.Body className="ListButton">
-          <Button 
-              onclick={handleClickOpen}
-              startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
-              variant="contained"
-              > Indicate Interest
-          </Button>        
+          <Button
+            onclick={handleClickOpen}
+            startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
+            variant="contained"
+          >
+            {" "}
+            Indicate Interest
+          </Button>
         </Card.Body>
-      
       </Card>
     );
   };
 
   return (
     <div class="ListCardContainer">
-    <br></br>
-      <Box 
+      <br></br>
+      <Box
         sx={{
           display: "flex",
           width: "100%",
@@ -147,16 +150,22 @@ export default function ListingSection() {
           }}
           src={hdb1}
         ></img>
-        <Typography variant="h3" sx={{ fontWeight: 400, paddingLeft: 5 }}>
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: 600,
+            paddingLeft: 5,
+            textShadow: "1px 1px 2px white",
+          }}
+        >
           View Resale Homes
         </Typography>
       </Box>
-      <br></br><br></br>
-      <Grid container>
-          {cardInfo.map(renderCard)}
-      </Grid>
-      <br></br><br></br>
+      <br></br>
+      <br></br>
+      <Grid container>{cardInfo.map(renderCard)}</Grid>
+      <br></br>
+      <br></br>
     </div>
   );
-};
-
+}

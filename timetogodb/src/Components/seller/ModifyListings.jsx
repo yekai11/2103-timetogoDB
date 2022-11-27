@@ -57,15 +57,6 @@ const testStoreyData = [
   { label: "49th Floor - 51st Floor" },
 ];
 
-const testAreaData = [
-  // copy of the filter options
-  { label: "30 to 50 sq m" },
-  { label: "60 to 80 sq m" },
-  { label: "90 to 110 sq m" },
-  { label: "110 to 130 sq m" },
-  { label: "140 sq m & Above" },
-];
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -75,7 +66,7 @@ export default function CreateListing() {
   const [Postal, setPostal] = useState("");
   const [Street, setStreet] = useState("");
   const [Block, setBlock] = useState("");
-  const [FlatType, setFlatType] = useState(""); //<string | null>(null);
+  const [FlatType, setFlatType] = useState("");
   const [StoreyRange, setStoreyRange] = useState("");
   const [FloorSize, setFloorSize] = useState("");
   const [ListingType, setListingType] = useState("");
@@ -172,7 +163,7 @@ export default function CreateListing() {
         gutterBottom
         variant="h3"
         align="center"
-        style={{ padding: "45px", margin: "auto" }}
+        style={{ padding: "45px", margin: "auto", fontWeight: 600 }}
       >
         Modify your Listing
       </Typography>
@@ -302,22 +293,14 @@ export default function CreateListing() {
                 />
               </Grid>
               {/* flat size/area sq */}
-              <Grid item xs={4}>
-                <Autocomplete
-                  disablePortal
-                  onSelect={handleFloorSizeChange}
-                  defaultValue={FloorSize || null}
-                  id="floor_area_sqm"
-                  options={testAreaData}
-                  sx={{ width: "16vw", ml: 1 }}
-                  renderInput={(params) => (
-                    <TextField
-                      variant="filled"
-                      {...params}
-                      label="Size of Flat"
-                      required
-                    />
-                  )}
+              <Grid item xs={3}>
+                <TextField
+                  placeholder="Enter Size of Flat"
+                  label="Enter the area in sqm"
+                  variant="outlined"
+                  required
+                  defaultValue={FloorSize}
+                  onChange={handleFloorSizeChange}
                 />
               </Grid>
             </Grid>
