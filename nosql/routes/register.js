@@ -36,6 +36,7 @@ function validateFields({ name, email, phoneNumber, role }) {
     return true;
 }
 
+/* Endpoint for registration creation */
 router.post("/", async (req, res) => {
     try {
         const db = database.connect();
@@ -77,12 +78,12 @@ router.post("/", async (req, res) => {
         const accounts = db.collection("account").find().sort({ account_id: -1 }).limit(1); // Get highest account_id
         accounts.forEach(account => {
             myObj.account_id = account.account_id + 1 // Simulate auto increment
-        });
-
-        db.collection("account").insertOne(myObj, (err, result) => {
-            assert.equal(null, err);
-            // console.log("Account created");
-            database.close();
+        }, () => {
+            db.collection("account").insertOne(myObj, (err, result) => {
+                assert.equal(null, err);
+                console.log("Account created: " + myObj.account_id);
+                database.close();
+            });
         });
 
         res.sendStatus(201);

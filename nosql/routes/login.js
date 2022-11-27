@@ -9,6 +9,7 @@ function comparePassword({ enteredPassword, hashedPassword }) {
     return compare;
 }
 
+/* Endpoint for login */
 router.post("/", async (req, res) => {
     try {
         const db = database.connect();

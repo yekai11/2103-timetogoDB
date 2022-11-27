@@ -3,6 +3,7 @@ const assert = require("assert");
 const database = require("../database");
 const router = express.Router();
 
+/* Endpoint to delete entire user account */
 router.post("/delete", async (req, res) => {
   try {
     const db = database.connect();
@@ -22,6 +23,7 @@ router.post("/delete", async (req, res) => {
   }
 });
 
+/* Endpoint to update user account */
 router.post("/update", async (req, res) => {
   try {
     const db = database.connect();

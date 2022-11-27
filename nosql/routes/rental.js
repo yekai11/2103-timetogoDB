@@ -2,10 +2,11 @@ const express = require("express");
 const database = require("../database");
 const router = express.Router();
 
+/* Endpoint to get all rental flat listings */
 router.get("/allRental", async (req, res) => {
     try {
+        let listings = [];
         const db = database.connect();
-        const listings = [];
         const query = db.collection("listing").find({ listing_type: "rental" });
         query.forEach((listing, err) => {
             assert.equal(err, null);
@@ -14,11 +15,13 @@ router.get("/allRental", async (req, res) => {
             database.close();
             res.json(listings);
         });
+        return;
     } catch (err) {
         console.log(err);
     }
 });
 
+/* Endpoint for resale filter */
 // router.post("/filterRental", async (req, res) => {
 //   try {
 //     const { accountID } = req.body; // setting objects for easy reference

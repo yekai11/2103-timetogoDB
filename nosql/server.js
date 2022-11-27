@@ -26,12 +26,20 @@ const profileRouter = require('./routes/profile');
 app.use('/profile', profileRouter);
 
 // Resale
-const resaleRouter = require('./routes/resale')
+const resaleRouter = require('./routes/resale');
 app.use('/resale', resaleRouter);
 
 // Rental
-const rentalRouter = require('./routes/rental')
+const rentalRouter = require('./routes/rental');
 app.use('/rental', rentalRouter);
+
+// Interest
+const interestRouter = require('./routes/interest');
+app.use('/interest', interestRouter);
+
+// Seller
+const sellerRouter = require('./routes/seller');
+app.use('/seller', sellerRouter);
 
 /* Start server */
 const port = process.env.PORT || 5000;
