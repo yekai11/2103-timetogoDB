@@ -82,7 +82,7 @@ router.post("/", async (req, res) => {
     // ); // for debugging
 
     const registerQuery = await pool.query(`INSERT INTO Account
-        VALUES ((SELECT MAX(account_id)+1 FROM Account), ${roleToInteger}, '${name}', '${username}', '${hashedPassword}', '${email}', '${phoneNumber}');
+        VALUES (DEFAULT, ${roleToInteger}, '${name}', '${username}', '${hashedPassword}', '${email}', '${phoneNumber}');
         `);
 
     //   console.log("submittedSQL");
