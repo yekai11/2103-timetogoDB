@@ -67,8 +67,8 @@ router.get("/allResale", async (req, res) => {
             assert.equal(err, null);
             listings.push(listing);
         }, () => {
-            database.close();
             res.json(listings);
+            database.close();
         });
         return;
     } catch (err) {
