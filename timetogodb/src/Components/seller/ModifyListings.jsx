@@ -428,10 +428,10 @@ export default function ModifyListing() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Listing created!
+            Listing modified!
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2, paddingBottom: "10px" }}>
-            Your listing has been successfully created. Click the button below to view it!
+            Your listing has been successfully updated. Click the button below to view it!
           </Typography>
           <Button variant="contained" 
             href="/manageListing"
