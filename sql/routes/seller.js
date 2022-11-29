@@ -50,6 +50,8 @@ const convertFormatToDB_FloorRange = (selectedFloor) => {
   }
 };
 
+
+
 /* Endpoint to create new flat listing */
 router.post("/addListing", async (req, res) => {
   try {

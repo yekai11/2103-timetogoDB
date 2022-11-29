@@ -75,6 +75,45 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+/* Converting Floor range strings to front-end format */
+const convertFormatToFrontEnd_FloorRange = (selectedFloor) => {
+  if (selectedFloor === "01 TO 03") {
+    return "1st Floor - 3rd Floor";
+  } else if (selectedFloor === "04 TO 06") {
+    return "4th Floor - 6th Floor";
+  } else if (selectedFloor === "07 TO 09") {
+    return "7th Floor - 9th Floor";
+  } else if (selectedFloor === "10 TO 12") {
+    return "10th Floor - 12th Floor";
+  } else if (selectedFloor === "13 TO 15") {
+    return "13th Floor - 15th Floor";
+  } else if (selectedFloor === "16 TO 18") {
+    return "16th Floor - 18th Floor";
+  } else if (selectedFloor === "19 TO 21") {
+    return "19th Floor - 21st Floor";
+  } else if (selectedFloor === "22 TO 24") {
+    return "22nd Floor - 24th Floor";
+  } else if (selectedFloor === "25 TO 27") {
+    return "25th Floor - 27th Floor";
+  } else if (selectedFloor === "28 TO 30") {
+    return "28th Floor - 30th Floor";
+  } else if (selectedFloor === "31 TO 33") {
+    return "31st Floor - 33rd Floor";
+  } else if (selectedFloor === "34 TO 36") {
+    return "34th Floor - 36th Floor";
+  } else if (selectedFloor === "37 TO 39") {
+    return "37th Floor - 39th Floor";
+  } else if (selectedFloor === "40 TO 42") {
+    return "40th Floor - 42nd Floor";
+  } else if (selectedFloor === "43 TO 45") {
+    return "43rd Floor - 45th Floor";
+  } else if (selectedFloor === "46 TO 48") {
+    return "46th Floor - 48th Floor";
+  } else if (selectedFloor === "49 TO 51") {
+    return "49th Floor - 51st Floor";
+  }
+};
+
 export default function ModifyListing() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -105,7 +144,7 @@ export default function ModifyListing() {
         setStreet(json_result[0].street);
         setBlock(json_result[0].block)
         setNumOfRooms(json_result[0].num_of_rooms);
-        setStoreyRange(json_result[0].storey_range);
+        setStoreyRange(convertFormatToFrontEnd_FloorRange(json_result[0].storey_range)); // converts storeyRange to front end style
         setFloorSize(json_result[0].floor_area_sqm);
         setListingType(json_result[0].listing_type);
         setPrice(json_result[0].price);
