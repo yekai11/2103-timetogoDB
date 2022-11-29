@@ -9,6 +9,7 @@ import {
   Button,
   MenuItem,
   Menu,
+  MenuList,
   Tooltip,
   Avatar,
   Link,
@@ -145,11 +146,18 @@ export default function Header() {
               </MenuItem>
 
               {role === "Seller" && (
-                <MenuItem>
-                  <Link color="black" underline="none" href="/manageListing">
-                    <Typography textAlign="center">Manage Listing</Typography>
-                  </Link>
-                </MenuItem>
+                <MenuList>
+                  <MenuItem>
+                    <Link color="black" underline="none" href="/manageListing">
+                      <Typography textAlign="center">Manage Listing</Typography>
+                    </Link>
+                    </MenuItem>
+                    <MenuItem>
+                    <Link color="black" underline="none" href="/newList">
+                      <Typography textAlign="center">Create a New Listing</Typography>
+                    </Link>
+                  </MenuItem>
+                </MenuList>
               )}
 
               {role === "Buyer" && (
