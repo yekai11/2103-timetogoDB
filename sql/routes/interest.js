@@ -44,7 +44,16 @@ router.get("/accountInterest/:account_id", async (req, res) => {
     console.log(account_id); // for debugging
 
     const accountInterestQuery = await pool.query(
-      `SELECT listing_id FROM Interest WHERE account_id = ${account_id};`
+      `SELECT L.listing_id, L.price, L.date_of_listing, F.postal_code, F.block, F.area, F.street, F.storey_range, F.num_of_rooms, F.floor_area_sqm,
+      LT.listing_type
+      FROM Flat As F
+      JOIN
+      Listing AS L
+      ON L.flat_id = F.flat_id
+      JOIN
+      ListingType AS LT
+      ON L.listing_type_id = LT.listing_type_id
+      WHERE L.account_id = ${account_id};`
     );
 
     res.json(accountInterestQuery.rows);

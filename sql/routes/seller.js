@@ -199,7 +199,7 @@ router.post("/deleteListing", async (req, res) => {
 
     const listing_id_int = parseInt(listing_id); // converts string to int
 
-    console.log(typeof listing_id_int); // for debugging
+    console.log(listing_id_int); // for debugging
 
     const deleteListingQuery = await pool.query(
       `DELETE FROM Listing WHERE listing_id = ${listing_id_int};`
@@ -213,10 +213,10 @@ router.post("/deleteListing", async (req, res) => {
 });
 
 /* Endpoint to get one seller listing to populate update form values */
-router.get("/oneListing/:listing_id", async (req, res) => {
+router.get("/oneListing/:account_id", async (req, res) => {
   try {
-    const { listing_id } = req.params; // setting objects for easy reference
-    console.log(listing_id); // for debugging
+    const { account_id } = req.params; // setting objects for easy reference
+    console.log(account_id); // for debugging
 
     /* Query which returns a specific listing by id */
     const getListingQuery = await pool.query(
