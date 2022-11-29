@@ -108,7 +108,7 @@ export default function ListingSection() {
           </ListGroup.Item>
           <ListGroup.Item className="flex-fill border-0">
             <LayersIcon color="primary" fontSize="large" />
-            {card.floor_area_sqm} {/* assume area of flat from DB */}
+            {card.floor_area_sqm} sqm {/* assume area of flat from DB */}
           </ListGroup.Item>
         </ListGroup>
 
