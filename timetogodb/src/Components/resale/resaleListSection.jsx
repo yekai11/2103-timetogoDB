@@ -84,7 +84,7 @@ export default function ListingSection() {
                 align="left "
                 sx={{
                   mt: 1,
-                  fontSize: 28,
+                  fontSize: 25,
                   paddingBottom: 1,
                   fontWeight: 500,
                   color: "#242424",

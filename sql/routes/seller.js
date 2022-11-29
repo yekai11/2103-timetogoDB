@@ -199,7 +199,7 @@ router.post("/deleteListing", async (req, res) => {
 
     const listing_id_int = parseInt(listing_id); // converts string to int
 
-    console.log(typeof listing_id_int); // for debugging
+    console.log(listing_id_int); // for debugging
 
     const deleteListingQuery = await pool.query(
       `DELETE FROM Listing WHERE listing_id = ${listing_id_int};`

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   Box,
@@ -9,7 +9,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography
+  Typography,
 } from "@mui/material";
 import Header from "../Components/Header/HeaderComponent";
 import FooterSection from "../Components/Homepage/FooterSection";
@@ -19,7 +19,7 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+  createData("Frozen", 159, 6.0, 24, 4.0),
   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
   createData("Eclair", 262, 16.0, 24, 6.0),
   createData("Cupcake", 305, 3.7, 67, 4.3),
@@ -36,22 +36,22 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, 3.9),
 ];
 
-
 export function ViewInterestPage() {
-  useEffect(()=>{
+  useEffect(() => {
     const account_id = window.localStorage.getItem("accountID");
-    fetch(`http://localhost:5000/interest/accountInterest/${account_id}`, {
+    console.log(account_id);
+    fetch(`http://localhost:5000/interest/accountInterest/13`, {
       method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
     }).then((result) => {
-      result.json().then((json_result) =>{
-        console.log(json_result.area);// does this not work ?
-      })
-    })
-  },[]);
+      result.json().then((json_result) => {
+        console.log(json_result); // does this not work ?
+      });
+    });
+  }, []);
 
   return (
     <div style={{ height: "100vh", width: "auto" }}>
@@ -63,11 +63,13 @@ export function ViewInterestPage() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          flexDirection:'column',
-          my:2
+          flexDirection: "column",
+          my: 2,
         }}
       >
-        <Typography variant="h3" align='center'>My Favourites</Typography>
+        <Typography variant="h3" align="center">
+          My Favourites
+        </Typography>
         <TableContainer
           component={Paper}
           elevation={2}

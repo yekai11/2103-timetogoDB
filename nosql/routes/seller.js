@@ -25,7 +25,7 @@ router.post("/addListing", async (req, res) => {
             listing_id: '',
             listing_type: listing_type.toLowerCase(),
             price: price,
-            datetime_of_listing: new Date().toLocaleString(),
+            datetime_of_listing: new Date(),
             postal_code: postal_code,
             block: block,
             area: area,
@@ -79,7 +79,7 @@ router.post("/updateListing", async (req, res) => {
             listing_id: listing_id,
             listing_type: listing_type.toLowerCase(),
             price: price,
-            datetime_of_listing: new Date().toLocaleString(),
+            datetime_of_listing: new Date(),
             postal_code: postal_code,
             block: block,
             area: area,
@@ -141,14 +141,15 @@ router.post("/deleteListing", async (req, res) => {
 });
 
 /* Endpoint to get one seller listing to populate update form values */
-router.get("/oneListing/:listing_id", async (req, res) => {
+router.get("/oneListing/:account_id", async (req, res) => {
     try {
         const db = database.connect();
-        const { listing_id } = req.params; // setting objects for easy reference
-        console.log(listing_id); // for debugging
+        const { account_id } = req.params; // setting objects for easy reference
+        console.log(account_id); // for debugging
 
         /* Query which returns a specific listing by id */
-        const listing = db.collection("listing").findOne({ listing_id: listing_id });
+        const account = db.collection("account").findOne({ account_id: parseInt(account_id) });
+        const listing = db.collection("listing").findOne({ listing_id: account.listing_id });
         database.close();
         res.json(listing);
         return;
