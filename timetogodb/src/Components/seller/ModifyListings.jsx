@@ -71,10 +71,10 @@ export default function ModifyListing() {
   const [FloorSize, setFloorSize] = useState("");
   const [ListingType, setListingType] = useState("");
   const [Price, setPrice] = useState("");
-  const { listing_id } = useParams();
+  const { account_id } = useParams();
 
   useEffect(()=>{
-    fetch(`http://localhost:5000/seller/oneListing/${listing_id}`, {
+    fetch(`http://localhost:5000/seller/oneListing/${account_id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",

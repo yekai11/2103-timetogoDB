@@ -24,7 +24,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function ListingSection() {
-  const [currentPage, setCurrentPage] = React.useState(1);
+  const [currentPage, setCurrentPage] = React.useState(0);
 
   const [cardInfo, setCardInfo] = React.useState([]);
 
@@ -50,6 +50,7 @@ export default function ListingSection() {
             */
           console.log(response);
           setCardInfo(response);
+          setCurrentPage(1);
         });
       }
       if (result.status === 400) {

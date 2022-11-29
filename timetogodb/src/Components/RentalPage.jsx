@@ -9,14 +9,7 @@ export default function RentalPage(){
     return <div className="content-container">
         <Header />
         <ScrollComponent showBelow={250} />
-        <div className="row">
-            <div className="left-panel box">
-                <ListingSection />
-            </div>
-            <div className="right-panel box">
-                <PostFilterSidebar />
-            </div>      
-        </div>
+        <ListingSection />
         <FooterSection />
     </div>
 }

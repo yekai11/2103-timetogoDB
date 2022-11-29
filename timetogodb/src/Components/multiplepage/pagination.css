@@ -2,7 +2,6 @@
   display: flex;
   list-style-type: none;
   justify-content: center;
-  padding-left: 400px;
   padding-bottom: 50px;
 }
 .pagination-container .pagination-item {

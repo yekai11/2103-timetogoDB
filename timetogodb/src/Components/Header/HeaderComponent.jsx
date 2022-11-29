@@ -149,12 +149,12 @@ export default function Header() {
                 <MenuList>
                   <MenuItem>
                     <Link color="black" underline="none" href="/manageListing">
-                      <Typography textAlign="center">Manage Listing</Typography>
+                      <Typography textAlign="center" sx={{paddingBottom: 1}}>Manage Listing</Typography>
                     </Link>
                     </MenuItem>
                     <MenuItem>
                     <Link color="black" underline="none" href="/newList">
-                      <Typography textAlign="center">Create a New Listing</Typography>
+                      <Typography textAlign="center" sx={{paddingBottom: "1px"}}>Create a New Listing</Typography>
                     </Link>
                   </MenuItem>
                 </MenuList>
