@@ -45,7 +45,7 @@ function App() {
             <Route path="resale" element={<ResalePage />}></Route>
             <Route path="register" element={<RegisterPage />}></Route> 
             <Route path="profile" element={<ProfilePage />}></Route> 
-            <Route path="modifyListing/:listing_id" element={<ModifyPage/>}></Route>
+            <Route path="modifyListing/:account_id" element={<ModifyPage/>}></Route>
             <Route path="newlist" element={<NewListingPage/>}></Route>            
             <Route path="manageInterest" element={<ViewInterestPage />}></Route> 
             <Route path="manageListing" element={<ManageListingPage />}></Route> 

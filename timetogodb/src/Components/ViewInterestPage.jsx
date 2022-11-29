@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Box,
@@ -37,6 +37,8 @@ const rows = [
 ];
 
 export function ViewInterestPage() {
+
+  const [listingInfo, setListingInfo] = useState([]);
   useEffect(() => {
     const account_id = window.localStorage.getItem("accountID");
     console.log(account_id);
@@ -48,7 +50,7 @@ export function ViewInterestPage() {
       },
     }).then((result) => {
       result.json().then((json_result) => {
-        console.log(json_result); // does this not work ?
+        // setListInfo(json_result);
       });
     });
   }, []);

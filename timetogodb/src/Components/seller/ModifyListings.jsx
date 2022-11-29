@@ -66,7 +66,7 @@ export default function ModifyListing() {
   const [Postal, setPostal] = useState("");
   const [Street, setStreet] = useState("");
   const [Block, setBlock] = useState("");
-  const [FlatType, setFlatType] = useState("");
+  const [numOfRooms, setNumOfRooms] = useState("");
   const [StoreyRange, setStoreyRange] = useState("");
   const [FloorSize, setFloorSize] = useState("");
   const [ListingType, setListingType] = useState("");
@@ -74,6 +74,7 @@ export default function ModifyListing() {
   const { account_id } = useParams();
 
   useEffect(()=>{
+    console.log(account_id);
     fetch(`http://localhost:5000/seller/oneListing/${account_id}`, {
       method: "GET",
       headers: {
@@ -82,7 +83,15 @@ export default function ModifyListing() {
       },
     }).then((result) => {
       result.json().then((json_result) =>{
-        console.log(json_result.area); // does the result return a json object of the listing ?
+        setArea(json_result[0].area);
+        setPostal(json_result[0].postal_code);
+        setStreet(json_result[0].street);
+        setBlock(json_result[0].block)
+        setNumOfRooms(json_result[0].num_of_rooms);
+        setStoreyRange(json_result[0].storey_range);
+        setFloorSize(json_result[0].floor_area_sqm);
+        setListingType(json_result[0].listing_type);
+        setPrice(json_result[0].price);
       })
     })
   },[]);
@@ -108,8 +117,8 @@ export default function ModifyListing() {
     setBlock(event.target.value);
   };
 
-  const handleFlatTypeChange = (event) => {
-    setFlatType(event.target.value);
+  const handleNumOfRooms = (event) => {
+    setNumOfRooms(event.target.value);
   };
 
   const handleStoreyRangeChange = (event) => {
@@ -154,7 +163,7 @@ export default function ModifyListing() {
         postal_code: Postal,
         street: Street,
         block: Block,
-        num_of_rooms: FlatType,
+        num_of_rooms: numOfRooms,
         storey_range: StoreyRange,
         floor_area_sqm: FloorSize,
         listing_type: ListingType,
@@ -217,7 +226,7 @@ export default function ModifyListing() {
                   variant="outlined"
                   fullWidth
                   required
-                  defaultValue={area}
+                  value={area}
                   onChange={handleAreaChange}
                 />
               </Grid>
@@ -229,7 +238,7 @@ export default function ModifyListing() {
                   label="Postal Code"
                   variant="outlined"
                   onChange={handlePostalChange}
-                  defaultValue={Postal}
+                  value={Postal}
                   fullWidth
                   required
                 />
@@ -241,7 +250,7 @@ export default function ModifyListing() {
                   label="Street"
                   variant="outlined"
                   onChange={handleStreetChange}
-                  defaultValue={Street}
+                  value={Street}
                   fullWidth
                   required
                 />
@@ -253,7 +262,7 @@ export default function ModifyListing() {
                   label="Block Number"
                   variant="outlined"
                   onChange={handleBlockChange}
-                  defaultValue={Block}
+                  value={Block}
                   fullWidth
                   required
                 />
@@ -275,8 +284,8 @@ export default function ModifyListing() {
               <Grid item xs={4}>
                 <Autocomplete
                   disablePortal
-                  onSelect={handleFlatTypeChange}
-                  defaultValue={FlatType || null}
+                  onSelect={handleNumOfRooms}
+                  value={numOfRooms || null}
                   options={testFlatTypeData}
                   sx={{ width: "16vw", ml: 1 }}
                   renderInput={(params) => (
@@ -294,7 +303,7 @@ export default function ModifyListing() {
                 <Autocomplete
                   disablePortal
                   onSelect={handleStoreyRangeChange}
-                  defaultValue={StoreyRange || null}
+                  value={StoreyRange || null}
                   options={testStoreyData}
                   sx={{ width: "16vw", ml: 1 }}
                   renderInput={(params) => (
@@ -314,7 +323,7 @@ export default function ModifyListing() {
                   label="Enter the area in sqm"
                   variant="outlined"
                   required
-                  defaultValue={FloorSize}
+                  value={FloorSize}
                   onChange={handleFloorSizeChange}
                 />
               </Grid>
@@ -347,7 +356,7 @@ export default function ModifyListing() {
                     aria-labelledby="radio-buttons-group-label"
                     name="row-radio-buttons-group"
                     onChange={handleListingTypeChange}
-                    defaultValue={ListingType || null}
+                    value={ListingType || null}
                   >
                     <FormControlLabel
                       value="resale"
@@ -375,7 +384,7 @@ export default function ModifyListing() {
                   label="Price"
                   variant="outlined"
                   onChange={handlePriceChange}
-                  defaultValue={Price}
+                  value={Price}
                   required
                 />
               </Grid>
