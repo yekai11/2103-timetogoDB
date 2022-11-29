@@ -105,6 +105,7 @@ export default function ProfilePage() {
       */
       console.log("In result");
       console.log(result.status); // this is how u access the status code
+      window.location.href='/';
     });
   };
 
