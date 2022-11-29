@@ -112,7 +112,7 @@ router.post("/addListing", async (req, res) => {
 router.post("/updateListing", async (req, res) => {
   try {
     const {
-      // listing_id,
+      listing_id,
       postal_code,
       block,
       area,
@@ -125,7 +125,7 @@ router.post("/updateListing", async (req, res) => {
     } = req.body; // setting objects for easy reference
     console.log(JSON.stringify(req.body)); // for debugging
 
-    // const listing_id_int = parseInt(listing_id); // convert
+    const listing_id_int = parseInt(listing_id); // convert
     const price_int = parseInt(price); // convert Price to int
     const postal_code_int = parseInt(postal_code); // convert Postal to int
     const floor_area_sqm_int = parseInt(floor_area_sqm); // convert FloorSize to int
@@ -173,15 +173,15 @@ router.post("/updateListing", async (req, res) => {
 
     const returnUpdatedData = {
       listing_id: listing_id,
-      postal_code: Postal,
-      block: Block,
+      postal_code: postal_code,
+      block: block,
       area: area,
-      street: Street,
-      storey_range: StoreyRange,
-      num_of_rooms: FlatType,
-      floor_area_sqm: FloorSize,
-      listing_type: ListingType,
-      price: Price,
+      street: street,
+      storey_range: storey_range,
+      num_of_rooms: num_of_rooms,
+      floor_area_sqm: floor_area_sqm,
+      listing_type: listing_type,
+      price: price,
     };
 
     res.json(returnUpdatedData);
@@ -222,19 +222,15 @@ router.get("/oneListing/:listing_id", async (req, res) => {
     const getListingQuery = await pool.query(
       `
       SELECT L.listing_id, L.price, L.date_of_listing, F.postal_code, F.block, F.area, F.street, F.storey_range, F.num_of_rooms, F.floor_area_sqm,
-      A.name, A.username, A.email, A.phone_number,
       LT.listing_type
       FROM Flat As F
       JOIN
       Listing AS L
       ON L.flat_id = F.flat_id
       JOIN
-      Account AS A
-      ON L.account_id = A.account_id
-      JOIN
       ListingType AS LT
       ON L.listing_type_id = LT.listing_type_id
-      WHERE L.listing_id = ${listing_id};
+      WHERE L.account_id = ${account_id};
       `
     );
 
