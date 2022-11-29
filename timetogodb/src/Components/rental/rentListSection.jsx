@@ -178,7 +178,9 @@ export default function ListingSection() {
       </Box>
       <br></br>
       <br></br>
-      <Grid container>
+      <Grid container
+        sx={{paddingRight: "3%"}}        
+        >
         {currentTableData.map(renderCard)}
       </Grid>
       <br></br>

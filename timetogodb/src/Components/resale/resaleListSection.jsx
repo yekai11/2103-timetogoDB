@@ -67,7 +67,7 @@ export default function ListingSection() {
 
   const renderCard = (card, index) => {
     return (
-      <Card style={{ width: "18rem" }} key={index} className="ListCard">
+      <Card style={{ width: "18rem"}} key={index} className="ListCard">
         <Card.Img variant="top" src={resaleListIcon} />
         <Card.Body>
           <Card.Title className="align-self-left">
@@ -176,7 +176,8 @@ export default function ListingSection() {
       </Box>
       <br></br>
       <br></br>
-      <Grid container>        
+      <Grid container 
+        sx={{paddingRight: "3%"}} >        
         {currentTableData.map(renderCard)}
       </Grid>
       <br></br>
