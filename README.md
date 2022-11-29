@@ -32,7 +32,17 @@
 11. Under Privileges, grant all privileges to ``user1`` like so:  
 ![image](https://user-images.githubusercontent.com/97430708/203244947-b72a643f-011c-45a8-8014-f637b7e56f45.png)
 13. Click Save when done.
-14. Inside this repositry, navigate to find the ``.tar`` file which is used to restore the database to your local system. Note down the location on your system, or just save the file to your downloads folder for easy access.
+14. Navigate to the top left and go to FIlE -> Preferences -> Paths -> Binary Paths. Screenshot should be what you should see at the end  
+![image](https://user-images.githubusercontent.com/97430708/204490289-e691b365-a9f6-43a8-a9de-eb8d72eedcdf.png)
+15. Select the file icon at ``EDB Advanced Server 15``, shown in the screnshot  
+![image](https://user-images.githubusercontent.com/97430708/204490642-20a144dd-274f-468b-a947-f71fcaeb030e.png)
+16. Navigate to the folder where postgres is installed on your computer, in my case the path is shown in the screenshot like so. Make sure to tick the circle on the left of ``EDB Advanced Server 15`` as well after setting the path.
+![image](https://user-images.githubusercontent.com/97430708/204491101-b45d6b8b-dc31-4ef6-9c07-aec502858fce.png)
+17. Scroll down to the PostgreSQL Binary Path  
+![image](https://user-images.githubusercontent.com/97430708/204492031-486cbbc9-0877-4d4e-a095-acc4e3df250c.png)
+18. Similar to step 16, choose ``PostgresSQL 15`` file icon, BUT this time navigate to the bin folder of your postgresSQL installation folder like in the screenshot below. Make sure the circle is ticked, and click save after.  
+![image](https://user-images.githubusercontent.com/97430708/204492579-0d1bbffa-5fe6-4dfd-9072-b13d566340bb.png)
+14. Next, From our github repositry, navigate to find the ``.tar`` file which is used to restore the database to your local system. Note down the location on your system, or just save the file to your downloads folder for easy access.
 15. Under databases, right click -> Create -> Database... :  
 ![image](https://user-images.githubusercontent.com/97430708/203243404-7cc60744-4e11-435c-ab3a-164df1c34005.png)
 15. Set database name under general as ``houseDB``. Click save when done.
