@@ -54,21 +54,4 @@ router.get("/accountInterest/:account_id", async (req, res) => {
   }
 });
 
-/* Endpoint to get number of accounts interested in flat */
-router.get("/numAccountsInterest", async (req, res) => {
-  try {
-    const { listing_id } = req.body; // setting objects for easy reference
-    console.log(listing_id); // for debugging
-
-    const numInterestQuery = await pool.query(
-      `SELECT COUNT(interest_id) FROM Interest WHERE listing_id = ${listing_id};`
-    );
-
-    res.json(numInterestQuery.rows);
-    return;
-  } catch (err) {
-    console.log(err);
-  }
-});
-
 module.exports = router;
