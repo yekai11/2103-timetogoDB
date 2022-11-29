@@ -13,7 +13,8 @@ import {
   RadioGroup, 
   Radio, 
   TextField,
-  inputProps,
+  Modal,
+  Box,
 } from "@mui/material";
 import React from "react";
 import { useState } from 'react';
@@ -60,7 +61,21 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
   
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 export default function CreateListing() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
 
   const [area, setArea] = useState("");
   const [Postal, setPostal] = useState("");
@@ -146,9 +161,7 @@ export default function CreateListing() {
         price: Price,
       }),
     }).then((result) => {
-      /*
-      This is what comes back, it will return a status code 200 if listing successfully created
-      */
+      handleOpen();
       console.log("In result");
       console.log(result.status); // this is how u access the status code
     });
@@ -379,6 +392,25 @@ export default function CreateListing() {
       </Grid>
       <br></br>
       <br></br>
+      <Modal
+        open={open}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Listing created!
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2, paddingBottom: "10px" }}>
+            Your listing has been successfully created. Click the button below to view it!
+          </Typography>
+          <Button variant="contained" 
+            href="/manageListing"
+            sx={{ width: "60%", height: "40%", mt: 1, mb: 1}}>
+            View your Listings
+          </Button>
+        </Box>
+      </Modal>
     </div>
   );
 };
