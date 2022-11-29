@@ -103,11 +103,11 @@ export default function ListingSection() {
         <ListGroup horizontal className="flex-fill border-0">
           <ListGroup.Item className="flex-fill border-0">
             <ApartmentIcon color="primary" fontSize="large" />
-            {card.room} {/* assume no of rooms from DB */}
+            {card.num_of_rooms} {/* assume no of rooms from DB */}
           </ListGroup.Item>
           <ListGroup.Item className="flex-fill border-0">
             <LayersIcon color="primary" fontSize="large" />
-            {card.areaSize} {/* assume area of flat from DB */}
+            {card.floor_area_sqm} {/* assume area of flat from DB */}
           </ListGroup.Item>
         </ListGroup>
 
@@ -126,11 +126,11 @@ export default function ListingSection() {
         <Card.Body className="ListButton">
           <Button
             onclick={handleClickOpen}
-            startIcon={<FavoriteIcon sx={{ color: "#d32f2f" }} />}
             variant="contained"
+            size="large"
           >
             {" "}
-            Indicate Interest
+            View Details
           </Button>
         </Card.Body>
       </Card>
