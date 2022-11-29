@@ -152,13 +152,14 @@ export default function ModifyListing() {
     //   ListingType: ListingType,
     //   Price: Price,
     // });
+    const listing_id = window.localStorage.getItem("listing_id");
     fetch(handleModifyListingAPI, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        accountID: accountID,
+        listing_id: listing_id,
         area: area,
         postal_code: Postal,
         street: Street,

@@ -15,7 +15,6 @@ import Header from "../Header/HeaderComponent";
 import FooterSection from "../Homepage/FooterSection";
 
 export default function ManageListingPage() {
-
   const [listingInfo, setListingInfo] = useState([]);
   const account_id = window.localStorage.getItem("accountID");
 
@@ -36,8 +35,8 @@ export default function ManageListingPage() {
     });
   }, []);
 
-  const handleEdit = (listing_id) => {
-    window.location.href = `modifyListing/${listing_id}`;
+  const handleEdit = (account_id) => {
+    window.location.href = `modifyListing/${account_id}`;
   };
 
   const handleDelete = () => {
@@ -52,11 +51,11 @@ export default function ManageListingPage() {
       }),
     }).then((result) => {
       console.log(result);
-      window.localStorage.removeItem("listing_id");
       window.location.reload();
 
     });
   };
+  window.localStorage.setItem("listing_id", listingInfo.listing_id);
 
   return (
     <div style={{ height: "100vh", width: "auto" }}>
