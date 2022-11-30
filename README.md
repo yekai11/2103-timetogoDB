@@ -74,7 +74,7 @@ Once you see the above output, our database is loaded on to your MongoDB server!
 # 2. Running the application  
 
 1. Open up the repositry in VScode
-2. Open up a terminal, and navigate to ``.\sql\`` using command ``cd .\sql\``
+2. Open up a terminal, and navigate to ``.\sql\`` using command ``cd .\sql\`` OR ``.\nosql\`` using command ``cd .\nosql\`` depending on which database you want to use.
 3. Run the command ``npm install``
 4. In the meantime, open up a seperate instance of the terminal, and navigate to ``.\timetogodb`` using command ``cd .\timetogodb\``
 5. Run the command ``npm install``, and wait for npm to download the dependencies. Here is a relevant meme while you wait: https://www.reddit.com/r/ProgrammerHumor/comments/vrtt89/everytime_i_npm_install/
