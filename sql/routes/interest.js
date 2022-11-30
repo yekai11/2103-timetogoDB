@@ -29,13 +29,13 @@ router.post("/deleteInterest", async (req, res) => {
     const listing_id_int = parseInt(listing_id);
 
     const getInterest_id = await pool.query(
-      `SELECT interest_id WHERE listing_id  = ${listing_id_int})`
+      `SELECT interest_id FROM Interest WHERE listing_id  = ${listing_id_int}`
     );
 
     if (getInterest_id.rowCount != 0) {
-      const interest_id = parseInt(getInterest_id.rows[0].interest_id);
+      const interest_id = getInterest_id.rows[0].interest_id
 
-      console.log(typeof interest_id);
+      console.log(typeof(interest_id));
 
       const deleteInterestQuery = await pool.query(
         `DELETE FROM Interest WHERE interest_id = ${interest_id};`
