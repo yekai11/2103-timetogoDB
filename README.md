@@ -63,7 +63,7 @@
 MongoDB: https://www.mongodb.com/try/download/community. \
 MongoTools: https://www.mongodb.com/docs/database-tools/installation/installation-windows/ *Make sure to add to your environment path otherwise the import will fail!*
 2. Run mongod or mongosh to make sure your MongoDB server is connected and ready to import our database.
-3. Unzip the houseDB file from [2103-timetogoDB](2103-timetogoDB/MongoDB)
+3. Unzip the houseDB file from [MongoDB File](2103-timetogoDB/tree/main/MongoDB)
 4. Open your preferred command line and navigate to your mongotools directory. /
 mongorestore --db houseDB --drop "your directory to the db file/houseDB/"
 <img width="819" alt="Screenshot 2022-11-30 at 6 56 35 PM" src="https://user-images.githubusercontent.com/36472333/204778415-7f822563-5ad4-46c8-a37b-909298116324.png">
