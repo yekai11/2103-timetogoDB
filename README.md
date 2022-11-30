@@ -60,7 +60,7 @@
 ## MongoDB
 
 1. Make sure MongoDB & mongotools is installed on your device. Otherwise please download via  and install MongoDB & MongoTools.\
-MongoDB: https://www.mongodb.com/try/download/community.\
+MongoDB: https://www.mongodb.com/try/download/community. \
 MongoTools: https://www.mongodb.com/docs/database-tools/installation/installation-windows/ *Make sure to add to your environment path otherwise the import will fail!*
 2. Run mongod or mongosh to make sure your MongoDB server is connected and ready to import our database.
 3. Open your preferred command line and navigate to your mongotools directory
