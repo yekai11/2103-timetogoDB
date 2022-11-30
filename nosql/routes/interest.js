@@ -55,14 +55,18 @@ router.get("/accountInterest/:account_id", async (req, res) => {
     console.log(account_id); // for debugging
 
     let listings = [];
+    let counter = 0;
     const account = await db.collection("account").findOne({ account_id: parseInt(account_id) });
     if (account.interested !== null) {
-      account.interested.forEach(listing => {
-        const interest = db.collection("listing").findOne({ listing_id: parseInt(listing.listing_id) });
+      const length = account.interested.length;
+      account.interested.forEach(async (listing) => {
+        const interest = await db.collection("listing").findOne({ listing_id: listing.listing_id });
         listings.push(interest);
-      }, () => {
-        res.json(listings);
-        database.close();
+        counter++;
+        if (counter === length) {
+          res.json(listings);
+          database.close();
+        }
       });
     }
     return;
