@@ -25,7 +25,7 @@ router.get("/getListing/:listing_id", async (req, res) => {
       `
     );
 
-    res.json(getListingQuery.rows);
+    res.json(getListingQuery.rows[0]);
     return;
   } catch (err) {
     console.log(err);
