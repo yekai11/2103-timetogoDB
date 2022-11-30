@@ -42,7 +42,7 @@ export function ViewInterestPage() {
   const [listingInfo, setListingInfo] = useState([]);
   useEffect(() => {
     console.log(account_id);
-    fetch(`http://localhost:5000/interest/accountInterest/11`, {
+    fetch(`http://localhost:5000/interest/accountInterest/${account_id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
