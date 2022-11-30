@@ -5,7 +5,6 @@ import rentalBanner from "../../assets/rentalBanner.jpg";
 import rentListIcon from "../../assets/rentListIcon.jpg";
 // various icons
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import LayersIcon from "@mui/icons-material/Layers";
 // these are bootstrap card configurations
@@ -127,11 +126,10 @@ export default function ListingSection() {
 
         <Card.Body className="ListButton">
           <Button
-            onclick={handleClickOpen}
             variant="contained"
             size="large"
-
-          >
+            href="/rentDetails"
+            sx={{ width: "60%", height: "40%", mt: 1, mb: 1}}>
             {" "}
             View Details
           </Button>
