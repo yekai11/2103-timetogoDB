@@ -26,11 +26,24 @@ export default function DetailsSection() {
 
   const { listing_id } = useParams();
 
-  const [open, setOpen] = React.useState(false);
-
+  const account_id = window.localStorage.getItem("accountID");
+  console.log(account_id);
   const handleClickOpen = () => {
-    setOpen(true);
+    fetch(`http://localhost:5000/addInterest`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        account_id: account_id,
+        listing_id: listing_id,
+      }),
+    }).then((result) => {
+
+    });
   };
+
 
   const [accountID, setAccountID] = React.useState(
     window.localStorage.getItem("accountID")
@@ -39,7 +52,6 @@ export default function DetailsSection() {
   /* useEffect to get all listings and display */
   useEffect(() => {
     fetch(`http://localhost:5000/listing/getListing/${listing_id}`).then((result) => {
-      console.log(result);
       result.json().then((response) => {
         /*this response is where the json is stored at.
           its a huge array of objects like CardInfo example below
