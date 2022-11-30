@@ -57,6 +57,19 @@
 20. Hit restore. It may take a couple of seconds, but should not be too long. There should be no errors if all the steps were followed until this point:  
 ![image](https://user-images.githubusercontent.com/97430708/203245183-3311fe0f-fa2a-444a-b4d1-82731ebe17cf.png)
 
+## MongoDB
+
+1. Make sure MongoDB & mongotools is installed on your device. Otherwise please download via  and install MongoDB & MongoTools.
+MongoDB: https://www.mongodb.com/try/download/community
+MongoTools: https://www.mongodb.com/docs/database-tools/installation/installation-windows/ *Make sure to add to your environment path otherwise the import will fail!*
+2. Run mongod or mongosh to make sure your MongoDB server is connected and ready to import our database.
+3. Open your preferred command line and navigate to your mongotools directory
+mongorestore --db houseDB --drop "your directory to the db file"
+<img width="819" alt="Screenshot 2022-11-30 at 6 56 35 PM" src="https://user-images.githubusercontent.com/36472333/204778415-7f822563-5ad4-46c8-a37b-909298116324.png">
+Once you see the above output, our database is loaded on to your MongoDB server!
+
+
+
 # 2. Running the application  
 
 1. Open up the repositry in VScode
