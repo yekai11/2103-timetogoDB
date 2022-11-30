@@ -29,7 +29,7 @@ export default function ManageListingPage() {
     }).then((result) => {
       result.json().then((json_result) => {
         if (json_result.length != 0) {
-          setListingInfo(json_result[0]);
+          setListingInfo(json_result);
         }
       });
     });
@@ -52,10 +52,10 @@ export default function ManageListingPage() {
     }).then((result) => {
       console.log(result);
       window.location.reload();
-
     });
   };
-  window.localStorage.setItem("listing_id", listingInfo.listing_id_type);
+  window.localStorage.setItem("listing_id", listingInfo.listing_id);
+  console.log(listingInfo);
 
   return (
     <div style={{ height: "100vh", width: "auto" }}>
@@ -146,7 +146,9 @@ export default function ManageListingPage() {
                 <TableCell align="center">{listingInfo.street}</TableCell>
                 <TableCell align="center">{listingInfo.num_of_rooms}</TableCell>
                 <TableCell align="center">{listingInfo.storey_range}</TableCell>
-                <TableCell align="center">{listingInfo.floor_area_sqm}</TableCell>
+                <TableCell align="center">
+                  {listingInfo.floor_area_sqm}
+                </TableCell>
                 <TableCell align="center">{listingInfo.price}</TableCell>
                 <TableCell align="center">{listingInfo.listing_type}</TableCell>
 
