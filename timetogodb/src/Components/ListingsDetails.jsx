@@ -1,8 +1,8 @@
 import { Typography, Box, Button, Slide, Grid } from "@mui/material";
 import React, { useEffect, useMemo  } from "react";
 // pictures
-import rentalBanner from "../../assets/rentalBanner.jpg";
-import rentListIcon from "../../assets/rentListIcon.jpg";
+import rentalBanner from "../assets/rentalBanner.jpg";
+import rentListIcon from "../assets/rentListIcon.jpg";
 // various icons
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ApartmentIcon from "@mui/icons-material/Apartment";

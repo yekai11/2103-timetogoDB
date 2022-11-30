@@ -1,5 +1,5 @@
 import React from "react";
-import DetailsSection from "./rental/rentDetails";
+import DetailsSection from "./ListingsDetails";
 import FooterSection from "./Homepage/FooterSection";
 import ScrollComponent from "./Homepage/ScrollComponent";
 import Header from "./Header/HeaderComponent";
