@@ -62,7 +62,7 @@ router.get("/allResale", async (req, res) => {
     try {
         let listings = [];
         const db = database.connect();
-        const query = db.collection("listing").find({ listing_type: "resale" });
+        const query = db.collection("listing").find({ listing_type_id: "resale" });
         query.forEach((listing, err) => {
             assert.equal(err, null);
             listings.push(listing);
