@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Homepage from "./Components/Homepage/Homepage";
 import RentalPage from "./Components/RentalPage";
+import DetailsPage from "./Components/DetailsPage";
 import ResalePage from "./Components/ResalePage";
 import LoginPage from "./Components/LoginPage";
 import RegisterPage from "./Components/RegisterPage";
@@ -42,6 +43,7 @@ function App() {
             <Route path="/" element={<LoginPage/> }></Route>
             <Route path="home" element={<Homepage />}></Route>
             <Route path="rental" element={<RentalPage />}></Route>
+            <Route path="DetailsPage" element={<DetailsPage />}></Route>
             <Route path="resale" element={<ResalePage />}></Route>
             <Route path="register" element={<RegisterPage />}></Route> 
             <Route path="profile" element={<ProfilePage />}></Route> 
