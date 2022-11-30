@@ -32,8 +32,8 @@ router.post("/deleteInterest", async (req, res) => {
 
     // Remove interest from interested array field
     db.collection("account").updateOne(
-      { account_id: account_id },
-      { $pull: { interested: { listing_id: listing_id } } },
+      { account_id: parseInt(account_id) },
+      { $pull: { interested: { listing_id: parseInt(listing_id) } } },
       (err, result) => {
         assert.equal(null, err);
         res.sendStatus(204);
@@ -57,7 +57,7 @@ router.get("/accountInterest/:account_id", async (req, res) => {
     const account = await db.collection("account").findOne({ account_id: parseInt(account_id) });
     if (account.interested !== null) {
       account.interested.forEach(listing => {
-        const interest = db.collection("listing").findOne({ listing_id: listing.listing_id });
+        const interest = db.collection("listing").findOne({ listing_id: parseInt(listing.listing_id) });
         listings.push(interest);
       }, () => {
         res.json(listings);

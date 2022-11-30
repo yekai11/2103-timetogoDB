@@ -24,15 +24,15 @@ router.post("/addListing", async (req, res) => {
         const newListing = { // Document for new listing
             listing_id: '',
             listing_type: listing_type.toLowerCase(),
-            price: price,
+            price: parseInt(price),
             datetime_of_listing: new Date(),
-            postal_code: postal_code,
+            postal_code: parseInt(postal_code),
             block: block,
             area: area,
             street: street,
             storey_range: storey_range,
             num_of_rooms: num_of_rooms,
-            floor_area_sqm: floor_area_sqm
+            floor_area_sqm: parseInt(floor_area_sqm)
         };
 
         const listings = db.collection("listing").find().sort({ listing_id: -1 }).limit(1); // Get highest listing_id
@@ -45,7 +45,7 @@ router.post("/addListing", async (req, res) => {
             });
 
             // Insert into account collection
-            db.collection("account").updateOne({ account_id: accountID }, { $set: { listing_id: newListing.list_id } }, (err, result) => {
+            db.collection("account").updateOne({ account_id: parseInt(accountID) }, { $set: { listing_id: parseInt(newListing.list_id) } }, (err, result) => {
                 assert.equal(null, err);
                 res.sendStatus(201);
                 database.close();
@@ -76,20 +76,20 @@ router.post("/updateListing", async (req, res) => {
         console.log(block); // for debugging
 
         const newListing = { // Document for new listing
-            listing_id: listing_id,
+            listing_id: parseInt(listing_id),
             listing_type: listing_type.toLowerCase(),
-            price: price,
+            price: parseInt(price),
             datetime_of_listing: new Date(),
-            postal_code: postal_code,
+            postal_code: parseInt(postal_code),
             block: block,
             area: area,
             street: street,
             storey_range: storey_range,
             num_of_rooms: num_of_rooms,
-            floor_area_sqm: floor_area_sqm
+            floor_area_sqm: parseInt(floor_area_sqm)
         };
 
-        db.collection("listing").updateOne({ listing_id: listing_id }, { $set: newListing }, (err, result) => {
+        db.collection("listing").updateOne({ listing_id: parseInt(listing_id) }, { $set: newListing }, (err, result) => {
             assert.equal(null, err);
             database.close();
         });
@@ -149,7 +149,7 @@ router.get("/oneListing/:account_id", async (req, res) => {
 
         /* Query which returns a specific listing by id */
         const account = db.collection("account").findOne({ account_id: parseInt(account_id) });
-        const listing = db.collection("listing").findOne({ listing_id: account.listing_id });
+        const listing = db.collection("listing").findOne({ listing_id: parseInt(account.listing_id) });
         database.close();
         res.json(listing);
         return;
