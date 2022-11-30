@@ -27,11 +27,17 @@ export default function ManageListingPage() {
         "Content-Type": "application/json",
       },
     }).then((result) => {
-      result.json().then((json_result) => {
-        if (json_result != null) {
-          setListingInfo(json_result);
-        }
-      });
+      try {
+        console.log(result);
+        result.json().then((json_result) => {
+          if (json_result != null) {
+            setListingInfo(json_result);
+          }
+        });
+      } catch (err) {
+        setListingInfo({})
+        console.log(err);
+      }
     });
   }, []);
 

@@ -238,8 +238,9 @@ router.get("/oneListing/:account_id", async (req, res) => {
 
     console.log(getListingQuery.rows[0]);
 
-    res.json(getListingQuery.rows[0]);
-    return;
+    if (getListingQuery.rowCount != 0) {
+      res.json(getListingQuery.rows[0]);
+    }
   } catch (err) {
     console.log(err);
   }
