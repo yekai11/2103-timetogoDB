@@ -37,12 +37,12 @@ const rows = [
 ];
 
 export function ViewInterestPage() {
+  const account_id = window.localStorage.getItem("accountID");
 
   const [listingInfo, setListingInfo] = useState([]);
   useEffect(() => {
-    const account_id = window.localStorage.getItem("accountID");
     console.log(account_id);
-    fetch(`http://localhost:5000/interest/accountInterest/13`, {
+    fetch(`http://localhost:5000/interest/accountInterest/${account_id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -54,6 +54,24 @@ export function ViewInterestPage() {
       });
     });
   }, []);
+
+  const handleDelete = () => {
+    fetch(`http://localhost:5000/interest/deleteInterest`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        account_id: account_id,
+        listing_id: listingInfo.listing_id,
+      }),
+    }).then((result) => {
+      console.log(result);
+      window.location.reload();
+
+    });
+  };
 
   return (
     <div style={{ height: "100vh", width: "auto" }}>
@@ -152,7 +170,7 @@ export function ViewInterestPage() {
 
                   <TableCell align="center">
                     {/* Button onClick={to delete an interest} */}
-                    <Button variant="contained" color="secondary">
+                    <Button variant="contained" onClick={handleDelete}color="secondary">
                       Remove
                     </Button>
                   </TableCell>

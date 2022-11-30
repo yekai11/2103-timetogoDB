@@ -77,7 +77,7 @@ router.post("/", async (req, res) => {
 
         const accounts = db.collection("account").find().sort({ account_id: -1 }).limit(1); // Get highest account_id
         accounts.forEach(account => {
-            myObj.account_id = account.account_id + 1 // Simulate auto increment
+            myObj.account_id = parseInt(account.account_id + 1) // Simulate auto increment
         }, () => {
             db.collection("account").insertOne(myObj, (err, result) => {
                 assert.equal(null, err);
