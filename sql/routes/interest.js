@@ -23,15 +23,31 @@ router.post("/addInterest", async (req, res) => {
 /* Endpoint to delete interest */
 router.post("/deleteInterest", async (req, res) => {
   try {
-    const { interest_id } = req.body; // setting objects for easy reference
-    console.log(interest_id); // for debugging
+    const { listing_id } = req.body; // setting objects for easy reference
+    console.log(listing_id); // for debugging
 
-    const deleteInterestQuery = await pool.query(
-      `DELETE FROM Interest WHERE interest_id = ${interest_id};`
+    const listing_id_int = parseInt(listing_id);
+
+    const getInterest_id = await pool.query(
+      `SELECT interest_id FROM Interest WHERE listing_id  = ${listing_id_int}`
     );
 
-    res.sendStatus(204);
-    return;
+    if (getInterest_id.rowCount != 0) {
+      const interest_id = getInterest_id.rows[0].interest_id
+
+      console.log(typeof(interest_id));
+
+      const deleteInterestQuery = await pool.query(
+        `DELETE FROM Interest WHERE interest_id = ${interest_id};`
+      );
+
+      res.sendStatus(204);
+      return;
+    }
+    else {
+     res.sendStatus(404)
+    }
+    
   } catch (err) {
     console.log(err);
   }
@@ -46,7 +62,6 @@ router.get("/accountInterest/:account_id", async (req, res) => {
     const accountInterestQuery = await pool.query(
       `
       SELECT L.listing_id, L.price, L.date_of_listing, F.postal_code, F.block, F.area, F.street, F.storey_range, F.num_of_rooms, F.floor_area_sqm,
-      A.name, A.username, A.email, A.phone_number,
       LT.listing_type
       FROM Flat As F
       JOIN
@@ -58,7 +73,7 @@ router.get("/accountInterest/:account_id", async (req, res) => {
       JOIN
       ListingType AS LT
       ON L.listing_type_id = LT.listing_type_id
-      WHERE L.listing_id = 
+      WHERE L.listing_id IN 
       (SELECT listing_id FROM Interest WHERE account_id = ${account_id});`
     );
 
