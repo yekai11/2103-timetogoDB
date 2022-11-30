@@ -62,7 +62,6 @@ router.get("/accountInterest/:account_id", async (req, res) => {
     const accountInterestQuery = await pool.query(
       `
       SELECT L.listing_id, L.price, L.date_of_listing, F.postal_code, F.block, F.area, F.street, F.storey_range, F.num_of_rooms, F.floor_area_sqm,
-      A.name, A.username, A.email, A.phone_number,
       LT.listing_type
       FROM Flat As F
       JOIN
