@@ -95,7 +95,7 @@ export default function ListingSection() {
                     align="left "
                     sx={{ mt: 3, fontWeight: 500, color: "#242424" }}
                   >
-                    Yio Chu Kang
+                    151 SERANGOON
                   </Typography>
                 </Box>
                 <Box>
@@ -119,7 +119,7 @@ export default function ListingSection() {
                     align="left"
                     sx={{ fontWeight: 500 }}
                   >
-                    $3,000
+                    $3,400
                   </Typography>
                   <Typography
                     variant="h6"
@@ -133,7 +133,7 @@ export default function ListingSection() {
                     /month
                   </Typography>
                 </Box>
-                <Button href='resale'variant="contained">
+                <Button href='/DetailsPage/72' variant="contained">
                   See More
                 </Button>
               </Box>
@@ -178,7 +178,7 @@ export default function ListingSection() {
                     align="left "
                     sx={{ mt: 3, fontWeight: 500, color: "#242424" }}
                   >
-                    Tampines
+                    430 JURONG WEST
                   </Typography>
                 </Box>
                 <Box>
@@ -187,7 +187,7 @@ export default function ListingSection() {
                     align="justify"
                     sx={{ fontWeight: 400 }}
                   >
-                    Beautiful rental home...
+                    Beautiful resale home...
                   </Typography>
                 </Box>
                 <Box
@@ -202,21 +202,10 @@ export default function ListingSection() {
                     align="left"
                     sx={{ fontWeight: 500 }}
                   >
-                    $4,000
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    align="left"
-                    sx={{
-                      ml: 1,
-                      fontWeight: 500,
-                      color: "#878787",
-                    }}
-                  >
-                    /month
+                    $330,000
                   </Typography>
                 </Box>
-                <Button href='/rental'variant="contained">
+                <Button href='/DetailsPage/18' variant="contained">
                   See more
                 </Button>
               </Box>
@@ -261,7 +250,7 @@ export default function ListingSection() {
                     align="left "
                     sx={{ mt: 3, fontWeight: 500, color: "#242424" }}
                   >
-                    Jurong West
+                    10 CENTRAL AREA
                   </Typography>
                 </Box>
                 <Box>
@@ -285,7 +274,7 @@ export default function ListingSection() {
                     align="left"
                     sx={{ fontWeight: 500 }}
                   >
-                    $5,000
+                    $2,500
                   </Typography>
                   <Typography
                     variant="h6"
@@ -299,7 +288,7 @@ export default function ListingSection() {
                     /month
                   </Typography>
                 </Box>
-                <Button href ='rental' variant="contained">
+                <Button href='/DetailsPage/38' variant="contained">
                   See more
                 </Button>
               </Box>
