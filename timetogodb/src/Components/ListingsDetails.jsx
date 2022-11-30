@@ -1,12 +1,13 @@
 import { Typography, Box, Button, Slide, Grid } from "@mui/material";
-import React, { useEffect, useMemo  } from "react";
+import React, { useEffect, useMemo } from "react";
 // pictures
-import rentalBanner from "../assets/rentalBanner.jpg";
+import listingHeader from "../assets/listingHeader.jpg";
 import rentListIcon from "../assets/rentListIcon.jpg";
 // various icons
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import LayersIcon from "@mui/icons-material/Layers";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 // these are bootstrap card configurations
 import { Card } from "react-bootstrap";
 import { ListGroup } from "react-bootstrap";
@@ -27,6 +28,10 @@ export default function DetailsSection() {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
+  const [accountID, setAccountID] = React.useState(
+    window.localStorage.getItem("accountID")
+  );
 
   // /* useEffect to get all listings and display */
   // useEffect(() => {
@@ -55,7 +60,6 @@ export default function DetailsSection() {
 
   return (
     <div>
-      <br></br>
       <Box
         sx={{
           display: "flex",
@@ -70,13 +74,12 @@ export default function DetailsSection() {
           alt="banner"
           style={{
             zIndex: -1,
-            height: "500",
+            height: "500px",
             width: "100%",
             position: "absolute",
-            opacity: 0.4,
             objectFit: "cover",
           }}
-          src={rentalBanner}
+          src={listingHeader}
         ></img>
         <Typography
           variant="h3"
@@ -84,18 +87,17 @@ export default function DetailsSection() {
             fontWeight: 600,
             paddingLeft: 5,
             textShadow: "1px 1px 2px white",
+            paddingTop: "300px",
           }}
         >
-          Affordable Rental Homes
+          {/* {card.num_of_rooms} */}
         </Typography>
       </Box>
       <br></br>
       <br></br>
-      <Grid container
-        sx={{paddingRight: "3%"}}        
-      >
-        <Card style={{ width: "18rem" }} className="ListCard">{/*key={index}*/} 
-          <Card.Img variant="top" src={rentListIcon} />
+      <Grid container sx={{ paddingTop: "6%" }}>
+        <Card style={{ width: "90%" }} className="ListCard">
+          {/*key={index}*/}
           <Card.Body>
             <Card.Title className="align-self-left">
               <Box
@@ -105,67 +107,92 @@ export default function DetailsSection() {
                   alignItems: "center",
                 }}
               >
-              <LocationOnIcon color="primary" fontSize="large" />
-                <Typography
-                  variant="h4"
-                  align="left "
-                  sx={{
-                    mt: 1,
-                    fontSize: 25,
-                    paddingBottom: 1,
-                    fontWeight: 500,
-                    color: "#242424",
-                  }}
-                >
-                  {" "}
-                  {/* {card.area} */}
-              </Typography>
+                <ListGroup horizontal className="flex-fill border-0">
+                  <ListGroup.Item className="flex-fill border-0">
+                    <ApartmentIcon color="primary" fontSize="large" />
+                    {/* {card.num_of_rooms} */}
+                  </ListGroup.Item>
+                  <ListGroup.Item className="flex-fill border-0">
+                    <LayersIcon color="primary" fontSize="large" />
+                    {/* {card.floor_area_sqm} sqm  */}
+                  </ListGroup.Item>
+                </ListGroup>
               </Box>
             </Card.Title>
-            <hr></hr>
-            <Card.Text>
-              {/* {card.street} */}
-            </Card.Text>{" "}
-            <hr style={{ margin: 0 }}></hr>
           </Card.Body>
 
-          <ListGroup horizontal className="flex-fill border-0">
-            <ListGroup.Item className="flex-fill border-0">
-              <ApartmentIcon color="primary" fontSize="large" />
-              {/* {card.num_of_rooms} */}
-            </ListGroup.Item>
-            <ListGroup.Item className="flex-fill border-0">
-              <LayersIcon color="primary" fontSize="large" />
-              {/* {card.floor_area_sqm} sqm  */}
-            </ListGroup.Item>
-          </ListGroup>
+          <Card.Body>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <ListGroup horizontal className="flex-fill border-0">
+                  <ListGroup.Item className="flex-fill border-0">
+                    <ApartmentIcon color="primary" fontSize="large" />
+                    {/* {card.num_of_rooms} */}
+                  </ListGroup.Item>
+                  <ListGroup.Item className="flex-fill border-0">
+                    <LayersIcon color="primary" fontSize="large" />
+                    {/* {card.floor_area_sqm} sqm  */}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Box>
+          </Card.Body>
 
-          <Card.Text>
-            <Typography
-              color="primary"
-              variant="h6"
-              align="left"
-              paddingLeft={1}
-              sx={{ fontWeight: 500 }}
-            >
-              {/* ${card.price} /month */}
-            </Typography>
-          </Card.Text>
+          <Card.Body>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <ListGroup horizontal className="flex-fill border-0">
+                  <ListGroup.Item className="flex-fill border-0">
+                    <ApartmentIcon color="primary" fontSize="large" />
+                    {/* {card.num_of_rooms} */}
+                  </ListGroup.Item>
+                  <ListGroup.Item className="flex-fill border-0">
+                    <LayersIcon color="primary" fontSize="large" />
+                    {/* {card.floor_area_sqm} sqm  */}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Box>
+          </Card.Body>
+
+          <Card.Body>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <ListGroup horizontal className="flex-fill border-0">
+                  <ListGroup.Item className="flex-fill border-0">
+                    <ApartmentIcon color="primary" fontSize="large" />
+                    {/* {card.num_of_rooms} */}
+                  </ListGroup.Item>
+                  <ListGroup.Item className="flex-fill border-0">
+                    <LayersIcon color="primary" fontSize="large" />
+                    {/* {card.floor_area_sqm} sqm  */}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Box>
+          </Card.Body>
 
           <Card.Body className="ListButton">
-            <Button
-              onclick={handleClickOpen}
-              variant="contained"
-              size="large"
-            >
+            <Button onclick={handleClickOpen} variant="contained" size="large">
               {" "}
-              View Details
+              <FavoriteIcon color="primary" fontSize="large" /> 
+              Add Interest
             </Button>
           </Card.Body>
         </Card>
       </Grid>
-      <br></br>
-      <br></br>
     </div>
   );
 }

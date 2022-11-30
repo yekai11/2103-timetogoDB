@@ -128,7 +128,7 @@ export default function ListingSection() {
           <Button
             variant="contained"
             size="large"
-            href="/rentDetails"
+            href="/DetailsPage"
             sx={{ width: "60%", height: "40%", mt: 1, mb: 1}}>
             {" "}
             View Details

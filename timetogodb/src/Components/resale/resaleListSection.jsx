@@ -126,10 +126,10 @@ export default function ListingSection() {
 
         <Card.Body className="ListButton">
           <Button
-            onclick={handleClickOpen}
             variant="contained"
             size="large"
-          >
+            href="/DetailsPage"
+            sx={{ width: "60%", height: "40%", mt: 1, mb: 1}}>
             {" "}
             View Details
           </Button>
