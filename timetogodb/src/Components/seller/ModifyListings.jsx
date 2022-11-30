@@ -60,13 +60,13 @@ const testStoreyData = [
 ];
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -118,6 +118,7 @@ export default function ModifyListing() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
 
+  const [listingID, setListingID] = useState("");
   const [area, setArea] = useState("");
   const [Postal, setPostal] = useState("");
   const [Street, setStreet] = useState("");
@@ -129,7 +130,7 @@ export default function ModifyListing() {
   const [Price, setPrice] = useState("");
   const { account_id } = useParams();
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(account_id);
     fetch(`http://localhost:5000/seller/oneListing/${account_id}`, {
       method: "GET",
@@ -138,19 +139,22 @@ export default function ModifyListing() {
         "Content-Type": "application/json",
       },
     }).then((result) => {
-      result.json().then((json_result) =>{
-        setArea(json_result[0].area);
-        setPostal(json_result[0].postal_code);
-        setStreet(json_result[0].street);
-        setBlock(json_result[0].block)
-        setNumOfRooms(json_result[0].num_of_rooms);
-        setStoreyRange(convertFormatToFrontEnd_FloorRange(json_result[0].storey_range)); // converts storeyRange to front end style
-        setFloorSize(json_result[0].floor_area_sqm);
-        setListingType(json_result[0].listing_type);
-        setPrice(json_result[0].price);
-      })
-    })
-  },[]);
+      result.json().then((json_result) => {
+        setListingID(json_result.listing_id);
+        setArea(json_result.area);
+        setPostal(json_result.postal_code);
+        setStreet(json_result.street);
+        setBlock(json_result.block);
+        setNumOfRooms(json_result.num_of_rooms);
+        setStoreyRange(
+          convertFormatToFrontEnd_FloorRange(json_result.storey_range)
+        ); // converts storeyRange to front end style
+        setFloorSize(json_result.floor_area_sqm);
+        setListingType(json_result.listing_type);
+        setPrice(json_result.price);
+      });
+    });
+  }, []);
 
   // this whole chunk of codes to handle change in values on the forms
   const [accountID, setAccountID] = React.useState(
@@ -208,14 +212,13 @@ export default function ModifyListing() {
     //   ListingType: ListingType,
     //   Price: Price,
     // });
-    const listing_id = window.localStorage.getItem("listing_id");
     fetch(handleModifyListingAPI, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        listing_id: listing_id,
+        listing_id: listingID,
         area: area,
         postal_code: Postal,
         street: Street,
@@ -469,12 +472,18 @@ export default function ModifyListing() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Listing modified!
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2, paddingBottom: "10px" }}>
-            Your listing has been successfully updated. Click the button below to view it!
+          <Typography
+            id="modal-modal-description"
+            sx={{ mt: 2, paddingBottom: "10px" }}
+          >
+            Your listing has been successfully updated. Click the button below
+            to view it!
           </Typography>
-          <Button variant="contained" 
+          <Button
+            variant="contained"
             href="/manageListing"
-            sx={{ width: "60%", height: "40%", mt: 1, mb: 1}}>
+            sx={{ width: "60%", height: "40%", mt: 1, mb: 1 }}
+          >
             View your Listings
           </Button>
         </Box>
