@@ -23,15 +23,31 @@ router.post("/addInterest", async (req, res) => {
 /* Endpoint to delete interest */
 router.post("/deleteInterest", async (req, res) => {
   try {
-    const { interest_id } = req.body; // setting objects for easy reference
-    console.log(interest_id); // for debugging
+    const { listing_id } = req.body; // setting objects for easy reference
+    console.log(listing_id); // for debugging
 
-    const deleteInterestQuery = await pool.query(
-      `DELETE FROM Interest WHERE interest_id = ${interest_id};`
+    const listing_id_int = parseInt(listing_id);
+
+    const getInterest_id = await pool.query(
+      `SELECT interest_id WHERE listing_id  = ${listing_id_int})`
     );
 
-    res.sendStatus(204);
-    return;
+    if (getInterest_id.rowCount != 0) {
+      const interest_id = parseInt(getInterest_id.rows[0].interest_id);
+
+      console.log(typeof interest_id);
+
+      const deleteInterestQuery = await pool.query(
+        `DELETE FROM Interest WHERE interest_id = ${interest_id};`
+      );
+
+      res.sendStatus(204);
+      return;
+    }
+    else {
+     res.sendStatus(404)
+    }
+    
   } catch (err) {
     console.log(err);
   }
