@@ -11,11 +11,15 @@ router.post("/addInterest", async (req, res) => {
     console.log(account_id); // for debugging
 
     // Add interest to interested array field
-    db.collection("account").updateOne({ account_id: parseInt(account_id) }, { $push: { interested: { listing_id: parseInt(listing_id) } } }, (err, result) => {
-      assert.equal(null, err);
-      res.sendStatus(201);
-      database.close();
-    });
+    db.collection("account").updateOne(
+      { account_id: parseInt(account_id) },
+      { $push: { interested: { listing_id: parseInt(listing_id) } } },
+      (err, result) => {
+        assert.equal(null, err);
+        res.sendStatus(201);
+        database.close();
+      }
+    );
 
     return;
   } catch (err) {
@@ -56,11 +60,15 @@ router.get("/accountInterest/:account_id", async (req, res) => {
 
     let listings = [];
     let counter = 0;
-    const account = await db.collection("account").findOne({ account_id: parseInt(account_id) });
+    const account = await db
+      .collection("account")
+      .findOne({ account_id: parseInt(account_id) });
     if (account.interested !== null) {
       const length = account.interested.length;
       account.interested.forEach(async (listing) => {
-        const interest = await db.collection("listing").findOne({ listing_id: listing.listing_id });
+        const interest = await db
+          .collection("listing")
+          .findOne({ listing_id: listing.listing_id });
         listings.push(interest);
         counter++;
         if (counter === length) {
