@@ -1,5 +1,5 @@
 import { Typography, Box, Button, Slide, Grid, Modal } from "@mui/material";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 // pictures
 import listingHeader from "../assets/listingHeader.jpg";
 // various icons
@@ -24,6 +24,7 @@ export default function DetailsSection() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
 
+  const [role, setRole] = useState(window.localStorage.getItem('role').toLowerCase());
   const [currentPage, setCurrentPage] = React.useState(0);
 
   const [card, setCardInfo] = React.useState([]);
@@ -227,10 +228,12 @@ export default function DetailsSection() {
           </Card.Body>
 
           <Card.Body className="ListButton">
+            { role === 'buyer' && 
             <Button onClick={handleClickOpen} variant="contained" size="large">
               <FavoriteIcon color="secondary" fontSize="large"/>
               Add Interest
             </Button>
+            }
           </Card.Body>
         </Card>
       </Grid>
