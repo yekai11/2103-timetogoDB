@@ -11,7 +11,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 // these are bootstrap card configurations
 import { Card } from "react-bootstrap";
 import { ListGroup } from "react-bootstrap";
-const allRentalAPI = "http://localhost:5000/rental/allRental"; //const url for easy changing of api links
+
+import { useParams } from "react-router-dom";
 
 // button leads you back to the top after scrolling a certain amount
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -19,9 +20,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function DetailsSection() {
-  // const [currentPage, setCurrentPage] = React.useState(0);e
+  const [currentPage, setCurrentPage] = React.useState(0);
 
-  // const [cardInfo, setCardInfo] = React.useState([]);
+  const [card, setCardInfo] = React.useState([]);
+
+  const { listing_id } = useParams();
 
   const [open, setOpen] = React.useState(false);
 
@@ -33,30 +36,21 @@ export default function DetailsSection() {
     window.localStorage.getItem("accountID")
   );
 
-  // /* useEffect to get all listings and display */
-  // useEffect(() => {
-  //   fetch(allRentalAPI).then((result) => {
-  //     /*
-  //       This is what comes back, it will return a status code 200 if successfully get resale data
-  //       If get resale data error, status code 400 will be returned
-  //       */
-  //     if (result.status === 200) {
-  //       console.log(result);
-  //       result.json().then((response) => {
-  //         /*this response is where the json is stored at.
-  //           its a huge array of objects like CardInfo example below
-  //           Need to setup DB to know what is sent back
-  //           */
-  //         console.log(response);
-  //         setCardInfo(response);
-  //         setCurrentPage(1);
-  //       });
-  //     }
-  //     if (result.status === 400) {
-  //       // error here
-  //     }
-  //   });
-  // }, []);
+  /* useEffect to get all listings and display */
+  useEffect(() => {
+    fetch(`http://localhost:5000/listing/getListing/${listing_id}`).then((result) => {
+      console.log(result);
+      result.json().then((response) => {
+        /*this response is where the json is stored at.
+          its a huge array of objects like CardInfo example below
+          Need to setup DB to know what is sent back
+          */
+        console.log(response);
+        setCardInfo(response);
+        setCurrentPage(1);
+      });
+    });
+  }, []);
 
   return (
     <div>
@@ -90,7 +84,7 @@ export default function DetailsSection() {
             paddingTop: "300px",
           }}
         >
-          {/* {card.num_of_rooms} */}
+          {card.num_of_rooms}
         </Typography>
       </Box>
       <br></br>
@@ -110,11 +104,11 @@ export default function DetailsSection() {
                 <ListGroup horizontal className="flex-fill border-0">
                   <ListGroup.Item className="flex-fill border-0">
                     <ApartmentIcon color="primary" fontSize="large" />
-                    {/* {card.num_of_rooms} */}
+                    {card.num_of_rooms}
                   </ListGroup.Item>
                   <ListGroup.Item className="flex-fill border-0">
                     <LayersIcon color="primary" fontSize="large" />
-                    {/* {card.floor_area_sqm} sqm  */}
+                    {card.floor_area_sqm} sqm
                   </ListGroup.Item>
                 </ListGroup>
               </Box>
@@ -122,72 +116,72 @@ export default function DetailsSection() {
           </Card.Body>
 
           <Card.Body>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <ListGroup horizontal className="flex-fill border-0">
-                  <ListGroup.Item className="flex-fill border-0">
-                    <ApartmentIcon color="primary" fontSize="large" />
-                    {/* {card.num_of_rooms} */}
-                  </ListGroup.Item>
-                  <ListGroup.Item className="flex-fill border-0">
-                    <LayersIcon color="primary" fontSize="large" />
-                    {/* {card.floor_area_sqm} sqm  */}
-                  </ListGroup.Item>
-                </ListGroup>
-              </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <ListGroup horizontal className="flex-fill border-0">
+                <ListGroup.Item className="flex-fill border-0">
+                  <ApartmentIcon color="primary" fontSize="large" />
+                  {card.num_of_rooms}
+                </ListGroup.Item>
+                <ListGroup.Item className="flex-fill border-0">
+                  <LayersIcon color="primary" fontSize="large" />
+                  {card.floor_area_sqm} sqm
+                </ListGroup.Item>
+              </ListGroup>
+            </Box>
           </Card.Body>
 
           <Card.Body>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <ListGroup horizontal className="flex-fill border-0">
-                  <ListGroup.Item className="flex-fill border-0">
-                    <ApartmentIcon color="primary" fontSize="large" />
-                    {/* {card.num_of_rooms} */}
-                  </ListGroup.Item>
-                  <ListGroup.Item className="flex-fill border-0">
-                    <LayersIcon color="primary" fontSize="large" />
-                    {/* {card.floor_area_sqm} sqm  */}
-                  </ListGroup.Item>
-                </ListGroup>
-              </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <ListGroup horizontal className="flex-fill border-0">
+                <ListGroup.Item className="flex-fill border-0">
+                  <ApartmentIcon color="primary" fontSize="large" />
+                  {card.num_of_rooms}
+                </ListGroup.Item>
+                <ListGroup.Item className="flex-fill border-0">
+                  <LayersIcon color="primary" fontSize="large" />
+                  {card.floor_area_sqm} sqm
+                </ListGroup.Item>
+              </ListGroup>
+            </Box>
           </Card.Body>
 
           <Card.Body>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <ListGroup horizontal className="flex-fill border-0">
-                  <ListGroup.Item className="flex-fill border-0">
-                    <ApartmentIcon color="primary" fontSize="large" />
-                    {/* {card.num_of_rooms} */}
-                  </ListGroup.Item>
-                  <ListGroup.Item className="flex-fill border-0">
-                    <LayersIcon color="primary" fontSize="large" />
-                    {/* {card.floor_area_sqm} sqm  */}
-                  </ListGroup.Item>
-                </ListGroup>
-              </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <ListGroup horizontal className="flex-fill border-0">
+                <ListGroup.Item className="flex-fill border-0">
+                  <ApartmentIcon color="primary" fontSize="large" />
+                  {card.num_of_rooms}
+                </ListGroup.Item>
+                <ListGroup.Item className="flex-fill border-0">
+                  <LayersIcon color="primary" fontSize="large" />
+                  {card.floor_area_sqm} sqm
+                </ListGroup.Item>
+              </ListGroup>
+            </Box>
           </Card.Body>
 
           <Card.Body className="ListButton">
             <Button onclick={handleClickOpen} variant="contained" size="large">
               {" "}
-              <FavoriteIcon color="primary" fontSize="large" /> 
+              <FavoriteIcon color="primary" fontSize="large" />
               Add Interest
             </Button>
           </Card.Body>
