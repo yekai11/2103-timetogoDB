@@ -1,5 +1,5 @@
 import { Typography, Box, Button, Slide, Grid } from "@mui/material";
-import React, { useEffect, useMemo  } from "react";
+import React, { useEffect, useMemo } from "react";
 // pictures
 import rentalBanner from "../../assets/rentalBanner.jpg";
 import rentListIcon from "../../assets/rentListIcon.jpg";
@@ -27,10 +27,8 @@ export default function ListingSection() {
 
   const [cardInfo, setCardInfo] = React.useState([]);
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpen = (listing_id) => {
+    window.location.href = `DetailsPage/${listing_id}`;
   };
 
   /* useEffect to get all listings and display */
@@ -58,7 +56,7 @@ export default function ListingSection() {
     });
   }, []);
 
- // slices the data into different pages according to the page limit set
+  // slices the data into different pages according to the page limit set
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
@@ -128,8 +126,8 @@ export default function ListingSection() {
           <Button
             variant="contained"
             size="large"
-            href="/DetailsPage"
-            sx={{ width: "60%", height: "40%", mt: 1, mb: 1}}>
+            onClick={() => handleClickOpen(card.listing_id)}
+            sx={{ width: "60%", height: "40%", mt: 1, mb: 1 }}>
             {" "}
             View Details
           </Button>
@@ -177,8 +175,8 @@ export default function ListingSection() {
       <br></br>
       <br></br>
       <Grid container
-        sx={{paddingRight: "3%"}}        
-        >
+        sx={{ paddingRight: "3%" }}
+      >
         {currentTableData.map(renderCard)}
       </Grid>
       <br></br>

@@ -41,6 +41,10 @@ app.use('/interest', interestRouter);
 const sellerRouter = require('./routes/seller');
 app.use('/seller', sellerRouter);
 
+// Interest
+const listingRouter = require('./routes/listing');
+app.use('/listing', listingRouter);
+
 /* Start server */
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

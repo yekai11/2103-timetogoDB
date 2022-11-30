@@ -28,10 +28,8 @@ export default function ListingSection() {
 
   const [cardInfo, setCardInfo] = React.useState([]);
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpen = (listing_id) => {
+    window.location.href = `DetailsPage/${listing_id}`;
   };
 
   /* useEffect to get all listings and display */
@@ -128,7 +126,7 @@ export default function ListingSection() {
           <Button
             variant="contained"
             size="large"
-            href="/DetailsPage"
+            onClick={() => handleClickOpen(card.listing_id)}
             sx={{ width: "60%", height: "40%", mt: 1, mb: 1}}>
             {" "}
             View Details
