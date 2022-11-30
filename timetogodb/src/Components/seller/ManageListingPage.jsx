@@ -55,7 +55,7 @@ export default function ManageListingPage() {
 
     });
   };
-  window.localStorage.setItem("listing_id", listingInfo.listing_id);
+  window.localStorage.setItem("listing_id", listingInfo.listing_id_type);
 
   return (
     <div style={{ height: "100vh", width: "auto" }}>

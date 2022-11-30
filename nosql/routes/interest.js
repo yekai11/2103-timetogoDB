@@ -27,8 +27,9 @@ router.post("/addInterest", async (req, res) => {
 router.post("/deleteInterest", async (req, res) => {
   try {
     const db = database.connect();
-    const { account_id, interest_id } = req.body; // setting objects for easy reference
-    console.log(interest_id); // for debugging
+    const { account_id, listing_id } = req.body; // setting objects for easy reference
+    // console.log(interest_id); // for debugging
+    console.log(listing_id); // for debugging
 
     // Remove interest from interested array field
     db.collection("account").updateOne(
