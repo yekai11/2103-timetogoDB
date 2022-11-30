@@ -12,7 +12,7 @@ router.get('/getListing/:listing_id', async (req, res) => {
 
         const listing = await db.collection("listing").findOne({ listing_id: parseInt(listing_id) });
         res.json(listing);
-        database.close();
+        // database.close();
         return;
     } catch (err) {
         console.log(err);

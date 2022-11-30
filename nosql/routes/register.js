@@ -105,7 +105,7 @@ router.post("/", async (req, res) => {
         db.collection("account").insertOne(myObj, (err, result) => {
           assert.equal(null, err);
           console.log("Account created: " + myObj.account_id);
-          database.close();
+          // database.close();
         });
       }
     );

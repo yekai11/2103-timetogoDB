@@ -28,7 +28,7 @@ export default function ManageListingPage() {
       },
     }).then((result) => {
       result.json().then((json_result) => {
-        if (json_result.length != 0) {
+        if (json_result != null) {
           setListingInfo(json_result);
         }
       });

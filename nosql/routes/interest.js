@@ -17,7 +17,7 @@ router.post("/addInterest", async (req, res) => {
       (err, result) => {
         assert.equal(null, err);
         res.sendStatus(201);
-        database.close();
+        // database.close();
       }
     );
 
@@ -42,7 +42,7 @@ router.post("/deleteInterest", async (req, res) => {
       (err, result) => {
         assert.equal(null, err);
         res.sendStatus(204);
-        database.close();
+        // database.close();
       }
     );
     return;
@@ -73,7 +73,7 @@ router.get("/accountInterest/:account_id", async (req, res) => {
         counter++;
         if (counter === length) {
           res.json(listings);
-          database.close();
+          // database.close();
         }
       });
     }

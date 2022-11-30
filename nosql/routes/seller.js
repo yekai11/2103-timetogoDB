@@ -26,7 +26,7 @@ router.post("/addListing", async (req, res) => {
       listing_id: "",
       listing_type: listing_type.toLowerCase(),
       price: parseInt(price),
-      datetime_of_listing: new Date(),
+      date_of_listing: new Date(),
       postal_code: parseInt(postal_code),
       block: block,
       area: area,
@@ -93,7 +93,7 @@ router.post("/updateListing", async (req, res) => {
       listing_id: parseInt(listing_id),
       listing_type: listing_type.toLowerCase(),
       price: parseInt(price),
-      datetime_of_listing: new Date(),
+      date_of_listing: new Date(),
       postal_code: parseInt(postal_code),
       block: block,
       area: area,
@@ -108,7 +108,7 @@ router.post("/updateListing", async (req, res) => {
       { $set: newListing },
       (err, result) => {
         assert.equal(null, err);
-        database.close();
+        // database.close();
       }
     );
 
@@ -144,7 +144,7 @@ router.post("/deleteListing", async (req, res) => {
       { listing_id: listing_id },
       (err, res) => {
         assert.equal(null, err);
-        database.close();
+        // database.close();
       }
     );
 
@@ -154,7 +154,7 @@ router.post("/deleteListing", async (req, res) => {
       { $unset: { listing_id: "" } },
       (err, result) => {
         assert.equal(null, err);
-        database.close();
+        // database.close();
       }
     );
 

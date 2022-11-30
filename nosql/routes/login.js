@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
 
         res.json(accountDetails);
         console.log("log in success");
-        database.close();
+        // database.close();
     } catch (err) {
         console.log(err);
     }

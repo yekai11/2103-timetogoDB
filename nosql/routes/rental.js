@@ -8,14 +8,14 @@ router.get("/allRental", async (req, res) => {
     try {
         let listings = [];
         const db = database.connect();
-        const query = db.collection("listing").find({ listing_type_id: "rental" });
+        const query = db.collection("listing").find({ listing_type: "rental" });
         query.forEach((listing, err) => {
             assert.equal(err, null);
             listings.push(listing);
         }, () => {
             res.json(listings);
             console.log(listings);
-            database.close();
+            // database.close();
         });
         return;
     } catch (err) {

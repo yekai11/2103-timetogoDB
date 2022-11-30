@@ -13,7 +13,7 @@ router.post("/delete", async (req, res) => {
     db.collection("account").deleteOne({ account_id: parseInt(accountID) }, (err, result) => {
       assert.equal(null, err);
       console.log("Account deleted.");
-      database.close();
+      // database.close();
     })
 
     res.sendStatus(200);
@@ -41,7 +41,7 @@ router.post("/update", async (req, res) => {
     db.collection("account").updateOne({ account_id: parseInt(accountID) }, { $set: myObj }, (err, result) => {
       assert.equal(null, err);
       console.log("Account updated.");
-      database.close();
+      // database.close();
     })
 
     const returnUpdatedData = {
