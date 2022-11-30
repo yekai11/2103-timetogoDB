@@ -74,7 +74,7 @@ router.get("/accountInterest/:account_id", async (req, res) => {
       JOIN
       ListingType AS LT
       ON L.listing_type_id = LT.listing_type_id
-      WHERE L.listing_id = 
+      WHERE L.listing_id IN 
       (SELECT listing_id FROM Interest WHERE account_id = ${account_id});`
     );
 
