@@ -42,7 +42,7 @@ export function ViewInterestPage() {
   const [listingInfo, setListingInfo] = useState([]);
   useEffect(() => {
     console.log(account_id);
-    fetch(`http://localhost:5000/interest/accountInterest/${account_id}`, {
+    fetch(`http://localhost:5000/interest/accountInterest/11`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -50,12 +50,12 @@ export function ViewInterestPage() {
       },
     }).then((result) => {
       result.json().then((json_result) => {
-        // setListInfo(json_result);
+        setListingInfo(json_result);
       });
     });
   }, []);
 
-  const handleDelete = () => {
+  const handleDelete = (listing_id) => {
     fetch(`http://localhost:5000/interest/deleteInterest`, {
       method: "POST",
       headers: {
@@ -64,12 +64,11 @@ export function ViewInterestPage() {
       },
       body: JSON.stringify({
         account_id: account_id,
-        listing_id: listingInfo.listing_id,
+        listing_id: listing_id,
       }),
     }).then((result) => {
       console.log(result);
       window.location.reload();
-
     });
   };
 
@@ -120,12 +119,6 @@ export function ViewInterestPage() {
                   align="center"
                   sx={{ fontSize: "16px", fontWeight: "bold" }}
                 >
-                  Flat-Type
-                </TableCell>
-                <TableCell
-                  align="center"
-                  sx={{ fontSize: "16px", fontWeight: "bold" }}
-                >
                   Num-Of-Rooms
                 </TableCell>
                 <TableCell
@@ -155,22 +148,25 @@ export function ViewInterestPage() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {listingInfo.map((row) => (
                 <TableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell align="center">{row.name}</TableCell>
-                  <TableCell align="center">{row.calories}</TableCell>
-                  <TableCell align="center">{row.fat}</TableCell>
-                  <TableCell align="center">{row.carbs}</TableCell>
-                  <TableCell align="center">{row.protein}</TableCell>
-                  <TableCell align="center">{row.protein}</TableCell>
-                  <TableCell align="center">{row.protein}</TableCell>
+                  <TableCell align="center">{row.area}</TableCell>
+                  <TableCell align="center">{row.street}</TableCell>
+                  <TableCell align="center">{row.num_of_rooms}</TableCell>
+                  <TableCell align="center">{row.storey_range}</TableCell>
+                  <TableCell align="center">{row.floor_area_sqm}</TableCell>
+                  <TableCell align="center">{row.price}</TableCell>
 
                   <TableCell align="center">
                     {/* Button onClick={to delete an interest} */}
-                    <Button variant="contained" onClick={handleDelete}color="secondary">
+                    <Button
+                      variant="contained"
+                      onClick={() => handleDelete(row.listing_id)}
+                      color="secondary"
+                    >
                       Remove
                     </Button>
                   </TableCell>
