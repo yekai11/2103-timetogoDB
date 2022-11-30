@@ -42,7 +42,7 @@
 ![image](https://user-images.githubusercontent.com/97430708/204492031-486cbbc9-0877-4d4e-a095-acc4e3df250c.png)
 18. Similar to step 16, choose ``PostgresSQL 15`` file icon, BUT this time navigate to the bin folder of your postgresSQL installation folder like in the screenshot below. Make sure the circle is ticked, and click save after.  
 ![image](https://user-images.githubusercontent.com/97430708/204492579-0d1bbffa-5fe6-4dfd-9072-b13d566340bb.png)
-14. Next, From our github repositry, navigate to find the ``.tar`` file which is used to restore the database to your local system. Note down the location on your system, or just save the file to your downloads folder for easy access.
+14. Next, From our github repository, navigate [here](/PostgreSQL) and unzip the to find the ``.tar`` file which is used to restore the database to your local system. Note down the location on your system, or just save the file to your downloads folder for easy access.
 15. Under databases, right click -> Create -> Database... :  
 ![image](https://user-images.githubusercontent.com/97430708/203243404-7cc60744-4e11-435c-ab3a-164df1c34005.png)
 15. Set database name under general as ``houseDB``. Click save when done.
@@ -63,8 +63,9 @@
 MongoDB: https://www.mongodb.com/try/download/community. \
 MongoTools: https://www.mongodb.com/docs/database-tools/installation/installation-windows/ *Make sure to add to your environment path otherwise the import will fail!*
 2. Run mongod or mongosh to make sure your MongoDB server is connected and ready to import our database.
-3. Open your preferred command line and navigate to your mongotools directory. /
-mongorestore --db houseDB --drop "your directory to the db file"
+3. Unzip the houseDB file from [MongoDB File](/MongoDB)
+4. Open your preferred command line and navigate to your mongotools directory. /
+mongorestore --db houseDB --drop "your directory to the db file/houseDB/"
 <img width="819" alt="Screenshot 2022-11-30 at 6 56 35 PM" src="https://user-images.githubusercontent.com/36472333/204778415-7f822563-5ad4-46c8-a37b-909298116324.png">
 Once you see the above output, our database is loaded on to your MongoDB server!
 
