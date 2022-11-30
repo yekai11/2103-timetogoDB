@@ -1,4 +1,4 @@
-import { Typography, Box, Button, Slide, Grid } from "@mui/material";
+import { Typography, Box, Button, Slide, Grid, Modal } from "@mui/material";
 import React, { useEffect, useMemo } from "react";
 // pictures
 import listingHeader from "../assets/listingHeader.jpg";
@@ -21,6 +21,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function DetailsSection() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+
   const [currentPage, setCurrentPage] = React.useState(0);
 
   const [card, setCardInfo] = React.useState([]);
@@ -40,12 +43,26 @@ export default function DetailsSection() {
         account_id: account_id,
         listing_id: listing_id,
       }),
-    }).then((result) => {});
+    }).then((result) => {
+      handleOpen();
+    });
   };
 
   const [accountID, setAccountID] = React.useState(
     window.localStorage.getItem("accountID")
   );
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
   /* useEffect to get all listings and display */
   useEffect(() => {
@@ -217,6 +234,25 @@ export default function DetailsSection() {
           </Card.Body>
         </Card>
       </Grid>
+      <Modal
+        open={open}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Interest added!
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2, paddingBottom: "10px" }}>
+            Your interest has been noted. Click below to continue!
+          </Typography>
+          <Button variant="contained" 
+            href="/home"
+            sx={{ width: "60%", height: "40%", mt: 1, mb: 1}}>
+            Return
+          </Button>
+        </Box>
+      </Modal>
     </div>
   );
 }
